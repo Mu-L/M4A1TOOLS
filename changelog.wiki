@@ -1,0 +1,105 @@
+#
+
+
+## 1.9
+
+
+
+
+
+## 1.8
+> 2024-03-14
+
+
+### DeusEx
+
+* SetupGroupGizmos tool
+  - add option to lock axes, that don't carry a gizmo
+    - this then allows for easy and lazy group rotation using the native op, without having to pick the right axis, and even with the rotation gizmo(s) disabled
+    - disable locking via `R` or `L` keys
+
+
+### Prime <sup>previously Standard</sup>
+
+* Assetbrowser tools
+  - add Assetbrowser Bookmarks
+    - draw buttons for 10 bookmarks in the asset browser header
+    - support jumping to library/catalog via click, saving via `SHIFT` click, and clearing bookmarks via `CTRL` click
+      - see tooltips
+		- support jumping to library/catalog via new `ALT + 0` to `ALT + 0` keymaps
+    - bookmarks store and recall library, catalog and thumbnail size
+    - bookmarks are stored on disk in `assetbrowser_bookmarks.json` in Blender's config folder
+  - with the catalog sidebar closed, display the library and catalog in the asset browser header
+  - support maintaining bookmarks, across Library renames (Blender restart required)
+  - NOTE: you can't bookmark any catalog in the 'Current File' library
+  	- and you can't bookmark any library's 'Unassigned' catalog either
+
+* Shading Pie
+  - BevelShader
+    - support toggling it per-object
+    - add arrow buttons to increase or decrease the global or per-object radius
+      - halve and double the curretn value by default
+      - with SHIFT held down, do -25% or +33% instead for smaller adjustments
+  - Smooth, Flat, ToggleAutoSmooth tools
+    - redo them completely, and maintain the same look and UX in 4.1 as before
+    - in Blender 4.1
+    	- support auto smooth toggling by adding/removing geo node mod
+    		- sort it at the end of the stack, but before mirror and array mods
+    		- support intanced objects
+    	- support Auto Smooth for CURVE objects
+    - support SURFACE objects in object mode (Blender does too, so why not)
+    - properly deal with hidden children and mod objects when in local view and when either or both are included in a Smooth or Flat shading operation
+    - when shading Smooth, optionally (but by default) enable Auto Smooth for objects carrying boolean mods
+    - when shading Smooth with `ALT` pressed, sharpen edges via new operator angle property, not via a mesh's auto smooth angle prop as before
+    - when Flat shading with `ALT` pressed to clear sharps, seams, etc, also disable Auto Smooth, if enabled, or present
+    - limit options, that are exposed in redo panel, depending on context, hide what doesn't apply
+    - when Flat shading and removing creases, make option, that avoids removal of creases while subd mods with `use_crease` are present, work per-object not globally or entire selection
+    - add object mode fading HUD summarizing the shading changes
+  - display Clear Custom Normals op, independently of Auto Smooth being enabled in 4.1
+    - neither custom normals nor sharp edges require Auto Smooth anymore
+
+* MaterialPicker tool
+  - support fetching materials from and assigning them to CURVE objects
+
+* SelectHierarchy tool
+  - indicate number of hidden parents/children in fading HUD
+
+* Group Add/Remove tools
+  - add little fading HUD to visually confirm what happened
+
+* ToggleRegion tool
+  - avoid exception when library stored asset browser settings, is no longer registered
+
+* Thread, ToggleSmooth and QuadSphere tools
+  - deal with Auto Smooth changes in 4.1
+
+* CreateAssemblyAsset tool
+  - fix issues caused by 1.7's change to UUID based catalog storage
+
+* Modes Pie
+	- Surface Slide tool
+		- support instanced meshes
+  - avoid exception when trying to mode change a linked object with library override
+
+* addon preferences
+	- add GetSupport tool, placed at the top of the addon prefs
+  - add custom updater 
+    - NOTE: since it's only introduced now in 1.8, it will only be of use for upcoming releases, so can't be used to install this very  1.8 update yet
+    - allows for very easy addon update installation from .zip file, and from inside of Blender, instead of manually from the file browser
+    - finds matching .zip file(s) in home and Downloads folder
+    - allows selecting one of them them or manually selecing a file in any other location
+    - extracts the file to a temporary location, and installs update when quitting Blender
+    - like a manual update installation from the filebrowser, this maintains previous addon settings and custom keys
+    - see installation instructions for details  
+
+* Customize tool
+  - tweak M3 theme
+    - adjust to edit mode color changes in 4.1
+    - make crease edges green
+  - when customizing the startup file, while the Shading Pie has been activated, disable native cursor display and activate custom cursor and object axes drawing instead
+  - fix issues modifying keymap in 4.1
+  - add hidden Toolbar Popup keymaps
+		- set Annotate to D
+		- set Annotate Erase to E
+		- without deliberately creating these keymaps, the default keymaps will change depending on the active tool, now they are consistent
+	- invert Transform Modal Map's proportional editing keymaps, so increasing the size is done by scrolling up and decreasing by scrolling down
