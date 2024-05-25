@@ -8,7 +8,7 @@ from bpy.app.translations import pgettext as _
 user_cavity = True
 
 class EditMode(bpy.types.Operator):
-    bl_idname = "m4n1.edit_mode"
+    bl_idname = "m4a1.edit_mode"
     bl_label = "Edit Mode"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -73,7 +73,7 @@ class EditMode(bpy.types.Operator):
         return {'FINISHED'}
 
 class MeshMode(bpy.types.Operator):
-    bl_idname = "m4n1.mesh_mode"
+    bl_idname = "m4a1.mesh_mode"
     bl_label = "Mesh Mode"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -143,8 +143,8 @@ class MeshMode(bpy.types.Operator):
         return {'FINISHED'}
 
 class ImageMode(bpy.types.Operator):
-    bl_idname = "m4n1.image_mode"
-    bl_label = "M4N1: Image Mode"
+    bl_idname = "m4a1.image_mode"
+    bl_label = "M4A1: Image Mode"
     bl_options = {'REGISTER'}
 
     mode: StringProperty()
@@ -171,8 +171,8 @@ class ImageMode(bpy.types.Operator):
         return {'FINISHED'}
 
 class UVMode(bpy.types.Operator):
-    bl_idname = "m4n1.uv_mode"
-    bl_label = "M4N1: UV Mode"
+    bl_idname = "m4a1.uv_mode"
+    bl_label = "M4A1: UV Mode"
     bl_options = {'REGISTER'}
 
     mode: StringProperty()
@@ -193,8 +193,8 @@ class UVMode(bpy.types.Operator):
         return {'FINISHED'}
 
 class SurfaceDrawMode(bpy.types.Operator):
-    bl_idname = "m4n1.surface_draw_mode"
-    bl_label = "M4N1: Surface Draw Mode"
+    bl_idname = "m4a1.surface_draw_mode"
+    bl_label = "M4A1: Surface Draw Mode"
     bl_description = "Surface Draw, create parented, empty GreasePencil object and enter DRAW mode.\nSHIFT: Select the Line tool."
     bl_options = {'REGISTER', 'UNDO'}
 

@@ -15,8 +15,8 @@ decalmachine = None
 meshmachine = None
 
 class OriginToActive(bpy.types.Operator):
-    bl_idname = "m4n1.origin_to_active"
-    bl_label = "M4N1: Origin to Active"
+    bl_idname = "m4a1.origin_to_active"
+    bl_label = "M4A1: Origin to Active"
     bl_options = {'REGISTER', 'UNDO'}
 
     @classmethod
@@ -131,8 +131,8 @@ class OriginToActive(bpy.types.Operator):
             set_obj_origin(obj, mx, decalmachine=decalmachine, meshmachine=meshmachine)
 
 class OriginToCursor(bpy.types.Operator):
-    bl_idname = "m4n1.origin_to_cursor"
-    bl_label = "M4N1: Origin to Cursor"
+    bl_idname = "m4a1.origin_to_cursor"
+    bl_label = "M4A1: Origin to Cursor"
     bl_options = {'REGISTER', 'UNDO'}
 
     @classmethod
@@ -210,8 +210,8 @@ class OriginToCursor(bpy.types.Operator):
             set_obj_origin(active, mx, bm=bm, decalmachine=decalmachine, meshmachine=meshmachine)
 
 class OriginToBottomBounds(bpy.types.Operator):
-    bl_idname = "m4n1.origin_to_bottom_bounds"
-    bl_label = "M4N1: Origin to Bottom Bounds"
+    bl_idname = "m4a1.origin_to_bottom_bounds"
+    bl_label = "M4A1: Origin to Bottom Bounds"
     bl_options = {'REGISTER', 'UNDO'}
 
     evaluated: BoolProperty(name=_("Evaluated Object Bounds"), default=False)

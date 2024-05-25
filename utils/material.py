@@ -131,17 +131,17 @@ def adjust_bevel_shader(context, debug=False):
 
         tree = mat.node_tree
 
-        bevel = tree.nodes.get('M4N1tools Bevel')
+        bevel = tree.nodes.get('M4A1tools Bevel')
 
-        math = tree.nodes.get('M4N1tools Bevel Shader Radius Math')
-        math2 = tree.nodes.get('M4N1tools Bevel Shader Radius Math2')
-        math3 = tree.nodes.get('M4N1tools Bevel Shader Radius Math3')
+        math = tree.nodes.get('M4A1tools Bevel Shader Radius Math')
+        math2 = tree.nodes.get('M4A1tools Bevel Shader Radius Math2')
+        math3 = tree.nodes.get('M4A1tools Bevel Shader Radius Math3')
 
-        global_radius = tree.nodes.get('M4N1tools Bevel Shader Global Radius')
+        global_radius = tree.nodes.get('M4A1tools Bevel Shader Global Radius')
 
-        obj_toggle = tree.nodes.get('M4N1tools Bevel Shader Object Toggle')
-        obj_modulation = tree.nodes.get('M4N1tools Bevel Shader Object Radius Modulation')
-        dim_modulation = tree.nodes.get('M4N1tools Bevel Shader Dimensions Radius Modulation')
+        obj_toggle = tree.nodes.get('M4A1tools Bevel Shader Object Toggle')
+        obj_modulation = tree.nodes.get('M4A1tools Bevel Shader Object Radius Modulation')
+        dim_modulation = tree.nodes.get('M4A1tools Bevel Shader Dimensions Radius Modulation')
 
         if debug:
             print(" bevel:", bevel)
@@ -233,7 +233,7 @@ def create_and_connect_bevel_shader_setup(mat, last_node, normal_inputs, math=No
     tree = mat.node_tree
     
     bevel = tree.nodes.new('ShaderNodeBevel')
-    bevel.name = "M4N1tools Bevel"
+    bevel.name = "M4A1tools Bevel"
     bevel.location.x = last_node.location.x - 250
 
     y_dim = last_node.dimensions.y
@@ -262,7 +262,7 @@ def create_and_connect_bevel_shader_setup(mat, last_node, normal_inputs, math=No
             print("   creating multiply node")
 
         math = tree.nodes.new('ShaderNodeMath')
-        math.name = "M4N1tools Bevel Shader Radius Math"
+        math.name = "M4A1tools Bevel Shader Radius Math"
         math.operation = 'MULTIPLY'
 
         math.location = bevel.location
@@ -275,7 +275,7 @@ def create_and_connect_bevel_shader_setup(mat, last_node, normal_inputs, math=No
             print("   creating 2nd multiply node")
 
         math2 = tree.nodes.new('ShaderNodeMath')
-        math2.name = "M4N1tools Bevel Shader Radius Math2"
+        math2.name = "M4A1tools Bevel Shader Radius Math2"
         math2.operation = 'MULTIPLY'
 
         math2.location = math.location
@@ -288,7 +288,7 @@ def create_and_connect_bevel_shader_setup(mat, last_node, normal_inputs, math=No
             print("   creating 3rd multiply node")
 
         math3 = tree.nodes.new('ShaderNodeMath')
-        math3.name = "M4N1tools Bevel Shader Radius Math3"
+        math3.name = "M4A1tools Bevel Shader Radius Math3"
         math3.operation = 'MULTIPLY'
 
         math3.location = math2.location
@@ -301,7 +301,7 @@ def create_and_connect_bevel_shader_setup(mat, last_node, normal_inputs, math=No
             print("   creating global radius node")
 
         global_radius = tree.nodes.new('ShaderNodeValue')
-        global_radius.name = "M4N1tools Bevel Shader Global Radius"
+        global_radius.name = "M4A1tools Bevel Shader Global Radius"
         global_radius.label = "Global Radius"
 
         global_radius.location = math3.location
@@ -315,7 +315,7 @@ def create_and_connect_bevel_shader_setup(mat, last_node, normal_inputs, math=No
             print("   creating obj toggle node")
 
         obj_toggle = tree.nodes.new('ShaderNodeAttribute')
-        obj_toggle.name = "M4N1tools Bevel Shader Object Toggle"
+        obj_toggle.name = "M4A1tools Bevel Shader Object Toggle"
         obj_toggle.label = "Obj Toggle"
 
         obj_toggle.attribute_type = 'OBJECT'
@@ -331,7 +331,7 @@ def create_and_connect_bevel_shader_setup(mat, last_node, normal_inputs, math=No
             print("   creating obj modulation node")
 
         obj_modulation = tree.nodes.new('ShaderNodeAttribute')
-        obj_modulation.name = "M4N1tools Bevel Shader Object Radius Modulation"
+        obj_modulation.name = "M4A1tools Bevel Shader Object Radius Modulation"
         obj_modulation.label = "Obj Radius Modulation"
 
         obj_modulation.attribute_type = 'OBJECT'
@@ -347,7 +347,7 @@ def create_and_connect_bevel_shader_setup(mat, last_node, normal_inputs, math=No
             print("   creating dimensions modulation node")
 
         dim_modulation = tree.nodes.new('ShaderNodeAttribute')
-        dim_modulation.name = "M4N1tools Bevel Shader Dimensions Radius Modulation"
+        dim_modulation.name = "M4A1tools Bevel Shader Dimensions Radius Modulation"
         dim_modulation.label = "Dimensions Radius Modulation"
 
         dim_modulation.attribute_type = 'OBJECT'

@@ -4,8 +4,8 @@ from math import radians, degrees
 from .. items import axis_mapping_dict
 
 class SmartDrive(bpy.types.Operator):
-    bl_idname = 'm4n1.smart_drive'
-    bl_label = 'M4N1: Smart Drive'
+    bl_idname = 'm4a1.smart_drive'
+    bl_label = 'M4A1: Smart Drive'
     bl_description = 'Drive one Object using another'
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -118,8 +118,8 @@ class SmartDrive(bpy.types.Operator):
         return expr
 
 class SwitchValues(bpy.types.Operator):
-    bl_idname = 'm4n1.switch_driver_values'
-    bl_label = 'M4N1: Switch Driver Values'
+    bl_idname = 'm4a1.switch_driver_values'
+    bl_label = 'M4A1: Switch Driver Values'
     bl_options = {'REGISTER', 'UNDO'}
 
     mode: StringProperty(name='Mode', default='DRIVER')
@@ -139,8 +139,8 @@ class SwitchValues(bpy.types.Operator):
         return {'FINISHED'}
 
 class SetValue(bpy.types.Operator):
-    bl_idname = 'm4n1.set_driver_value'
-    bl_label = 'M4N1: set_driver_value'
+    bl_idname = 'm4a1.set_driver_value'
+    bl_label = 'M4A1: set_driver_value'
     bl_options = {'REGISTER', 'UNDO'}
 
     mode: StringProperty(name='Mode', default='DRIVER')

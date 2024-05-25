@@ -8,8 +8,8 @@ from ... utils.selection import get_selected_vert_sequences, get_selection_islan
 from ... utils.ui import popup_message
 from bpy.app.translations import pgettext as _
 class AlignEditMesh(bpy.types.Operator):
-    bl_idname = "m4n1.align_editmesh"
-    bl_label = "M4N1: Align (Edit Mesh)"
+    bl_idname = "m4a1.align_editmesh"
+    bl_label = "M4A1: Align (Edit Mesh)"
     bl_options = {'REGISTER', 'UNDO'}
     bl_description = "Local Space Align\nALT: World Space Align\nCTRL: Cursor Space Align"
 
@@ -192,8 +192,8 @@ class AlignEditMesh(bpy.types.Operator):
         return mx
 
 class CenterEditMesh(bpy.types.Operator):
-    bl_idname = "m4n1.center_editmesh"
-    bl_label = "M4N1: Center (Edit Mesh)"
+    bl_idname = "m4a1.center_editmesh"
+    bl_label = "M4A1: Center (Edit Mesh)"
     bl_options = {'REGISTER', 'UNDO'}
     bl_description = "Local Space Center\nALT: World Space Center\nCTRL: Cursor Space Center"
 
@@ -269,8 +269,8 @@ class CenterEditMesh(bpy.types.Operator):
         bmesh.update_edit_mesh(active.data)
 
 class AlignObjectToEdge(bpy.types.Operator):
-    bl_idname = "m4n1.align_object_to_edge"
-    bl_label = "M4N1: Align Object to Edge"
+    bl_idname = "m4a1.align_object_to_edge"
+    bl_label = "M4A1: Align Object to Edge"
     bl_description = "Align one or more objects to edge in active object\nALT: Snap objects to edge by proximity\nCTRL: Snap objects to edge by midpoint"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -345,8 +345,8 @@ class AlignObjectToEdge(bpy.types.Operator):
         return None, None, None, None
 
 class AlignObjectToVert(bpy.types.Operator):
-    bl_idname = "m4n1.align_object_to_vert"
-    bl_label = "M4N1: Align Object to Vert"
+    bl_idname = "m4a1.align_object_to_vert"
+    bl_label = "M4A1: Align Object to Vert"
     bl_description = "Align one or more objects to vertice in active object"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -381,8 +381,8 @@ class AlignObjectToVert(bpy.types.Operator):
         return {'FINISHED'}
 
 class Straighten(bpy.types.Operator):
-    bl_idname = "m4n1.straighten"
-    bl_label = "M4N1: Straighten"
+    bl_idname = "m4a1.straighten"
+    bl_label = "M4A1: Straighten"
     bl_description = "Straighten verts or edges"
     bl_options = {'REGISTER', 'UNDO'}
 

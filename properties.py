@@ -669,7 +669,7 @@ class M4SceneProperties(bpy.types.PropertyGroup):
             context.preferences.inputs.view_rotate_method = 'TRACKBALL' if self.custom_views_local else 'TURNTABLE'
 
         if get_prefs().activate_transform_pie and get_prefs().custom_views_set_transform_preset:
-            bpy.ops.m4n1.set_transform_preset(pivot='MEDIAN_POINT', orientation='LOCAL' if self.custom_views_local else 'GLOBAL')
+            bpy.ops.m4a1.set_transform_preset(pivot='MEDIAN_POINT', orientation='LOCAL' if self.custom_views_local else 'GLOBAL')
 
     def update_custom_views_cursor(self, context):
         if self.avoid_update:
@@ -685,10 +685,10 @@ class M4SceneProperties(bpy.types.PropertyGroup):
         if get_prefs().custom_views_use_trackball:
             context.preferences.inputs.view_rotate_method = 'TRACKBALL' if self.custom_views_cursor else 'TURNTABLE'
 
-        if 'm4n1.tool_hyper_cursor' not in get_active_tool(context).idname:
+        if 'm4a1.tool_hyper_cursor' not in get_active_tool(context).idname:
 
             if get_prefs().activate_transform_pie and get_prefs().custom_views_set_transform_preset:
-                bpy.ops.m4n1.set_transform_preset(pivot='CURSOR' if self.custom_views_cursor else 'MEDIAN_POINT', orientation='CURSOR' if self.custom_views_cursor else 'GLOBAL')
+                bpy.ops.m4a1.set_transform_preset(pivot='CURSOR' if self.custom_views_cursor else 'MEDIAN_POINT', orientation='CURSOR' if self.custom_views_cursor else 'GLOBAL')
 
     def update_enforce_hide_render(self, context):
         from . ui.operators import shading

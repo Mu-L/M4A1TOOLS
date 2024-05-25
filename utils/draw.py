@@ -434,12 +434,12 @@ def draw_fading_label(context, text='', x=None, y=100, gap=18, center=True, size
             line_move = int(move_y + (idx * gap)) if move_y > 0 else 0
             line_time = time + idx * delay
             
-            bpy.ops.m4n1.draw_label(text=_(t), coords=line_coords, center=center, size=size, color=line_color, alpha=line_alpha, move_y=line_move, time=line_time, cancel=cancel)
+            bpy.ops.m4a1.draw_label(text=_(t), coords=line_coords, center=center, size=size, color=line_color, alpha=line_alpha, move_y=line_move, time=line_time, cancel=cancel)
 
     else:
         coords = (x, y)
 
-        bpy.ops.m4n1.draw_label(text=_(text), coords=coords, center=center, size=size, color=color, alpha=alpha, move_y=move_y, time=time, cancel=cancel)
+        bpy.ops.m4a1.draw_label(text=_(text), coords=coords, center=center, size=size, color=color, alpha=alpha, move_y=move_y, time=time, cancel=cancel)
 
 def draw_split_row(self, layout, prop='prop', text='', label='Label', factor=0.2, align=True, toggle=True, expand=True, info=None, warning=None):
     row = layout.row(align=align)
@@ -477,7 +477,7 @@ def draw_axes_HUD(context, objects):
         scale = context.preferences.system.ui_scale
 
         show_cursor = context.space_data.overlay.show_cursor
-        show_hyper_cursor = hypercursor and get_active_tool(context).idname in ['m4n1.tool_hyper_cursor', 'm4n1.tool_hyper_cursor_simple'] and context.scene.HC.show_gizmos
+        show_hyper_cursor = hypercursor and get_active_tool(context).idname in ['m4a1.tool_hyper_cursor', 'm4a1.tool_hyper_cursor_simple'] and context.scene.HC.show_gizmos
 
         axes = [(Vector((1, 0, 0)), red), (Vector((0, 1, 0)), green), (Vector((0, 0, 1)), blue)]
 
@@ -664,7 +664,7 @@ def draw_screen_cast_HUD(context):
         size = round(p.screencast_fontsize * scale * (emphasize if idx == 0 else 1))
         vgap = round(size / 2)
 
-        color = green if idname.startswith('m4n1.') and p.screencast_highlight_m4n1 else white
+        color = green if idname.startswith('m4a1.') and p.screencast_highlight_m4a1 else white
         alpha = (len(operators) - idx) / len(operators)
 
         if idx == 0:

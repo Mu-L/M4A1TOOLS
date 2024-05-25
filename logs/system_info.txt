@@ -670,7 +670,7 @@ Render_to_Print (version: (0, 3), path: G:\work\001Blender\blender_init\addons\R
 dpi_tool (version: (1, 0, 3), path: G:\work\001Blender\blender_init\addons\dpi_tool\__init__.py)
 Text (version: (), path: C:\Users\Administrator\AppData\Roaming\Blender Foundation\Blender\4.0\scripts\addons\Text.py)
 uv_drawuv (version: (1, 4, 2), path: G:\work\001Blender\blender_init\addons\uv_drawuv\__init__.py)
-M4N1TOOLS (version: (1, 8, 0, 'DeusEx'), path: G:\work\001Blender\blender_init\addons\M4N1TOOLS\__init__.py)
+M4A1TOOLS (version: (1, 8, 0, 'DeusEx'), path: G:\work\001Blender\blender_init\addons\M4A1TOOLS\__init__.py)
 LatticeHelper (version: (1, 2), path: G:\work\001Blender\blender_init\addons\LatticeHelper\__init__.py)
 popoti_align_helper (version: (1, 2, 1), path: C:\Users\Administrator\AppData\Roaming\Blender Foundation\Blender\4.0\scripts\addons\popoti_align_helper\__init__.py)
 MACHIN3tools (version: (1, 7, 0), path: C:\Users\Administrator\AppData\Roaming\Blender Foundation\Blender\4.0\scripts\addons\MACHIN3tools\__init__.py)

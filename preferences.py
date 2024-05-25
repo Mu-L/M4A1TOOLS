@@ -425,7 +425,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
     show_screencast: BoolProperty(name="Show Screencast in Save Pie", description="Show Screencast in Save Pie", default=True)
     screencast_operator_count: IntProperty(name="Operator Count", description="Maximum number of Operators displayed when Screen Casting", default=12, min=1, max=100)
     screencast_fontsize: IntProperty(name="Font Size", default=12, min=2)
-    screencast_highlight_m4n1: BoolProperty(name="Highlight M4N1 operators", description="Highlight Operators from M4N1 addons", default=True)
+    screencast_highlight_m4a1: BoolProperty(name="Highlight M4A1 operators", description="Highlight Operators from M4A1 addons", default=True)
     screencast_show_addon: BoolProperty(name="Display Operator's Addons", description="Display Operator's Addon", default=True)
     screencast_show_idname: BoolProperty(name="Display Operator's idnames", description="Display Operator's bl_idname", default=False)
     screencast_use_skribe: BoolProperty(name="Use SKRIBE (dedicated, preferred)", default=True)
@@ -468,7 +468,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
 
     workspace_pie_show: BoolProperty(name="Show Workspace Pie Preferences", default=False)
     pie_workspace_left_name: StringProperty(name="Left Workspace Name", default="Layout")
-    pie_workspace_left_text: StringProperty(name="Left Workspace Custom Label", default="M4N1")
+    pie_workspace_left_text: StringProperty(name="Left Workspace Custom Label", default="M4A1")
     pie_workspace_left_icon: StringProperty(name="Left Workspace Icon", default="VIEW3D")
     pie_workspace_top_left_name: StringProperty(name="Top-Left Workspace Name", default="UV Editing")
     pie_workspace_top_left_text: StringProperty(name="Top-Left Workspace Custom Label", default="UVs")
@@ -546,10 +546,10 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
     use_group_sub_menu: BoolProperty(name="Use Group Sub-Menu", default=False)
     use_group_outliner_toggles: BoolProperty(name="Show Group Outliner Toggles", default=True)
 
-    show_sidebar_panel: BoolProperty(name="Show Sidebar Panel", description="Show M4N1tools Panel in 3D View's Sidebar", default=True)
+    show_sidebar_panel: BoolProperty(name="Show Sidebar Panel", description="Show M4A1tools Panel in 3D View's Sidebar", default=True)
 
     modal_hud_scale: FloatProperty(name="HUD Scale", description="Scale of HUD elements", default=1, min=0.1)
-    modal_hud_timeout: FloatProperty(name="HUD timeout", description="Global Timeout Modulation (not exposed in M4N1tools)", default=1, min=0.1)
+    modal_hud_timeout: FloatProperty(name="HUD timeout", description="Global Timeout Modulation (not exposed in M4A1tools)", default=1, min=0.1)
     HUD_fade_clean_up: FloatProperty(name="Clean Up HUD Fade Time (seconds)", default=1, min=0.1)
     HUD_fade_select_hierarchy: FloatProperty(name="Select Hierarchy HUD Fade Time (seconds)", default=1.5, min=0.1)
     HUD_fade_clipping_toggle: FloatProperty(name="Clipping Toggle HUD Fade Time (seconds)", default=1, min=0.1)
@@ -592,13 +592,13 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
 
         elif self.tabs == "ABOUT":
             pass
-            box.label(text="This plugin integrates some of the Pepperoni Joe's plugins and is developed based on MACHIN3TOOLS.", icon='INFO')
+            box.label(text="The M4A1 tool is a comprehensive Blender enhancement tool developed based on machine3Tools (GPL)", icon='INFO')
             # self.draw_about(box)
 
     def draw_update(self, layout):
         row = layout.row()
         row.scale_y = 1.25
-        row.prop(self, 'show_update', text="Install M4N1tools Update", icon='TRIA_DOWN' if self.show_update else 'TRIA_RIGHT')
+        row.prop(self, 'show_update', text="Install M4A1tools Update", icon='TRIA_DOWN' if self.show_update else 'TRIA_RIGHT')
 
         if self.show_update:
             update_files = get_update_files()
@@ -614,7 +614,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                 split.label(text=self.update_msg, icon_value=get_icon('refresh_green'))
 
                 s = split.split(factor=0.3, align=True)
-                s.operator('m4n1.remove_m4n1tools_update', text='Remove Update', icon='CANCEL')
+                s.operator('m4a1.remove_m4a1tools_update', text='Remove Update', icon='CANCEL')
                 s.operator('wm.quit_blender', text='Quit Blender + Install Update', icon='FILE_REFRESH')
 
             else:
@@ -627,7 +627,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                     row = col.row()
                     row.alignment = 'LEFT'
                     row.label(text="Found the following Updates in your home and/or Downloads folder: ")
-                    row.operator('m4n1.rescan_m4n1tools_updates', text="Re-Scan", icon='FILE_REFRESH')
+                    row.operator('m4a1.rescan_m4a1tools_updates', text="Re-Scan", icon='FILE_REFRESH')
 
                     col.separator()
 
@@ -641,7 +641,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                         r.alignment = 'LEFT'
                         r.label(text="found")
 
-                        op = row.operator('m4n1.use_m4n1tools_update', text=f"M4N1tools {tail}")
+                        op = row.operator('m4a1.use_m4a1tools_update', text=f"M4A1tools {tail}")
                         op.path = path
                         op.tail = tail
 
@@ -655,7 +655,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                 split = row.split(factor=0.4, align=True)
                 split.prop(self, 'update_path', text='')
 
-                text = "Select M4N1tools_x.x.x.zip file"
+                text = "Select M4A1tools_x.x.x.zip file"
 
                 if update_files:
                     if len(update_files) > 1:
@@ -677,7 +677,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
         column = box.column()
         row = column.row()
         row.scale_y = 1.5
-        row.operator('m4n1.get_m4n1tools_support', text='Get Support', icon='GREASEPENCIL')
+        row.operator('m4a1.get_m4a1tools_support', text='Get Support', icon='GREASEPENCIL')
 
     def draw_general(self, layout):
         global has_skribe, has_screencast_keys
@@ -764,49 +764,49 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
         column = bb.column()
         draw_split_row(self, column, prop='registration_debug', label='Print Addon Registration Output in System Console')
 
-        if any([getattr(bpy.types, f'M4N1_{name}', False) for name in has_sidebar]):
+        if any([getattr(bpy.types, f'M4A1_{name}', False) for name in has_sidebar]):
             bb = b.box()
             bb.label(text="View 3D")
 
-            if any([getattr(bpy.types, f'M4N1_{name}', False) for name in has_sidebar]):
+            if any([getattr(bpy.types, f'M4A1_{name}', False) for name in has_sidebar]):
                 column = bb.column()
                 draw_split_row(self, column, prop='show_sidebar_panel', label='Show Sidebar Panel')
 
-        if any([getattr(bpy.types, f'M4N1_{name}', False) for name in has_hud]):
+        if any([getattr(bpy.types, f'M4A1_{name}', False) for name in has_hud]):
             bb = b.box()
             bb.label(text="HUD")
 
             column = bb.column(align=True)
-            factor = 0.4 if getattr(bpy.types, 'M4N1_OT_mirror', False) else 0.2
+            factor = 0.4 if getattr(bpy.types, 'M4A1_OT_mirror', False) else 0.2
 
             row = draw_split_row(self, column, prop='modal_hud_scale', label='HUD Scale', factor=factor)
 
-            if getattr(bpy.types, "M4N1_OT_mirror", False):
+            if getattr(bpy.types, "M4A1_OT_mirror", False):
                 draw_split_row(self, row, prop='mirror_flick_distance', label='Mirror Flick Distance', factor=factor)
 
-            if any([getattr(bpy.types, f'M4N1_{name}', False) for name in is_fading]):
+            if any([getattr(bpy.types, f'M4A1_{name}', False) for name in is_fading]):
                 column = bb.column()
                 column.label(text="Fade time")
 
                 column = bb.column()
                 row = column.row(align=True)
 
-                if getattr(bpy.types, "M4N1_OT_clean_up", False):
+                if getattr(bpy.types, "M4A1_OT_clean_up", False):
                     row.prop(self, "HUD_fade_clean_up", text="Clean Up")
 
-                if getattr(bpy.types, "M4N1_OT_clipping_toggle", False):
+                if getattr(bpy.types, "M4A1_OT_clipping_toggle", False):
                     row.prop(self, "HUD_fade_clipping_toggle", text="Clipping Toggle")
 
-                if getattr(bpy.types, "M4N1_OT_group", False):
+                if getattr(bpy.types, "M4A1_OT_group", False):
                     row.prop(self, "HUD_fade_group", text="Group")
 
-                if getattr(bpy.types, "M4N1_OT_group", False):
+                if getattr(bpy.types, "M4A1_OT_group", False):
                     row.prop(self, "HUD_fade_select_hierarchy", text="Select Hierarchy")
 
-                if getattr(bpy.types, "M4N1_MT_tools_pie", False):
+                if getattr(bpy.types, "M4A1_MT_tools_pie", False):
                     row.prop(self, "HUD_fade_tools_pie", text="Tools Pie")
 
-        if getattr(bpy.types, "M4N1_OT_focus", False):
+        if getattr(bpy.types, "M4A1_OT_focus", False):
             bb = b.box()
             bb.prop(self, 'focus_show', text="Focus", icon='TRIA_DOWN' if self.focus_show else 'TRIA_RIGHT', emboss=False)
 
@@ -815,7 +815,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
 
                 draw_split_row(self, column, prop='focus_view_transition', label='Viewport Tweening')
                 draw_split_row(self, column, prop='focus_lights', label='Ignore Lights (keep them always visible)')
-        if getattr(bpy.types, "M4N1_OT_lattice_operator", False):
+        if getattr(bpy.types, "M4A1_OT_lattice_operator", False):
             bb = b.box()
             bb.prop(self, 'lh_show', text="Lattice Helper", icon='TRIA_DOWN' if self.lh_show else 'TRIA_RIGHT', emboss=False)
 
@@ -826,7 +826,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                 # draw_split_row(self, column, prop='lh_def_res', label='Default lattice resolution')
                 # draw_split_row(self, column, prop='lh_lerp', label='Interpolation)')
         #simple deform helper
-        if getattr(bpy.types, "M4N1_OT_simple_deform_gizmo_axis", False):
+        if getattr(bpy.types, "M4A1_OT_simple_deform_gizmo_axis", False):
             bb = b.box()
             bb.prop(self, 'sdh_show', text="Simple Deform Helper", icon='TRIA_DOWN' if self.sdh_show else 'TRIA_RIGHT', emboss=False)
 
@@ -846,7 +846,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
 
                 col.label(text='Gizmo Property Show Location')
                 col.prop(self, 'sdh_show_gizmo_property_location', expand=True)
-        if getattr(bpy.types, "M4N1_OT_group", False):
+        if getattr(bpy.types, "M4A1_OT_group", False):
             bb = b.box()
             bb.prop(self, 'group_show', text="Group", icon='TRIA_DOWN' if self.group_show else 'TRIA_RIGHT', emboss=False)
 
@@ -884,7 +884,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                 rr.active = self.group_fade_sizes
                 rr.prop(self, "group_fade_factor", text='Factor')
 
-        # if getattr(bpy.types, "M4N1_OT_assemble_instance_collection", False):
+        # if getattr(bpy.types, "M4A1_OT_assemble_instance_collection", False):
         #     bb = b.box()
         #     bb.prop(self, 'assetbrowser_show', text="Assetbrowser Tools", icon='TRIA_DOWN' if self.assetbrowser_show else 'TRIA_RIGHT', emboss=False)
         #
@@ -896,13 +896,13 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
         #         draw_split_row(self, column, prop='hide_wire_objects_when_creating_assembly_asset', label='Hide Wire Objects when creatinng Assembly Asset')
         #         draw_split_row(self, column, prop='hide_wire_objects_when_assembling_instance_collection', label='Hide Wire Objects when assemgling Instance Collection')
         #
-        #         if getattr(bpy.types, "M4N1_MT_modes_pie", False):
+        #         if getattr(bpy.types, "M4A1_MT_modes_pie", False):
         #             draw_split_row(self, column, prop='show_instance_collection_assembly_in_modes_pie', label='Show Instance Collection Assembly in Modes Pie')
         #
-        #         if getattr(bpy.types, "M4N1_MT_save_pie", False):
+        #         if getattr(bpy.types, "M4A1_MT_save_pie", False):
         #             draw_split_row(self, column, prop='show_assembly_asset_creation_in_save_pie', label='Show Assembly Asset Creation in Save Pie')
 
-        # if getattr(bpy.types, "M4N1_OT_toggle_view3d_region", False):
+        # if getattr(bpy.types, "M4A1_OT_toggle_view3d_region", False):
         #     bb = b.box()
         #     bb.prop(self, 'region_show', text="Toggle Region", icon='TRIA_DOWN' if self.region_show else 'TRIA_RIGHT', emboss=False)
         #
@@ -925,7 +925,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
         #         if any([self.region_toggle_assetbrowser_top, self.region_toggle_assetbrowser_bottom]):
         #             draw_split_row(self, column, prop='region_warp_mouse_to_asset_border', label='Warp Mouse to Asset Browser Border')
 
-        # if getattr(bpy.types, "M4N1_OT_render", False):
+        # if getattr(bpy.types, "M4A1_OT_render", False):
         #     bb = b.box()
         #     bb.prop(self, 'render_show', text="Render", icon='TRIA_DOWN' if self.render_show else 'TRIA_RIGHT', emboss=False)
         #
@@ -954,7 +954,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
         #         else:
         #             column.label(text="Enable the Shading Pie for additional options", icon='INFO')
 
-        if getattr(bpy.types, "M4N1_OT_material_picker", False):
+        if getattr(bpy.types, "M4A1_OT_material_picker", False):
             bb = b.box()
             bb.prop(self, 'matpick_show', text="Material Picker", icon='TRIA_DOWN' if self.matpick_show else 'TRIA_RIGHT', emboss=False)
 
@@ -967,7 +967,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                 draw_split_row(self, column, prop='matpick_spacing_obj', label='Object Mode Header Spacing')
                 draw_split_row(self, column, prop='matpick_spacing_edit', label='Edit Mode Header Spacing')
 
-        if getattr(bpy.types, "M4N1_OT_customize", False):
+        if getattr(bpy.types, "M4A1_OT_customize", False):
             bb = b.box()
             bb.prop(self, 'customize_show', text="Customize", icon='TRIA_DOWN' if self.customize_show else 'TRIA_RIGHT', emboss=False)
 
@@ -1003,7 +1003,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
 
                     row = column.row()
                     row.label(text="Keymaps have been modified, restore them first.", icon="ERROR")
-                    row.operator("m4n1.restore_keymaps", text="Restore now")
+                    row.operator("m4a1.restore_keymaps", text="Restore now")
                     row.label()
 
                 bb.separator()
@@ -1011,12 +1011,12 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                 column = bb.column()
                 row = column.row()
                 row.label()
-                row.operator("m4n1.customize", text="Customize")
+                row.operator("m4a1.customize", text="Customize")
                 row.label()
 
         b.separator()
 
-        if getattr(bpy.types, "M4N1_MT_modes_pie", False):
+        if getattr(bpy.types, "M4A1_MT_modes_pie", False):
             bb = b.box()
             bb.prop(self, 'modes_pie_show', text="Modes Pie", icon='TRIA_DOWN' if self.modes_pie_show else 'TRIA_RIGHT', emboss=False)
 
@@ -1027,7 +1027,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                 draw_split_row(self, column, prop='toggle_xray', label='Toggle X-Ray ON in Edit Mode, OFF in Object Mode, if Pass Through or Wireframe was enabled in Edit Mode')
                 draw_split_row(self, column, prop='sync_tools', label='Sync Tool if possible, when switching Modes')
 
-        if getattr(bpy.types, "M4N1_MT_save_pie", False):
+        if getattr(bpy.types, "M4A1_MT_save_pie", False):
 
             bb = b.box()
             bb.prop(self, 'save_pie_show', text="Save Pie", icon='TRIA_DOWN' if self.save_pie_show else 'TRIA_RIGHT', emboss=False)
@@ -1109,7 +1109,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
 
                     col = split.column(align=True)
 
-                    draw_split_row(self, col, prop='screencast_highlight_m4n1', label='Highlight Operators from M4N1 addons', factor=0.3)
+                    draw_split_row(self, col, prop='screencast_highlight_m4a1', label='Highlight Operators from M4A1 addons', factor=0.3)
                     draw_split_row(self, col, prop='screencast_show_addon', label="Display Operator's Addon", factor=0.3)
                     draw_split_row(self, col, prop='screencast_show_idname', label="Display Operator's bl_idname", factor=0.3)
 
@@ -1128,7 +1128,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                 column = bb.column(align=True)
                 draw_split_row(self, column, prop='save_pie_use_undo_save', label='Make Pre-Undo Saving available in the Pie', info='Useful if you notice Undo causing crashes')
 
-                kmi = get_keymap_item('Window', 'm4n1.save_versioned_startup_file')
+                kmi = get_keymap_item('Window', 'm4a1.save_versioned_startup_file')
 
                 if kmi:
                     bb.separator()
@@ -1136,7 +1136,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
 
                     column = bb.column(align=True)
                     draw_split_row(kmi, column, prop='active', text='Enabled' if kmi.active else 'Disabled', label='Use CTRL + U keymap override')
-        if getattr(bpy.types, "M4N1_MT_pie_popoti_align_helper", False):
+        if getattr(bpy.types, "M4A1_MT_pie_popoti_align_helper", False):
 
             bb = b.box()
             bb.prop(self, 'align_helper_pie_show', text="Align Helper Pie",
@@ -1146,7 +1146,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                 bb.label(text='npanel text')
                 column = bb.column(align=True)
                 column.prop(self, 'ah_show_text')
-        if getattr(bpy.types, "M4N1_MT_shading_pie", False):
+        if getattr(bpy.types, "M4A1_MT_shading_pie", False):
 
             bb = b.box()
             bb.prop(self, 'shading_pie_show', text="Shading Pie", icon='TRIA_DOWN' if self.shading_pie_show else 'TRIA_RIGHT', emboss=False)
@@ -1209,7 +1209,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                         else:
                             row.separator()
 
-        if getattr(bpy.types, "M4N1_MT_viewport_pie", False):
+        if getattr(bpy.types, "M4A1_MT_viewport_pie", False):
             bb = b.box()
             bb.prop(self, 'views_pie_show', text="Views Pie", icon='TRIA_DOWN' if self.views_pie_show else 'TRIA_RIGHT', emboss=False)
 
@@ -1225,7 +1225,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                 draw_split_row(self, column, prop='show_orbit_selection', label='Show Orbit around Active')
                 draw_split_row(self, column, prop='show_orbit_method', label='Show Turntable/Trackball Orbit Method Selection')
 
-        if getattr(bpy.types, "M4N1_MT_cursor_pie", False):
+        if getattr(bpy.types, "M4A1_MT_cursor_pie", False):
             bb = b.box()
             bb.prop(self, 'cursor_pie_show', text="Cursor and Origin Pie", icon='TRIA_DOWN' if self.cursor_pie_show else 'TRIA_RIGHT', emboss=False)
 
@@ -1238,7 +1238,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                         if self.activate_transform_pie:
                             draw_split_row(self, column, prop='cursor_set_transform_preset', label='Set Transform Preset when Setting Cursor')
 
-        # if getattr(bpy.types, "M4N1_MT_snapping_pie", False):
+        # if getattr(bpy.types, "M4A1_MT_snapping_pie", False):
         #     bb = b.box()
         #     bb.prop(self, 'snapping_pie_show', text="Snapping Pie", icon='TRIA_DOWN' if self.snapping_pie_show else 'TRIA_RIGHT', emboss=False)
         #
@@ -1248,7 +1248,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
         #         draw_split_row(self, column, prop='snap_show_absolute_grid', label='Show Absolute Grid Snapping')
         #         draw_split_row(self, column, prop='snap_show_volume', label='Show Volume Snapping')
 
-        # if getattr(bpy.types, "M4N1_MT_workspace_pie", False):
+        # if getattr(bpy.types, "M4A1_MT_workspace_pie", False):
         #     bb = b.box()
         #     bb.prop(self, 'workspace_pie_show', text="Workspace Pie", icon='TRIA_DOWN' if self.workspace_pie_show else 'TRIA_RIGHT', emboss=False)
         #
@@ -1322,7 +1322,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
         #         col = third.column()
         #         col.label(text="")
         #         col.label(text="")
-        #         col.operator('m4n1.get_icon_name_help', text="Icon Names?", icon='INFO')
+        #         col.operator('m4a1.get_icon_name_help', text="Icon Names?", icon='INFO')
         #
         #         fourth = third.split(factor=0.5)
         #         fourth.separator()
@@ -1384,7 +1384,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
         #         fifth = fourth
         #         fifth.separator()
 
-        if getattr(bpy.types, "M4N1_MT_tools_pie", False):
+        if getattr(bpy.types, "M4A1_MT_tools_pie", False):
             bb = b.box()
             bb.prop(self, 'tools_pie_show', text="Tools Pie", icon='TRIA_DOWN' if self.tools_pie_show else 'TRIA_RIGHT', emboss=False)
 
@@ -1401,7 +1401,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                 draw_split_row(self, col, prop='tools_show_quick_favorites', label='Show Quick Favorites', factor=0.4)
                 draw_split_row(self, col, prop='tools_show_tool_bar', label='Show Tool Bar', factor=0.4)
 
-        if not any([getattr(bpy.types, f'M4N1_{name}', False) for name in has_settings]):
+        if not any([getattr(bpy.types, f'M4A1_{name}', False) for name in has_settings]):
             b.label(text="No tools or pie menus with settings have been activated.", icon='ERROR')
 
     def draw_keymaps(self, layout):
@@ -1447,25 +1447,25 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
         row = column.row(align=True)
 
         row.scale_y = 1.5
-        row.operator("wm.url_open", text='M4N1tools', icon='INFO').url = 'https://m4n1.io/M4N1tools/'
-        row.operator("wm.url_open", text='MACHINƎ.io', icon='WORLD').url = 'https://m4n1.io'
-        row.operator("wm.url_open", text='blenderartists', icon_value=get_icon('blenderartists')).url = 'https://blenderartists.org/t/m4n1tools/1135716/'
+        row.operator("wm.url_open", text='M4A1tools', icon='INFO').url = 'https://m4a1.io/M4A1tools/'
+        row.operator("wm.url_open", text='MACHINƎ.io', icon='WORLD').url = 'https://m4a1.io'
+        row.operator("wm.url_open", text='blenderartists', icon_value=get_icon('blenderartists')).url = 'https://blenderartists.org/t/m4a1tools/1135716/'
 
         row = column.row(align=True)
         row.scale_y = 1.5
-        row.operator("wm.url_open", text='Patreon', icon_value=get_icon('patreon')).url = 'https://patreon.com/m4n1'
-        row.operator("wm.url_open", text='Twitter', icon_value=get_icon('twitter')).url = 'https://twitter.com/m4n1io'
-        row.operator("wm.url_open", text='Youtube', icon_value=get_icon('youtube')).url = 'https://www.youtube.com/c/M4N1/'
-        row.operator("wm.url_open", text='Artstation', icon_value=get_icon('artstation')).url = 'https://www.artstation.com/m4n1'
+        row.operator("wm.url_open", text='Patreon', icon_value=get_icon('patreon')).url = 'https://patreon.com/m4a1'
+        row.operator("wm.url_open", text='Twitter', icon_value=get_icon('twitter')).url = 'https://twitter.com/m4a1io'
+        row.operator("wm.url_open", text='Youtube', icon_value=get_icon('youtube')).url = 'https://www.youtube.com/c/M4A1/'
+        row.operator("wm.url_open", text='Artstation', icon_value=get_icon('artstation')).url = 'https://www.artstation.com/m4a1'
 
         column.separator()
 
         row = column.row(align=True)
         row.scale_y = 1.5
-        row.operator("wm.url_open", text='DECALmachine', icon_value=get_icon('save' if decalmachine else 'cancel_grey')).url = 'https://decal.m4n1.io'
-        row.operator("wm.url_open", text='MESHmachine', icon_value=get_icon('save' if meshmachine else 'cancel_grey')).url = 'https://mesh.m4n1.io'
-        row.operator("wm.url_open", text='PUNCHit', icon_value=get_icon('save' if punchit else 'cancel_grey')).url = 'https://m4n1.io/PUNCHit'
-        row.operator("wm.url_open", text='CURVEmachine', icon_value=get_icon('save' if curvemachine else 'cancel_grey')).url = 'https://m4n1.io/CURVEmachine'
+        row.operator("wm.url_open", text='DECALmachine', icon_value=get_icon('save' if decalmachine else 'cancel_grey')).url = 'https://decal.m4a1.io'
+        row.operator("wm.url_open", text='MESHmachine', icon_value=get_icon('save' if meshmachine else 'cancel_grey')).url = 'https://mesh.m4a1.io'
+        row.operator("wm.url_open", text='PUNCHit', icon_value=get_icon('save' if punchit else 'cancel_grey')).url = 'https://m4a1.io/PUNCHit'
+        row.operator("wm.url_open", text='CURVEmachine', icon_value=get_icon('save' if curvemachine else 'cancel_grey')).url = 'https://m4a1.io/CURVEmachine'
         row.operator("wm.url_open", text='HyperCursor', icon_value=get_icon('save' if hypercursor else 'cancel_grey')).url = 'https://www.youtube.com/playlist?list=PLcEiZ9GDvSdWs1w4ZrkbMvCT2R4F3O9yD'
 
     def draw_tool_keymaps(self, kc, keysdict, layout):

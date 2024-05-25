@@ -11,8 +11,8 @@ from bpy.app.translations import pgettext as _
 cursor = None
 
 class CursorToOrigin(bpy.types.Operator):
-    bl_idname = "m4n1.cursor_to_origin"
-    bl_label = "M4N1: Cursor to Origin"
+    bl_idname = "m4a1.cursor_to_origin"
+    bl_label = "M4A1: Cursor to Origin"
     bl_description = "Reset Cursor to World Origin\nALT: Only reset Cursor Location\nCTRL: Only reset Cursor Rotation"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -32,14 +32,14 @@ class CursorToOrigin(bpy.types.Operator):
             global cursor
 
             if cursor is not None:
-                bpy.ops.m4n1.set_transform_preset(pivot=cursor[0], orientation=cursor[1])
+                bpy.ops.m4a1.set_transform_preset(pivot=cursor[0], orientation=cursor[1])
                 cursor = None
 
         return {'FINISHED'}
 
 class CursorToSelected(bpy.types.Operator):
-    bl_idname = "m4n1.cursor_to_selected"
-    bl_label = "M4N1: Cursor to Selected"
+    bl_idname = "m4a1.cursor_to_selected"
+    bl_label = "M4A1: Cursor to Selected"
     bl_options = {'REGISTER', 'UNDO'}
 
     @classmethod
@@ -102,7 +102,7 @@ class CursorToSelected(bpy.types.Operator):
         if pivot != 'CURSOR' and orientation != 'CURSOR':
             cursor = (context.scene.tool_settings.transform_pivot_point, context.scene.transform_orientation_slots[0].type)
 
-        bpy.ops.m4n1.set_transform_preset(pivot='CURSOR', orientation='CURSOR')
+        bpy.ops.m4a1.set_transform_preset(pivot='CURSOR', orientation='CURSOR')
 
     def cursor_to_editmesh(self, context, active, cmx, only_location, only_rotation):
         bm = bmesh.from_edit_mesh(active.data)
@@ -146,8 +146,8 @@ class CursorToSelected(bpy.types.Operator):
         set_cursor(location=cmx.to_translation() if only_rotation else loc, rotation=cmx.to_quaternion() if only_location else rot)
 
 class SelectedToCursor(bpy.types.Operator):
-    bl_idname = "m4n1.selected_to_cursor"
-    bl_label = "M4N1: Selected To Cursor"
+    bl_idname = "m4a1.selected_to_cursor"
+    bl_label = "M4A1: Selected To Cursor"
     bl_description = "Transform Selected Objects to Cursor\nALT: Only set Location\nCTRL: Only set Rotation"
     bl_options = {'REGISTER', 'UNDO'}
 

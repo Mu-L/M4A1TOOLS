@@ -402,7 +402,7 @@ def get_remove_poses(self, active, uuid):
                 remove_indices.append((active, idx))
                 break
     
-    bpy.types.M4N1_OT_remove_group_pose.remove_poses = remove_poses
+    bpy.types.M4A1_OT_remove_group_pose.remove_poses = remove_poses
 
     return remove_indices
 

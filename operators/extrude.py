@@ -99,8 +99,8 @@ def draw_punchit_status(op):
     return draw
 
 class PunchIt(bpy.types.Operator):
-    bl_idname = "m4n1.punch_it"
-    bl_label = "M4N1: Punch It"
+    bl_idname = "m4a1.punch_it"
+    bl_label = "M4A1: Punch It"
     bl_description = "Manifold Extruding that works"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -984,8 +984,8 @@ class PunchIt(bpy.types.Operator):
         bpy.ops.mesh.intersect_boolean(use_self=self.use_self)
 
 class CursorSpin(bpy.types.Operator):
-    bl_idname = "m4n1.cursor_spin"
-    bl_label = "M4N1: Cursor Spin"
+    bl_idname = "m4a1.cursor_spin"
+    bl_label = "M4A1: Cursor Spin"
     bl_description = "Cursor Spin"
     bl_options = {'REGISTER', 'UNDO'}
 

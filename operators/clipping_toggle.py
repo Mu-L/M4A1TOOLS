@@ -10,8 +10,8 @@ state_items = [("MIN", "Minimum", ""),
                ("MAX", "Maximum", "")]
 
 class ClippingToggle(bpy.types.Operator):
-    bl_idname = "m4n1.clipping_toggle"
-    bl_label = "M4N1: Clipping Toggle"
+    bl_idname = "m4a1.clipping_toggle"
+    bl_label = "M4A1: Clipping Toggle"
     bl_options = {'REGISTER', 'UNDO'}
 
     def update_clip_start_maximum(self, context):

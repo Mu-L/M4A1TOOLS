@@ -10,8 +10,8 @@ from .. items import cleanup_select_items
 from .. colors import white, green, red, yellow
 from bpy.app.translations import pgettext as _
 class CleanUp(bpy.types.Operator):
-    bl_idname = "m4n1.clean_up"
-    bl_label = "M4N1: Clean Up"
+    bl_idname = "m4a1.clean_up"
+    bl_label = "M4A1: Clean Up"
     bl_options = {'REGISTER', 'UNDO'}
 
     remove_doubles: BoolProperty(name="Remove Doubles", default=True)

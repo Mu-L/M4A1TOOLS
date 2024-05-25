@@ -6,12 +6,12 @@ from .. utils.view import update_local_view
 from .. items import focus_method_items, focus_levels_items
 
 class Focus(bpy.types.Operator):
-    bl_idname = "m4n1.focus"
-    bl_label = "M4N1: Focus"
+    bl_idname = "m4a1.focus"
+    bl_label = "M4A1: Focus"
     bl_options = {'REGISTER', 'UNDO'}
 
     method: EnumProperty(name="Method", items=focus_method_items, default='VIEW_SELECTED')
-    levels: EnumProperty(name="Levels", items=focus_levels_items, description="Switch between single-level Blender native Local View and multi-level M4N1 Focus", default="MULTIPLE")
+    levels: EnumProperty(name="Levels", items=focus_levels_items, description="Switch between single-level Blender native Local View and multi-level M4A1 Focus", default="MULTIPLE")
     unmirror: BoolProperty(name="Un-Mirror", default=True)
     ignore_mirrors: BoolProperty(name="Ignore Mirrors", default=True)
     invert: BoolProperty(name="Inverted Focus", default=False)

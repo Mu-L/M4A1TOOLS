@@ -2,8 +2,8 @@ import bpy
 from bpy.props import StringProperty
 from bpy.app.translations import pgettext as _
 class SetTransformPreset(bpy.types.Operator):
-    bl_idname = "m4n1.set_transform_preset"
-    bl_label = "M4N1: Set Transform Preset"
+    bl_idname = "m4a1.set_transform_preset"
+    bl_label = "M4A1: Set Transform Preset"
     bl_description = "Set Transform Pivot and Orientation at the same time."
     bl_options = {'REGISTER', 'UNDO'}
 

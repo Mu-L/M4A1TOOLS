@@ -6,9 +6,9 @@ from .. utils.asset import get_asset_library_reference, get_assetbrowser_bookmar
 
 hypercursor = None
 
-class MenuM4N1toolsObjectContextMenu(bpy.types.Menu):
-    bl_idname = "M4N1_MT_m4n1tools_object_context_menu"
-    bl_label = "M4N1tools"
+class MenuM4A1toolsObjectContextMenu(bpy.types.Menu):
+    bl_idname = "M4A1_MT_m4a1tools_object_context_menu"
+    bl_label = "M4A1tools"
 
     def draw(self, context):
         global hypercursor
@@ -20,37 +20,37 @@ class MenuM4N1toolsObjectContextMenu(bpy.types.Menu):
         p = get_prefs()
 
         if p.activate_align:
-            layout.operator("m4n1.align_relative", text="Align Relative")
+            layout.operator("m4a1.align_relative", text="Align Relative")
 
         if p.activate_mirror:
-            layout.operator("m4n1.unmirror", text="Un-Mirror")
+            layout.operator("m4a1.unmirror", text="Un-Mirror")
 
         if p.activate_select:
-            layout.operator("m4n1.select_center_objects", text="Select Center Objects")
-            layout.operator("m4n1.select_wire_objects", text="Select Wire Objects")
-            layout.operator("m4n1.select_hierarchy", text="Select Hierarchy")
+            layout.operator("m4a1.select_center_objects", text="Select Center Objects")
+            layout.operator("m4a1.select_wire_objects", text="Select Wire Objects")
+            layout.operator("m4a1.select_hierarchy", text="Select Hierarchy")
 
         if p.activate_apply:
-            layout.operator("m4n1.apply_transformations", text="Apply Transformations")
+            layout.operator("m4a1.apply_transformations", text="Apply Transformations")
 
         if p.activate_mesh_cut:
-            layout.operator("m4n1.mesh_cut", text="Mesh Cut")
+            layout.operator("m4a1.mesh_cut", text="Mesh Cut")
 
         if p.activate_material_picker:
-            layout.operator("m4n1.material_picker", text="Material Picker")
+            layout.operator("m4a1.material_picker", text="Material Picker")
 
-class MenuM4N1toolsMeshContextMenu(bpy.types.Menu):
-    bl_idname = "M4N1_MT_m4n1tools_mesh_context_menu"
-    bl_label = "M4N1tools"
+class MenuM4A1toolsMeshContextMenu(bpy.types.Menu):
+    bl_idname = "M4A1_MT_m4a1tools_mesh_context_menu"
+    bl_label = "M4A1tools"
 
     def draw(self, context):
         layout = self.layout
 
         if get_prefs().activate_thread:
-            layout.operator("m4n1.add_thread", text="Add Thread")
+            layout.operator("m4a1.add_thread", text="Add Thread")
 
 class MenuAppendMaterials(bpy.types.Menu):
-    bl_idname = "M4N1_MT_append_materials"
+    bl_idname = "M4A1_MT_append_materials"
     bl_label = "Append Materials"
 
     def draw(self, context):
@@ -62,13 +62,13 @@ class MenuAppendMaterials(bpy.types.Menu):
             names.insert(0, "ALL")
         else:
             layout.label(text="No Materials added yet!", icon="ERROR")
-            layout.label(text="Check M4N1tools prefs.", icon="INFO")
+            layout.label(text="Check M4A1tools prefs.", icon="INFO")
 
         for name in names:
             layout.operator_context = 'INVOKE_DEFAULT'
 
             if name == "ALL":
-                layout.operator("m4n1.append_material", text=name, icon="MATERIAL_DATA").name = name
+                layout.operator("m4a1.append_material", text=name, icon="MATERIAL_DATA").name = name
                 layout.separator()
 
             elif name == "---":
@@ -78,10 +78,10 @@ class MenuAppendMaterials(bpy.types.Menu):
                 mat = bpy.data.materials.get(name)
                 icon_val = layout.icon(mat) if mat else 0
 
-                layout.operator("m4n1.append_material", text=name, icon_value=icon_val).name = name
+                layout.operator("m4a1.append_material", text=name, icon_value=icon_val).name = name
 
 class MenuGroupObjectContextMenu(bpy.types.Menu):
-    bl_idname = "M4N1_MT_group_object_context_menu"
+    bl_idname = "M4A1_MT_group_object_context_menu"
     bl_label = "Group."
 
     def draw(self, context):
@@ -108,41 +108,41 @@ class MenuGroupObjectContextMenu(bpy.types.Menu):
 
         row = layout.row()
         row.active = groupable
-        row.operator("m4n1.group", text="Group.")
+        row.operator("m4a1.group", text="Group.")
 
         row = layout.row()
         row.active = ungroupable
-        row.operator("m4n1.ungroup", text="Un-Group")
+        row.operator("m4a1.ungroup", text="Un-Group")
 
         row = layout.row()
         row.active = groupifyable
-        row.operator("m4n1.groupify", text="Groupify")
+        row.operator("m4a1.groupify", text="Groupify")
 
         layout.separator()
 
         row = layout.row()
         row.active = selectable
-        row.operator("m4n1.select_group", text="Select Group")
+        row.operator("m4a1.select_group", text="Select Group")
 
         row = layout.row()
         row.active = duplicatable
-        row.operator("m4n1.duplicate_group", text="Duplicate Group")
+        row.operator("m4a1.duplicate_group", text="Duplicate Group")
 
         layout.separator()
 
         row = layout.row()
         row.active = addable and (active_group or active_child)
-        row.operator("m4n1.add_to_group", text="Add to Group")
+        row.operator("m4a1.add_to_group", text="Add to Group")
 
         row = layout.row()
         row.active = removable
-        row.operator("m4n1.remove_from_group", text="Remove from Group")
+        row.operator("m4a1.remove_from_group", text="Remove from Group")
 
         layout.separator()
 
         row = layout.row()
         row.active = active_group
-        row.operator("m4n1.setup_group_gizmos", text="Setup Group Gizmos")
+        row.operator("m4a1.setup_group_gizmos", text="Setup Group Gizmos")
 
 def object_context_menu(self, context):
     layout = self.layout
@@ -151,13 +151,13 @@ def object_context_menu(self, context):
     p = get_prefs()
 
     if any([p.activate_align, p.activate_mirror, p.activate_select, p.activate_apply, p.activate_mesh_cut, p.activate_material_picker]):
-        layout.menu("M4N1_MT_m4n1tools_object_context_menu")
+        layout.menu("M4A1_MT_m4a1tools_object_context_menu")
         layout.separator()
 
     if p.activate_group:
 
         if p.use_group_sub_menu:
-            layout.menu("M4N1_MT_group_object_context_menu")
+            layout.menu("M4A1_MT_group_object_context_menu")
             layout.separator()
 
         else:
@@ -188,16 +188,16 @@ def object_context_menu(self, context):
 
             if groupable:
                 layout.operator_context = "INVOKE_REGION_WIN"
-                layout.operator("m4n1.group", text="Group.")
+                layout.operator("m4a1.group", text="Group.")
                 layout.operator_context = "EXEC_REGION_WIN"
 
             if ungroupable:
                 layout.operator_context = "INVOKE_REGION_WIN"
-                layout.operator("m4n1.ungroup", text="(X) Un-Group")
+                layout.operator("m4a1.ungroup", text="(X) Un-Group")
                 layout.operator_context = "EXEC_REGION_WIN"
 
             if groupifyable:
-                layout.operator("m4n1.groupify", text="Groupify")
+                layout.operator("m4a1.groupify", text="Groupify")
 
             if selectable:
                 row = layout.row()
@@ -205,7 +205,7 @@ def object_context_menu(self, context):
                 row.label(text="")
 
                 layout.operator_context = "INVOKE_REGION_WIN"
-                layout.operator("m4n1.select_group", text="Select Group")
+                layout.operator("m4a1.select_group", text="Select Group")
                 layout.operator_context = "EXEC_REGION_WIN"
 
             if duplicatable:
@@ -216,7 +216,7 @@ def object_context_menu(self, context):
                     row.label(text="")
 
                 layout.operator_context = "INVOKE_REGION_WIN"
-                layout.operator("m4n1.duplicate_group", text="Duplicate Group")
+                layout.operator("m4a1.duplicate_group", text="Duplicate Group")
                 layout.operator_context = "EXEC_REGION_WIN"
 
             if (addable and (active_group or active_child)) or removable:
@@ -227,10 +227,10 @@ def object_context_menu(self, context):
 
                 layout.operator_context = "INVOKE_REGION_WIN"
                 if addable and (active_group or active_child):
-                    layout.operator("m4n1.add_to_group", text="Add to Group")
+                    layout.operator("m4a1.add_to_group", text="Add to Group")
 
                 if removable:
-                    layout.operator("m4n1.remove_from_group", text="Remove from Group")
+                    layout.operator("m4a1.remove_from_group", text="Remove from Group")
                 layout.operator_context = "EXEC_REGION_WIN"
 
             if active_group:
@@ -240,7 +240,7 @@ def object_context_menu(self, context):
                 row.label(text="")
 
                 layout.operator_context = "INVOKE_REGION_WIN"
-                layout.operator("m4n1.setup_group_gizmos", text="(Q) Setup Group Gizmos")
+                layout.operator("m4a1.setup_group_gizmos", text="(Q) Setup Group Gizmos")
                 layout.operator_context = "EXEC_REGION_WIN"
 
             if group_empties or groupable or (addable and (active_group or active_child)) or removable or groupifyable or active_group:
@@ -251,26 +251,26 @@ def mesh_context_menu(self, context):
     p = get_prefs()
 
     if any([p.activate_thread]):
-        layout.menu("M4N1_MT_m4n1tools_mesh_context_menu")
+        layout.menu("M4A1_MT_m4a1tools_mesh_context_menu")
         layout.separator()
 
 def add_object_buttons(self, context):
-    self.layout.operator("m4n1.quadsphere", text="Quad Sphere", icon='SPHERE')
+    self.layout.operator("m4a1.quadsphere", text="Quad Sphere", icon='SPHERE')
 
 def extrude_menu(self, context):
-    is_cursor_spin = getattr(bpy.types, 'M4N1_OT_cursor_spin', False)
-    is_punch_it = getattr(bpy.types, 'M4N1_OT_punch_it', False)
-    is_punchit = getattr(bpy.types, 'M4N1_OT_punchit', False)
+    is_cursor_spin = getattr(bpy.types, 'M4A1_OT_cursor_spin', False)
+    is_punch_it = getattr(bpy.types, 'M4A1_OT_punch_it', False)
+    is_punchit = getattr(bpy.types, 'M4A1_OT_punchit', False)
 
     if any([is_cursor_spin, is_punch_it]):
         self.layout.separator()
 
         if is_cursor_spin:
-            self.layout.operator("m4n1.cursor_spin", text="Cursor Spin")
+            self.layout.operator("m4a1.cursor_spin", text="Cursor Spin")
 
         if is_punch_it and not is_punchit:
             self.layout.operator_context = 'INVOKE_DEFAULT'
-            self.layout.operator("m4n1.punch_it", text="Punch It", icon_value=get_icon('fist'))
+            self.layout.operator("m4a1.punch_it", text="Punch It", icon_value=get_icon('fist'))
 
 def material_pick_button(self, context):
     p = get_prefs()
@@ -287,12 +287,12 @@ def material_pick_button(self, context):
 
     # if any([s in context.workspace.name for s in workspaces]) or shading.type in view_shading_types:
     if p.matpick_button_show:
-        if getattr(bpy.types, 'M4N1_OT_material_picker', False):
+        if getattr(bpy.types, 'M4A1_OT_material_picker', False):
             row = self.layout.row()
             row.scale_x = 1.25
             row.scale_y = 1.1
             row.separator(factor=p.matpick_spacing_obj if context.mode == 'OBJECT' else p.matpick_spacing_edit)
-            row.operator("m4n1.material_picker", text="", icon="EYEDROPPER")
+            row.operator("m4a1.material_picker", text="", icon="EYEDROPPER")
 
 def asset_browser_bookmark_buttons(self, context):
     p = get_prefs()
@@ -321,14 +321,14 @@ def asset_browser_bookmark_buttons(self, context):
             r.scale_x = 0.8
             r.active = is_available
             r.alert = is_invalid
-            r.operator("m4n1.assetbrowser_bookmark", text=str(idx + 1), depress=is_current).index = idx + 1
+            r.operator("m4a1.assetbrowser_bookmark", text=str(idx + 1), depress=is_current).index = idx + 1
         
         if not context.space_data.show_region_toolbar and current_catalog:
             text = f"{current_catalog['libname']} - {current_catalog['catalog']}"
             row.label(text=text, icon="RIGHTARROW_THIN")
 
 def outliner_group_toggles(self, context):
-    if getattr(bpy.types, 'M4N1_OT_group', False) and get_prefs().use_group_outliner_toggles:
+    if getattr(bpy.types, 'M4A1_OT_group', False) and get_prefs().use_group_outliner_toggles:
 
         if get_group_polls(context)[2]:
             m3 = context.scene.M4
@@ -352,16 +352,16 @@ def group_origin_adjustment_toggle(self, context):
 
 def render_menu(self, context):
     pass
-    # if getattr(bpy.types, 'M4N1_OT_render', False):
+    # if getattr(bpy.types, 'M4A1_OT_render', False):
     #     layout = self.layout
     #
     #     layout.separator()
     #
-    #     op = layout.operator("m4n1.render", text=f"Quick Render")
+    #     op = layout.operator("m4a1.render", text=f"Quick Render")
     #     op.seed = False
     #     op.final = False
     #
-    #     op = layout.operator("m4n1.render", text=f"Final Render")
+    #     op = layout.operator("m4a1.render", text=f"Final Render")
     #     op.seed = False
     #     op.final = True
     #
@@ -373,28 +373,28 @@ def render_menu(self, context):
     #     row.active = True if context.scene.camera else False
     #     row.prop(get_prefs(), 'render_seed_count', text="Seed Count")
     #
-    #     op = layout.operator("m4n1.render", text=f"Seed Render")
+    #     op = layout.operator("m4a1.render", text=f"Seed Render")
     #     op.seed = True
     #     op.final = False
     #
-    #     op = layout.operator("m4n1.render", text=f"Final Seed Render")
+    #     op = layout.operator("m4a1.render", text=f"Final Seed Render")
     #     op.seed = True
     #     op.final = True
 
 def render_buttons(self, context):
     pass
-    # if getattr(bpy.types, 'M4N1_OT_render', False) and get_prefs().render_show_buttons_in_light_properties and context.scene.camera:
+    # if getattr(bpy.types, 'M4A1_OT_render', False) and get_prefs().render_show_buttons_in_light_properties and context.scene.camera:
     #     layout = self.layout
     #
     #     column = layout.column(align=True)
     #
     #     row = column.row(align=True)
     #     row.scale_y = 1.2
-    #     op = row.operator("m4n1.render", text=f"Quick Render")
+    #     op = row.operator("m4a1.render", text=f"Quick Render")
     #     op.seed = False
     #     op.final = False
     #
-    #     op = row.operator("m4n1.render", text=f"Final Render")
+    #     op = row.operator("m4a1.render", text=f"Final Render")
     #     op.seed = False
     #     op.final = True
     #
@@ -406,10 +406,10 @@ def render_buttons(self, context):
     #
     #     row = column.row(align=True)
     #     row.scale_y = 1.2
-    #     op = row.operator("m4n1.render", text=f"Seed Render")
+    #     op = row.operator("m4a1.render", text=f"Seed Render")
     #     op.seed = True
     #     op.final = False
     #
-    #     op = row.operator("m4n1.render", text=f"Final Seed Render")
+    #     op = row.operator("m4a1.render", text=f"Final Seed Render")
     #     op.seed = True
     #     op.final = True

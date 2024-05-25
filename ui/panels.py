@@ -31,12 +31,12 @@ def calculate_frame_info(mod, prop, is_out):
     return sum_frame, stop_frame, frame_start, frame_end
 
 
-class PanelM4N1tools(bpy.types.Panel):
-    bl_idname = "M4N1_PT_m4n1_tools"
-    bl_label = "M4N1tools %s" % ('.'.join([str(v) for v in bl_info['version']]))
+class PanelM4A1tools(bpy.types.Panel):
+    bl_idname = "M4A1_PT_m4a1_tools"
+    bl_label = "M4A1tools %s" % ('.'.join([str(v) for v in bl_info['version']]))
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
-    bl_category = "M4N1"
+    bl_category = "M4A1"
     bl_order = 20
 
     @classmethod
@@ -96,9 +96,9 @@ class PanelM4N1tools(bpy.types.Panel):
             #     if m3.show_meshdeform_helper:
             #         b = box.box()
             #         column=b.column(align=True)
-            #         column.operator('m4n1.convex_meshdeform', text="Create convex hull")
-            #         column.operator("m4n1.bind_meshdeform")
-            #         column.operator("m4n1.apply_meshdeform")
+            #         column.operator('m4a1.convex_meshdeform', text="Create convex hull")
+            #         column.operator("m4a1.bind_meshdeform")
+            #         column.operator("m4a1.apply_meshdeform")
             #对齐助手
             if p.activate_align_helper_pie:
                 box = layout.box()
@@ -235,13 +235,13 @@ class PanelM4N1tools(bpy.types.Panel):
         row = col.split(factor=0.25, align=True)
         row.label(text="Values")
         r = row.row(align=True)
-        op = r.operator("m4n1.set_driver_value", text='', icon='SORT_ASC')
+        op = r.operator("m4a1.set_driver_value", text='', icon='SORT_ASC')
         op.mode = 'DRIVER'
         op.value = 'START'
         r.prop(m3, 'driver_start', text='')
-        r.operator("m4n1.switch_driver_values", text='', icon='ARROW_LEFTRIGHT').mode = 'DRIVER'
+        r.operator("m4a1.switch_driver_values", text='', icon='ARROW_LEFTRIGHT').mode = 'DRIVER'
         r.prop(m3, 'driver_end', text='')
-        op = r.operator("m4n1.set_driver_value", text='', icon='SORT_ASC')
+        op = r.operator("m4a1.set_driver_value", text='', icon='SORT_ASC')
         op.mode = 'DRIVER'
         op.value = 'END'
 
@@ -269,13 +269,13 @@ class PanelM4N1tools(bpy.types.Panel):
         row = col.split(factor=0.25, align=True)
         row.label(text="Values")
         r = row.row(align=True)
-        op = r.operator("m4n1.set_driver_value", text='', icon='SORT_ASC')
+        op = r.operator("m4a1.set_driver_value", text='', icon='SORT_ASC')
         op.mode = 'DRIVEN'
         op.value = 'START'
         r.prop(m3, 'driven_start', text='')
-        r.operator("m4n1.switch_driver_values", text='', icon='ARROW_LEFTRIGHT').mode = 'DRIVEN'
+        r.operator("m4a1.switch_driver_values", text='', icon='ARROW_LEFTRIGHT').mode = 'DRIVEN'
         r.prop(m3, 'driven_end', text='')
-        op = r.operator("m4n1.set_driver_value", text='', icon='SORT_ASC')
+        op = r.operator("m4a1.set_driver_value", text='', icon='SORT_ASC')
         op.mode = 'DRIVEN'
         op.value = 'END'
 
@@ -297,7 +297,7 @@ class PanelM4N1tools(bpy.types.Panel):
 
         r = column.row()
         r.scale_y = 1.2
-        r.operator("m4n1.smart_drive", text='Drive it!', icon='AUTO')
+        r.operator("m4a1.smart_drive", text='Drive it!', icon='AUTO')
 
     def draw_unity(self, context, m3, layout):
         all_prepared = True if context.selected_objects and all([obj.M4.unity_exported for obj in context.selected_objects]) else False
@@ -334,11 +334,11 @@ class PanelM4N1tools(bpy.types.Panel):
         if not m3.unity_export or not all_prepared:
             row = column.row(align=True)
             row.scale_y = 1.5
-            row.operator("m4n1.prepare_unity_export", text="Prepare + Export %s" % ('Selected' if context.selected_objects else 'Visible') if m3.unity_export else "Prepare %s" % ('Selected' if context.selected_objects else 'Visible')).prepare_only = False
+            row.operator("m4a1.prepare_unity_export", text="Prepare + Export %s" % ('Selected' if context.selected_objects else 'Visible') if m3.unity_export else "Prepare %s" % ('Selected' if context.selected_objects else 'Visible')).prepare_only = False
 
         row = column.row(align=True)
         row.scale_y = 1.2
-        row.operator("m4n1.restore_unity_export", text="Restore Transformations")
+        row.operator("m4a1.restore_unity_export", text="Restore Transformations")
 
     def draw_group(self, context, m3, layout):
         p = get_prefs()
@@ -364,7 +364,7 @@ class PanelM4N1tools(bpy.types.Panel):
             op = r.operator('wm.context_set_float', text='', icon='LOOP_BACK')
             op.data_path = 'scene.M4.group_gizmo_size'
             op.value = 1
-            r.operator('m4n1.bake_group_gizmo_size', text='', icon='SORT_ASC')
+            r.operator('m4a1.bake_group_gizmo_size', text='', icon='SORT_ASC')
 
             if active_group:
                 empty = context.active_object
@@ -440,7 +440,7 @@ class PanelM4N1tools(bpy.types.Panel):
                 column = b.column()
 
                 if empty.M4.group_pose_COL:
-                    column.template_list("M4N1_UL_group_poses", "", empty.M4, "group_pose_COL", empty.M4, "group_pose_IDX", rows=max(len(empty.M4.group_pose_COL), 1))
+                    column.template_list("M4A1_UL_group_poses", "", empty.M4, "group_pose_COL", empty.M4, "group_pose_IDX", rows=max(len(empty.M4.group_pose_COL), 1))
 
                 else:
                     column.active = False
@@ -448,14 +448,14 @@ class PanelM4N1tools(bpy.types.Panel):
 
                 split = b.split(factor=0.3, align=True)
                 split.scale_y = 1.25
-                split.operator('m4n1.set_group_pose', text='Set Pose', icon='ARMATURE_DATA').batch = False
+                split.operator('m4a1.set_group_pose', text='Set Pose', icon='ARMATURE_DATA').batch = False
 
                 s = split.split(factor=0.6, align=True)
                 row = s.row(align=True)
                 row.enabled = batchposable
-                row.operator('m4n1.set_group_pose', text='Set Batch Pose', icon='LINKED').batch = True
+                row.operator('m4a1.set_group_pose', text='Set Batch Pose', icon='LINKED').batch = True
 
-                s.operator('m4n1.update_group_pose', text='Update', icon='FILE_REFRESH')
+                s.operator('m4a1.update_group_pose', text='Update', icon='FILE_REFRESH')
 
         b = box.box()
         b.label(text='Settings')
@@ -498,16 +498,16 @@ class PanelM4N1tools(bpy.types.Panel):
         row.scale_y = 1.2
         r = row.row(align=True)
         r.active = groupable
-        r.operator("m4n1.group", text="Group.")
+        r.operator("m4a1.group", text="Group.")
         r = row.row(align=True)
         r.active = ungroupable
-        r.operator("m4n1.ungroup", text="Un-Group")
+        r.operator("m4a1.ungroup", text="Un-Group")
         r = row.row(align=True)
 
         row = column.row(align=True)
         row.scale_y = 1
         r.active = groupifyable
-        row.operator("m4n1.groupify", text="Groupify")
+        row.operator("m4a1.groupify", text="Groupify")
 
         column.separator()
         column = column.column(align=True)
@@ -516,10 +516,10 @@ class PanelM4N1tools(bpy.types.Panel):
         row.scale_y = 1.2
         r = row.row(align=True)
         r.active = selectable
-        r.operator("m4n1.select_group", text="Select Group")
+        r.operator("m4a1.select_group", text="Select Group")
         r = row.row(align=True)
         r.active = duplicatable
-        r.operator("m4n1.duplicate_group", text="Duplicate Group")
+        r.operator("m4a1.duplicate_group", text="Duplicate Group")
 
         column = column.column(align=True)
 
@@ -527,22 +527,22 @@ class PanelM4N1tools(bpy.types.Panel):
         row.scale_y = 1.2
         r = row.row(align=True)
         r.active = addable and (active_group or active_child)
-        r.operator("m4n1.add_to_group", text="Add to Group")
+        r.operator("m4a1.add_to_group", text="Add to Group")
         r = row.row(align=True)
         r.active = removable
-        r.operator("m4n1.remove_from_group", text="Remove from Group")
+        r.operator("m4a1.remove_from_group", text="Remove from Group")
 
     def draw_extrude(self, context, m3, layout):
         column = layout.column(align=True)
 
         row = column.row(align=True)
         row.scale_y = 1.2
-        row.operator("m4n1.cursor_spin", text='Cursor Spin')
-        row.operator("m4n1.punch_it", text='Punch It', icon_value=get_icon('fist'))
+        row.operator("m4a1.cursor_spin", text='Cursor Spin')
+        row.operator("m4a1.punch_it", text='Punch It', icon_value=get_icon('fist'))
 
     def draw_assetbrowser_tools(self, context, layout):
         column = layout.column(align=True)
         column.scale_y = 1.2
 
-        column.operator("m4n1.create_assembly_asset", text='Create Assembly Asset', icon='ASSET_MANAGER')
-        column.operator("m4n1.assemble_instance_collection", text='Assemble Instance Collection', icon='NETWORK_DRIVE')
+        column.operator("m4a1.create_assembly_asset", text='Create Assembly Asset', icon='ASSET_MANAGER')
+        column.operator("m4a1.assemble_instance_collection", text='Assemble Instance Collection', icon='NETWORK_DRIVE')

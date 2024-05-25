@@ -40,7 +40,7 @@ def get_addon(addon, debug=False):
     return False, None, None, None
 
 def get_addon_operator_idnames(addon):
-    if addon in ['M4N1tools', 'DECALmachine', 'MESHmachine', 'CURVEmachine', 'HyperCursor', 'PUNCHit']:
+    if addon in ['M4A1tools', 'DECALmachine', 'MESHmachine', 'CURVEmachine', 'HyperCursor', 'PUNCHit']:
         if addon in ['DECALmachine', 'MESHmachine', 'CURVEmachine', 'HyperCursor', 'PUNCHit']:
             if not get_addon(addon)[0]:
                 return []
@@ -51,7 +51,7 @@ def get_addon_operator_idnames(addon):
 
         for imps in classes.values():
             op_imps = [imp for imp in imps if 'operators' in imp[0] or 'macros' in imp[0]]
-            idnames.extend([f"m4n1.{idname}" for _, cls in op_imps for _, idname in cls])
+            idnames.extend([f"m4a1.{idname}" for _, cls in op_imps for _, idname in cls])
 
         return idnames
 
@@ -98,7 +98,7 @@ def get_classes(classlist):
             type='PT'
         for imp in imps:
             idname = imp[1]
-            rna_name = "M4N1_%s_%s" % (type, idname)
+            rna_name = "M4A1_%s_%s" % (type, idname)
 
             c = getattr(bpy.types, rna_name, False)
 
@@ -145,7 +145,7 @@ def register_keymaps(keylists):
 
                             keymaps.append((km, kmi))
     else:
-        print("WARNING: Keyconfig not availabe, skipping M4N1tools keymaps")
+        print("WARNING: Keyconfig not availabe, skipping M4A1tools keymaps")
 
     return keymaps
 
@@ -236,7 +236,7 @@ def activate(self, register, tool):
 
         if get_prefs().registration_debug:
             if classes:
-                print("Registered M4N1tools' %s" % (name))
+                print("Registered M4A1tools' %s" % (name))
         #注册属性,追加ui
 
         from ..aigodlike_tool_reg import reg_and_update
@@ -277,7 +277,7 @@ def activate(self, register, tool):
         if get_prefs().registration_debug:
             # print('quxiaozhuce ',name)
             if classes:
-                print("Unregistered M4N1tools' %s" % (name))
+                print("Unregistered M4A1tools' %s" % (name))
         from ..aigodlike_tool_reg import unreg_and_update
         unreg_and_update()
 

@@ -5,8 +5,8 @@ from ... utils.registration import get_path, get_prefs
 from ... utils.system import get_update_files, remove_folder
 
 class RemoveUpdate(bpy.types.Operator):
-    bl_idname = "m4n1.remove_m4n1tools_update"
-    bl_label = "M4N1: Remove Update"
+    bl_idname = "m4a1.remove_m4a1tools_update"
+    bl_label = "M4A1: Remove Update"
     bl_description = "I changed my mind, I don't want to install this Update"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -23,8 +23,8 @@ class RemoveUpdate(bpy.types.Operator):
         return {'FINISHED'}
 
 class UseFoundUpdate(bpy.types.Operator):
-    bl_idname = "m4n1.use_m4n1tools_update"
-    bl_label = "M4N1: Use Update"
+    bl_idname = "m4a1.use_m4a1tools_update"
+    bl_label = "M4A1: Use Update"
     bl_options = {'REGISTER', 'UNDO'}
 
     path: StringProperty()
@@ -32,7 +32,7 @@ class UseFoundUpdate(bpy.types.Operator):
 
     @classmethod
     def description(cls, context, properties):
-        return f"Install M4N1tools {properties.tail} from {properties.path}"
+        return f"Install M4A1tools {properties.tail} from {properties.path}"
 
     def execute(self, context):
         if self.path and self.tail:
@@ -41,8 +41,8 @@ class UseFoundUpdate(bpy.types.Operator):
         return {'FINISHED'}
 
 class ReScanUpdates(bpy.types.Operator):
-    bl_idname = "m4n1.rescan_m4n1tools_updates"
-    bl_label = "M4N1: Re-Scan Updates"
+    bl_idname = "m4a1.rescan_m4a1tools_updates"
+    bl_label = "M4A1: Re-Scan Updates"
     bl_description = "Re-Scan Updates"
     bl_options = {'REGISTER', 'UNDO'}
 

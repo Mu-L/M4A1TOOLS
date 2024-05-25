@@ -10,8 +10,8 @@ from .. colors import red, yellow, green
 supress_assetbrowser_toggle = False
 
 class ToggleVIEW3DRegion(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_view3d_region"
-    bl_label = "M4N1: Toggle 3D View Region"
+    bl_idname = "m4a1.toggle_view3d_region"
+    bl_label = "M4A1: Toggle 3D View Region"
     bl_description = "Toggle 3D View Region based on Mouse Position"
     bl_options = {'INTERNAL'}
 
@@ -533,8 +533,8 @@ class ToggleVIEW3DRegion(bpy.types.Operator):
                 return new_area
 
 class ToggleASSETBROWSERRegion(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_asset_browser_region"
-    bl_label = "M4N1: Toggle Asset Browser Region"
+    bl_idname = "m4a1.toggle_asset_browser_region"
+    bl_label = "M4A1: Toggle Asset Browser Region"
     bl_description = "Toggle Asset Browser Region based on Mouse Position"
     bl_options = {'INTERNAL'}
 
@@ -639,8 +639,8 @@ class ToggleASSETBROWSERRegion(bpy.types.Operator):
                   space.show_region_tool_props = not space.show_region_tool_props
 
 class ToggleSIDEBar(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_side_bar"
-    bl_label = "M4N1: Toggle Toolbar or Sidebar (Any Region)"
+    bl_idname = "m4a1.toggle_side_bar"
+    bl_label = "M4A1: Toggle Toolbar or Sidebar (Any Region)"
     bl_description = "Toggle Toolbar or Sidebar (Any Region)"
     bl_options = {'INTERNAL'}
 
@@ -707,8 +707,8 @@ class ToggleSIDEBar(bpy.types.Operator):
             space.show_region_ui = not space.show_region_ui
 
 class AreaDumper(bpy.types.Operator):
-    bl_idname = "m4n1.area_dumper"
-    bl_label = "M4N1: Area Dumper"
+    bl_idname = "m4a1.area_dumper"
+    bl_label = "M4A1: Area Dumper"
     bl_options = {'REGISTER', 'UNDO'}
 
     @classmethod

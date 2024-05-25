@@ -5,8 +5,8 @@ from ... utils.draw import draw_label
 from ... utils.ui import get_scale, init_timer_modal, set_countdown, get_timer_progress
 from bpy.app.translations import pgettext as _
 class DrawLabel(bpy.types.Operator):
-    bl_idname = "m4n1.draw_label"
-    bl_label = "M4N1: Draw Label"
+    bl_idname = "m4a1.draw_label"
+    bl_label = "M4A1: Draw Label"
     bl_description = ""
     bl_options = {'INTERNAL'}
 

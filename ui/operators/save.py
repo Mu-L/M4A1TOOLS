@@ -11,7 +11,7 @@ from ... utils.ui import popup_message, get_icon
 from ... colors import green
 from bpy.app.translations import pgettext as _
 class New(bpy.types.Operator):
-    bl_idname = "m4n1.new"
+    bl_idname = "m4a1.new"
     bl_label = "Current file is unsaved. Start a new file anyway?"
     bl_description = "Start new .blend file"
     bl_options = {'REGISTER'}
@@ -29,7 +29,7 @@ class New(bpy.types.Operator):
             return {'FINISHED'}
 
 class Save(bpy.types.Operator):
-    bl_idname = "m4n1.save"
+    bl_idname = "m4a1.save"
     bl_label = "Save"
     bl_options = {'REGISTER'}
 
@@ -58,8 +58,8 @@ class Save(bpy.types.Operator):
         return {'FINISHED'}
 
 class SaveAs(bpy.types.Operator):
-    bl_idname = "m4n1.save_as"
-    bl_label = "M4N1: Save As"
+    bl_idname = "m4a1.save_as"
+    bl_label = "M4A1: Save As"
     bl_description = "Save the current file in the desired location\nALT: Save as Copy\nCTRL: Save as Asset"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -111,7 +111,7 @@ class SaveAs(bpy.types.Operator):
                 self.get_asset_objects_recursively(obj.instance_collection.objects, keep, depth + 1)
 
 class SaveIncremental(bpy.types.Operator):
-    bl_idname = "m4n1.save_incremental"
+    bl_idname = "m4a1.save_incremental"
     bl_label = "Incremental Save"
     bl_options = {'REGISTER'}
 
@@ -155,7 +155,7 @@ class SaveIncremental(bpy.types.Operator):
         return {'FINISHED'}
 
 class SaveVersionedStartupFile(bpy.types.Operator):
-    bl_idname = "m4n1.save_versioned_startup_file"
+    bl_idname = "m4a1.save_versioned_startup_file"
     bl_label = "Save Versioned Startup File"
     bl_options = {'REGISTER'}
 
@@ -181,7 +181,7 @@ class SaveVersionedStartupFile(bpy.types.Operator):
         return {'FINISHED'}
 
 class LoadMostRecent(bpy.types.Operator):
-    bl_idname = "m4n1.load_most_recent"
+    bl_idname = "m4a1.load_most_recent"
     bl_label = "Load Most Recent"
     bl_description = "Load most recently used .blend file"
     bl_options = {"REGISTER"}
@@ -208,8 +208,8 @@ class LoadMostRecent(bpy.types.Operator):
         return {'FINISHED'}
 
 class LoadPrevious(bpy.types.Operator):
-    bl_idname = "m4n1.load_previous"
-    bl_label = "M4N1: Load previous file"
+    bl_idname = "m4a1.load_previous"
+    bl_label = "M4A1: Load previous file"
     bl_options = {'REGISTER'}
 
     load_ui: BoolProperty()
@@ -260,8 +260,8 @@ class LoadPrevious(bpy.types.Operator):
         return {'CANCELLED'}
 
 class LoadNext(bpy.types.Operator):
-    bl_idname = "m4n1.load_next"
-    bl_label = "M4N1: Load next file"
+    bl_idname = "m4a1.load_next"
+    bl_label = "M4A1: Load next file"
     bl_options = {'REGISTER'}
 
     load_ui: BoolProperty()
@@ -316,7 +316,7 @@ class LoadNext(bpy.types.Operator):
         return {'CANCELLED'}
 
 class OpenTemp(bpy.types.Operator):
-    bl_idname = "m4n1.open_temp_dir"
+    bl_idname = "m4a1.open_temp_dir"
     bl_label = "Open"
     bl_description = "Open System's Temp Folder, which is used to Save Files on Quit, Auto Saves and Undo Saves"
     bl_options = {'REGISTER', 'UNDO'}
@@ -343,8 +343,8 @@ class OpenTemp(bpy.types.Operator):
 decalmachine = None
 
 class Purge(bpy.types.Operator):  
-    bl_idname = "m4n1.purge_orphans"
-    bl_label = "M4N1: Purge Orphans"
+    bl_idname = "m4a1.purge_orphans"
+    bl_label = "M4A1: Purge Orphans"
     bl_options = {'REGISTER', 'UNDO'}
 
     recursive: BoolProperty(name="Recursive Purge", default=False)
@@ -371,7 +371,7 @@ class Purge(bpy.types.Operator):
         before_worlds_count = len(bpy.data.worlds)
 
         if decalmachine:
-            bpy.ops.m4n1.remove_decal_orphans()
+            bpy.ops.m4a1.remove_decal_orphans()
 
         bpy.ops.outliner.orphans_purge(do_local_ids=True, do_linked_ids=True, do_recursive=self.recursive)
 
@@ -432,7 +432,7 @@ class Purge(bpy.types.Operator):
         return {'FINISHED'}
 
 class Clean(bpy.types.Operator):
-    bl_idname = "m4n1.clean_out_blend_file"
+    bl_idname = "m4a1.clean_out_blend_file"
     bl_label = "Clean out .blend file!"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -530,8 +530,8 @@ class Clean(bpy.types.Operator):
         return {'FINISHED'}
 
 class ReloadLinkedLibraries(bpy.types.Operator):
-    bl_idname = "m4n1.reload_linked_libraries"
-    bl_label = "M4N1: Reload Linked Liraries"
+    bl_idname = "m4a1.reload_linked_libraries"
+    bl_label = "M4A1: Reload Linked Liraries"
     bl_description = ""
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -555,8 +555,8 @@ has_skribe = None
 has_screencast_keys = None
 
 class ScreenCast(bpy.types.Operator):
-    bl_idname = "m4n1.screen_cast"
-    bl_label = "M4N1: Screen Cast"
+    bl_idname = "m4a1.screen_cast"
+    bl_label = "M4A1: Screen Cast"
     bl_description = "Screen Cast Operators"
     bl_options = {'REGISTER', 'UNDO'}
 

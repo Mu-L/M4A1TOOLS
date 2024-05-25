@@ -17,8 +17,8 @@ from .. items import group_location_items, axis_items, axis_vector_mappings, ctr
 from .. colors import red, blue, green, yellow, white, normal
 from bpy.app.translations import pgettext as _
 class Group(bpy.types.Operator):
-    bl_idname = "m4n1.group"
-    bl_label = "M4N1: Group"
+    bl_idname = "m4a1.group"
+    bl_label = "M4A1: Group"
     bl_description = "Group Objects by Parenting them to an Empty"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -147,8 +147,8 @@ class Group(bpy.types.Operator):
         draw_fading_label(context, text=text, x=self.coords.x, y=self.coords.y, color=color, alpha=0.75, time=get_prefs().HUD_fade_group)
 
 class UnGroup(bpy.types .Operator):
-    bl_idname = "m4n1.ungroup"
-    bl_label = "M4N1: Un-Group"
+    bl_idname = "m4a1.ungroup"
+    bl_label = "M4A1: Un-Group"
     bl_options = {'REGISTER', 'UNDO'}
 
     ungroup_all_selected: BoolProperty(name="Un-Group all Selected Groups", default=False)
@@ -225,8 +225,8 @@ class UnGroup(bpy.types .Operator):
             ungroup(empty)
 
 class Groupify(bpy.types.Operator):
-    bl_idname = "m4n1.groupify"
-    bl_label = "M4N1: Groupify"
+    bl_idname = "m4a1.groupify"
+    bl_label = "M4A1: Groupify"
     bl_description = "Turn any Empty Hirearchy into Group"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -274,8 +274,8 @@ class Groupify(bpy.types.Operator):
                 obj.M4.is_group_object = True
 
 class Select(bpy.types.Operator):
-    bl_idname = "m4n1.select_group"
-    bl_label = "M4N1: Select Group"
+    bl_idname = "m4a1.select_group"
+    bl_label = "M4A1: Select Group"
     bl_description = _("Select Group\nCTRL: Select entire Group Hierarchy down")
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -316,8 +316,8 @@ class Select(bpy.types.Operator):
         return {'FINISHED'}
 
 class Duplicate(bpy.types.Operator):
-    bl_idname = "m4n1.duplicate_group"
-    bl_label = "M4N1: duplicate_group"
+    bl_idname = "m4a1.duplicate_group"
+    bl_label = "M4A1: duplicate_group"
     bl_options = {'REGISTER', 'UNDO'}
 
     @classmethod
@@ -349,8 +349,8 @@ class Duplicate(bpy.types.Operator):
         return {'FINISHED'}
 
 class Add(bpy.types.Operator):
-    bl_idname = "m4n1.add_to_group"
-    bl_label = "M4N1: Add to Group"
+    bl_idname = "m4a1.add_to_group"
+    bl_label = "M4A1: Add to Group"
     bl_description = "Add Selection to Group"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -492,8 +492,8 @@ class Add(bpy.types.Operator):
                 add_mods_from_dict(obj, common_mirrors)
 
 class Remove(bpy.types.Operator):
-    bl_idname = "m4n1.remove_from_group"
-    bl_label = "M4N1: Remove from Group"
+    bl_idname = "m4a1.remove_from_group"
+    bl_label = "M4A1: Remove from Group"
     bl_description = "Remove Selection from Group"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -569,8 +569,8 @@ class Remove(bpy.types.Operator):
         return {'CANCELLED'}
 
 class ToggleChildren(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_outliner_children"
-    bl_label = "M4N1: Toggle Outliner Children"
+    bl_idname = "m4a1.toggle_outliner_children"
+    bl_label = "M4A1: Toggle Outliner Children"
     bl_description = ""
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -588,8 +588,8 @@ class ToggleChildren(bpy.types.Operator):
         return {'FINISHED'}
 
 class ToggleGroupMode(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_outliner_group_mode"
-    bl_label = "M4N1: Toggle Outliner Group Mode"
+    bl_idname = "m4a1.toggle_outliner_group_mode"
+    bl_label = "M4A1: Toggle Outliner Group Mode"
     bl_description = ""
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -624,8 +624,8 @@ class ToggleGroupMode(bpy.types.Operator):
         return {'FINISHED'}
 
 class CollapseOutliner(bpy.types.Operator):
-    bl_idname = "m4n1.collapse_outliner"
-    bl_label = "M4N1: Collapse Outliner"
+    bl_idname = "m4a1.collapse_outliner"
+    bl_label = "M4A1: Collapse Outliner"
     bl_description = ""
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -645,8 +645,8 @@ class CollapseOutliner(bpy.types.Operator):
         return {'FINISHED'}
 
 class ExpandOutliner(bpy.types.Operator):
-    bl_idname = "m4n1.expand_outliner"
-    bl_label = "M4N1: Expand Outliner"
+    bl_idname = "m4a1.expand_outliner"
+    bl_label = "M4A1: Expand Outliner"
     bl_description = ""
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -731,8 +731,8 @@ def draw_transform_group(op):
     return draw
 
 class TransformGroup(bpy.types.Operator):
-    bl_idname = "m4n1.transform_group"
-    bl_label = "M4N1: Transform Group"
+    bl_idname = "m4a1.transform_group"
+    bl_label = "M4A1: Transform Group"
     bl_options = {'REGISTER', 'UNDO'}
 
     name: StringProperty(name="Group Empty Name")
@@ -914,7 +914,7 @@ class TransformGroup(bpy.types.Operator):
                     set_group_pose(self.empty)
 
                     location = self.empty.matrix_world.to_translation()
-                    bpy.ops.m4n1.draw_group_rest_pose(location=location, size=self.gizmo_size, time=1, alpha=0.2, reverse=False)
+                    bpy.ops.m4a1.draw_group_rest_pose(location=location, size=self.gizmo_size, time=1, alpha=0.2, reverse=False)
 
                     self.is_setting_rest_pose = True
 
@@ -955,7 +955,7 @@ class TransformGroup(bpy.types.Operator):
                 self.empty.select_set(True)
                 context.view_layer.objects.active = self.empty
 
-                bpy.ops.m4n1.setup_group_gizmos('INVOKE_DEFAULT')
+                bpy.ops.m4a1.setup_group_gizmos('INVOKE_DEFAULT')
 
                 return {'FINISHED'}
 
@@ -972,7 +972,7 @@ class TransformGroup(bpy.types.Operator):
                 retrieve_group_pose(self.empty)
 
                 location = self.empty.matrix_world.to_translation()
-                bpy.ops.m4n1.draw_group_rest_pose(location=location, size=self.gizmo_size, time=1, alpha=0.2, reverse=True)
+                bpy.ops.m4a1.draw_group_rest_pose(location=location, size=self.gizmo_size, time=1, alpha=0.2, reverse=True)
 
                 self.is_recalling_rest_pose = True
 
@@ -1177,8 +1177,8 @@ class TransformGroup(bpy.types.Operator):
             print("INFO: Auto-keyed rotation of", self.empty.name, "at frame", frame)
 
 class BakeGroupGizmoSize(bpy.types.Operator):
-    bl_idname = "m4n1.bake_group_gizmo_size"
-    bl_label = "M4N1: Bake Group Gizmo Size"
+    bl_idname = "m4a1.bake_group_gizmo_size"
+    bl_label = "M4A1: Bake Group Gizmo Size"
     bl_description = "Set Global Size to 1, and compensate each Group's Size accordingly."
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -1257,8 +1257,8 @@ def draw_setup_group_gizmos_status(op):
     return draw
 
 class SetupGroupGizmos(bpy.types.Operator):
-    bl_idname = "m4n1.setup_group_gizmos"
-    bl_label = "M4N1: Setup Group Gizmos"
+    bl_idname = "m4a1.setup_group_gizmos"
+    bl_label = "M4A1: Setup Group Gizmos"
     bl_description = "Setup Group Gizmos"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -1584,8 +1584,8 @@ class SetupGroupGizmos(bpy.types.Operator):
         return aligned[0], aligned[1]
 
 class SetGroupPose(bpy.types.Operator):
-    bl_idname = "m4n1.set_group_pose"
-    bl_label = "M4N1: Set Group Pose"
+    bl_idname = "m4a1.set_group_pose"
+    bl_label = "M4A1: Set Group Pose"
     bl_description = "Set Group Pose"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -1635,8 +1635,8 @@ class SetGroupPose(bpy.types.Operator):
         return {'FINISHED'}
 
 class UpdateGroupPose(bpy.types.Operator):
-    bl_idname = "m4n1.update_group_pose"
-    bl_label = "M4N1: Update Group Pose"
+    bl_idname = "m4a1.update_group_pose"
+    bl_label = "M4A1: Update Group Pose"
     bl_description = "Update active Pose from current Group Empty Rotation"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -1717,8 +1717,8 @@ class UpdateGroupPose(bpy.types.Operator):
         return {'FINISHED'}
 
 class RetrieveGroupPose(bpy.types.Operator):
-    bl_idname = "m4n1.retrieve_group_pose"
-    bl_label = "M4N1: Retrieve Group Pose"
+    bl_idname = "m4a1.retrieve_group_pose"
+    bl_label = "M4A1: Retrieve Group Pose"
     bl_description = "Retrieve Selected Group Pose"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -1783,8 +1783,8 @@ class RetrieveGroupPose(bpy.types.Operator):
         return {'FINISHED'}
 
 class SortGroupPose(bpy.types.Operator):
-    bl_idname = "m4n1.sort_group_pose"
-    bl_label = "M4N1: Sort Group Pose"
+    bl_idname = "m4a1.sort_group_pose"
+    bl_label = "M4A1: Sort Group Pose"
     bl_options = {'REGISTER', 'UNDO'}
 
     direction: StringProperty()
@@ -1826,8 +1826,8 @@ class SortGroupPose(bpy.types.Operator):
         return {'FINISHED'}
 
 class RemoveGroupPose(bpy.types.Operator):
-    bl_idname = "m4n1.remove_group_pose"
-    bl_label = "M4N1: Remove Group Pose"
+    bl_idname = "m4a1.remove_group_pose"
+    bl_label = "M4A1: Remove Group Pose"
     bl_description = "description"
     bl_options = {'REGISTER', 'UNDO'}
 

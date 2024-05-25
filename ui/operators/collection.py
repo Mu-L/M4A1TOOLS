@@ -3,8 +3,8 @@ from bpy.props import StringProperty, BoolProperty
 from ... utils.collection import get_scene_collections
 
 class CreateCollection(bpy.types.Operator):
-    bl_idname = "m4n1.create_collection"
-    bl_label = "M4N1: Create Collection"
+    bl_idname = "m4a1.create_collection"
+    bl_label = "M4A1: Create Collection"
     bl_description = "Create Collection"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -47,8 +47,8 @@ class CreateCollection(bpy.types.Operator):
         return {'FINISHED'}
 
 class RemoveFromCollection(bpy.types.Operator):
-    bl_idname = "m4n1.remove_from_collection"
-    bl_label = "M4N1: Remove from Collection"
+    bl_idname = "m4a1.remove_from_collection"
+    bl_label = "M4A1: Remove from Collection"
     bl_description = "Remove Selection from a Collection"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -66,8 +66,8 @@ class RemoveFromCollection(bpy.types.Operator):
         return {'FINISHED'}
 
 class Purge(bpy.types.Operator):
-    bl_idname = "m4n1.purge_collections"
-    bl_label = "M4N1: Purge Collections"
+    bl_idname = "m4a1.purge_collections"
+    bl_label = "M4A1: Purge Collections"
     bl_description = "Remove empty Collections"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -80,8 +80,8 @@ class Purge(bpy.types.Operator):
         return {'FINISHED'}
 
 class Select(bpy.types.Operator):
-    bl_idname = "m4n1.select_collection"
-    bl_label = "M4N1: (De)Select Collection"
+    bl_idname = "m4a1.select_collection"
+    bl_label = "M4A1: (De)Select Collection"
     bl_description = "Select Collection Objects\nSHIFT: Select all Collection Objects\nALT: Deselect Collection Objects\nSHIFT+ALT: Deselect all Collection Objects\nCTRL: Toggle Viewport Selection of Collection Objects"
     bl_options = {'REGISTER'}
 

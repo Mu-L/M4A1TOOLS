@@ -72,8 +72,8 @@ def draw_mirror(op):
     return draw
 
 class Mirror(bpy.types.Operator):
-    bl_idname = "m4n1.mirror"
-    bl_label = "M4N1: Mirror"
+    bl_idname = "m4a1.mirror"
+    bl_label = "M4A1: Mirror"
     bl_options = {'REGISTER', 'UNDO'}
 
     flick: BoolProperty(name="Flick", default=False)
@@ -650,8 +650,8 @@ class Mirror(bpy.types.Operator):
             return aligned, False
 
 class Unmirror(bpy.types.Operator):
-    bl_idname = "m4n1.unmirror"
-    bl_label = "M4N1: Unmirror"
+    bl_idname = "m4a1.unmirror"
+    bl_label = "M4A1: Unmirror"
     bl_description = "Removes the last modifer in the stack of the selected objects"
     bl_options = {'REGISTER', 'UNDO'}
 

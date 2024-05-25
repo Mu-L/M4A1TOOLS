@@ -3,8 +3,8 @@ from bpy.props import IntProperty, BoolProperty
 from math import radians
 
 class QuadSphere(bpy.types.Operator):
-    bl_idname = "m4n1.quadsphere"
-    bl_label = "M4N1: Quadsphere"
+    bl_idname = "m4a1.quadsphere"
+    bl_label = "M4A1: Quadsphere"
     bl_description = "Creates a Quadsphere"
     bl_options = {'REGISTER', 'UNDO'}
 

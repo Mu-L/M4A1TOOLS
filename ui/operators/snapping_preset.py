@@ -2,8 +2,8 @@ import bpy
 from bpy.props import StringProperty, BoolProperty
 from bpy.app.translations import pgettext as _
 class SetSnappingPreset(bpy.types.Operator):
-    bl_idname = "m4n1.set_snapping_preset"
-    bl_label = "M4N1: Set Snapping Preset"
+    bl_idname = "m4a1.set_snapping_preset"
+    bl_label = "M4A1: Set Snapping Preset"
     bl_description = "Set Snapping Preset"
     bl_options = {'REGISTER', 'UNDO'}
 

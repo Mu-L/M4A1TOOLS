@@ -9,8 +9,8 @@ from ... import bl_info
 enc = sys.getdefaultencoding()
 
 class GetSupport(bpy.types.Operator):
-    bl_idname = "m4n1.get_m4n1tools_support"
-    bl_label = "M4N1: Get M4N1tools Support"
+    bl_idname = "m4a1.get_m4a1tools_support"
+    bl_label = "M4A1: Get M4A1tools Support"
     bl_description = "Generate Log Files and Instructions for a Support Request."
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -35,10 +35,10 @@ class GetSupport(bpy.types.Operator):
 
         if is_url_open:
             folderurl = "file://" + logpath
-            html = html.replace("FOLDER", f'<a href="{folderurl}">M4N1tools/logs</a>')
+            html = html.replace("FOLDER", f'<a href="{folderurl}">M4A1tools/logs</a>')
 
         else:
-            html = html.replace("FOLDER", "M4N1tools/logs")
+            html = html.replace("FOLDER", "M4A1tools/logs")
 
         with open(readmepath, "w") as f:
             f.write(html)
@@ -63,7 +63,7 @@ class GetSupport(bpy.types.Operator):
                         newlines.pop(idx)
                         newlines.insert(idx, line.replace(', type:', f", revision: {bl_info['revision']}, type:"))
 
-                    elif line.startswith('M4N1tools'):
+                    elif line.startswith('M4A1tools'):
                         idx = newlines.index(line)
 
                         new = []

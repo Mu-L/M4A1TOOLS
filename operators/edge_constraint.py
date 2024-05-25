@@ -135,8 +135,8 @@ def draw_edge_constrained_transform_status(op):
     return draw
 
 class TransformEdgeConstrained(bpy.types.Operator):
-    bl_idname = "m4n1.transform_edge_constrained"
-    bl_label = "M4N1: Transform Edge Constrained"
+    bl_idname = "m4a1.transform_edge_constrained"
+    bl_label = "M4A1: Transform Edge Constrained"
     bl_description = ""
     bl_options = {'REGISTER', 'UNDO'}
 

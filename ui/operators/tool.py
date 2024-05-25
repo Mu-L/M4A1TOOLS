@@ -9,8 +9,8 @@ from bpy.app.translations import pgettext as _
 boxcutter = None
 
 class SetToolByName(bpy.types.Operator):
-    bl_idname = "m4n1.set_tool_by_name"
-    bl_label = "M4N1: Set Tool by Name"
+    bl_idname = "m4a1.set_tool_by_name"
+    bl_label = "M4A1: Set Tool by Name"
     bl_description = "Set Tool by Name"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -25,12 +25,12 @@ class SetToolByName(bpy.types.Operator):
     def execute(self, context):
         active_tool = get_active_tool(context).idname
 
-        if active_tool == 'm4n1.tool_hyper_cursor_simple':
+        if active_tool == 'm4a1.tool_hyper_cursor_simple':
             context.space_data.overlay.show_cursor = True
 
         bpy.ops.wm.tool_set_by_id(name=self.name)
 
-        if 'm4n1.tool_hyper_cursor' in self.name:
+        if 'm4a1.tool_hyper_cursor' in self.name:
             context.scene.HC.show_gizmos = True
             size, color = 20, green
         else:
@@ -41,8 +41,8 @@ class SetToolByName(bpy.types.Operator):
         return {'FINISHED'}
 
 class SetBCPreset(bpy.types.Operator):
-    bl_idname = "m4n1.set_boxcutter_preset"
-    bl_label = "M4N1: Set BoxCutter Preset"
+    bl_idname = "m4a1.set_boxcutter_preset"
+    bl_label = "M4A1: Set BoxCutter Preset"
     bl_description = "Quickly enable/switch BC tool in/to various modes"
     bl_options = {'REGISTER', 'UNDO'}
 

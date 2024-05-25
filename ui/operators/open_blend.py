@@ -3,8 +3,8 @@ from bpy.props import StringProperty
 import subprocess
 
 class OpenLibraryBlend(bpy.types.Operator):
-    bl_idname = "m4n1.open_library_blend"
-    bl_label = "M4N1: Open Library Blend"
+    bl_idname = "m4a1.open_library_blend"
+    bl_label = "M4A1: Open Library Blend"
     bl_description = "Open new Blender instance, loading the library sourced in the selected object or collection instance."
     bl_options = {'REGISTER'}
 

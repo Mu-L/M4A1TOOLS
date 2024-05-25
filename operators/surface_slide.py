@@ -5,8 +5,8 @@ from .. utils.modifier import add_shrinkwrap, add_surface_slide, get_surface_sli
 from .. utils.object import parent
 
 class SurfaceSlide(bpy.types.Operator):
-    bl_idname = "m4n1.surface_slide"
-    bl_label = "M4N1: Surface Slide"
+    bl_idname = "m4a1.surface_slide"
+    bl_label = "M4A1: Surface Slide"
     bl_description = "Start Surface Sliding: modifify the topology while keeping the inital form intact"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -57,8 +57,8 @@ class SurfaceSlide(bpy.types.Operator):
         return {'FINISHED'}
 
 class FinishSurfaceSlide(bpy.types.Operator):
-    bl_idname = "m4n1.finish_surface_slide"
-    bl_label = "M4N1: Finish Surface Slide"
+    bl_idname = "m4a1.finish_surface_slide"
+    bl_label = "M4A1: Finish Surface Slide"
     bl_description = "Stop Surface Sliding"
     bl_options = {'REGISTER', 'UNDO'}
 

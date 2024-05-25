@@ -4,7 +4,7 @@ from ...operators.lattice_helper import Lattice_Operator, Apply_Lattice_Operator
 
 class LATTICE_H_MT_Menus(bpy.types.Menu):
     bl_label = "Lattice Helper"
-    bl_idname = "M4N1_PT_MT_latticehelper"
+    bl_idname = "M4A1_PT_MT_latticehelper"
 
     def draw(self, context):
         layout = self.layout

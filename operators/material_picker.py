@@ -50,8 +50,8 @@ def draw_material_pick_status(op):
     return draw
 
 class MaterialPicker(bpy.types.Operator):
-    bl_idname = "m4n1.material_picker"
-    bl_label = "M4N1: Material Picker"
+    bl_idname = "m4a1.material_picker"
+    bl_label = "M4A1: Material Picker"
     bl_description = "Pick a Material from the 3D View\nALT: Assign it to the Selection too"
     bl_options = {'REGISTER', 'UNDO'}
 

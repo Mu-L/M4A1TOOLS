@@ -1,6 +1,6 @@
 
 bl_info = {
-    "name": "M4N1TOOLS",
+    "name": "M4A1TOOLS",
     "author": "MACHIN3, TitusLVR, AIGODLIKE Community",
     "version": (2, 0, 0),
     "blender": (4, 0, 0),
@@ -240,18 +240,18 @@ class TranslationHelper():
 
 from . import zh_CN
 
-M4N1_zh_CN = TranslationHelper('M4N1_zh_CN', zh_CN.data)
-M4N1_zh_HANS = TranslationHelper('M4N1_zh_HANS', zh_CN.data, lang='zh_HANS')
+M4A1_zh_CN = TranslationHelper('M4A1_zh_CN', zh_CN.data)
+M4A1_zh_HANS = TranslationHelper('M4A1_zh_HANS', zh_CN.data, lang='zh_HANS')
 
 
 
 def register():
     #翻译
     if bpy.app.version < (4, 0, 0):
-        M4N1_zh_CN.register()
+        M4A1_zh_CN.register()
     else:
-        M4N1_zh_CN.register()
-        M4N1_zh_HANS.register()
+        M4A1_zh_CN.register()
+        M4A1_zh_HANS.register()
 
     #插件
     global classes, keymaps, icons, owner
@@ -314,10 +314,10 @@ def register():
 def unregister():
     #翻译
     if bpy.app.version < (4, 0, 0):
-        M4N1_zh_CN.unregister()
+        M4A1_zh_CN.unregister()
     else:
-        M4N1_zh_CN.unregister()
-        M4N1_zh_HANS.unregister()
+        M4A1_zh_CN.unregister()
+        M4A1_zh_HANS.unregister()
     # 插件
     global classes, keymaps, icons, owner
 

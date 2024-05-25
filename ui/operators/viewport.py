@@ -6,7 +6,7 @@ from ... utils.math import average_locations
 from ... items import view_axis_items
 from bpy.app.translations import pgettext as _
 class ViewAxis(bpy.types.Operator):
-    bl_idname = "m4n1.view_axis"
+    bl_idname = "m4a1.view_axis"
     bl_label = "View Axis"
     bl_options = {'REGISTER'}
 
@@ -124,7 +124,7 @@ class ViewAxis(bpy.types.Operator):
         return rot
 
 class SmartViewCam(bpy.types.Operator):
-    bl_idname = "m4n1.smart_view_cam"
+    bl_idname = "m4a1.smart_view_cam"
     bl_label = "Smart View Cam"
     bl_description = "Default: View Active Scene Camera\nNo Camera in the Scene: Create Camera from View\nCamera Selected: Make Selected Camera active and view it.\nAlt + Click: Create Camera from current View."
     bl_options = {'REGISTER', 'UNDO'}
@@ -160,7 +160,7 @@ class SmartViewCam(bpy.types.Operator):
         return {'FINISHED'}
 
 class MakeCamActive(bpy.types.Operator):
-    bl_idname = "m4n1.make_cam_active"
+    bl_idname = "m4a1.make_cam_active"
     bl_label = "Make Active"
     bl_description = "Make selected Camera active."
     bl_options = {'REGISTER', 'UNDO'}
@@ -177,8 +177,8 @@ class MakeCamActive(bpy.types.Operator):
         return {'FINISHED'}
 
 class NextCam(bpy.types.Operator):
-    bl_idname = "m4n1.next_cam"
-    bl_label = "M4N1: Next Cam"
+    bl_idname = "m4a1.next_cam"
+    bl_label = "M4A1: Next Cam"
     bl_options = {'REGISTER', 'UNDO'}
 
     previous: BoolProperty(name="Previous", default=False)
@@ -210,8 +210,8 @@ class NextCam(bpy.types.Operator):
         return {'FINISHED'}
 
 class ToggleCamPerspOrtho(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_cam_persportho"
-    bl_label = "M4N1: Toggle Camera Perspective/Ortho"
+    bl_idname = "m4a1.toggle_cam_persportho"
+    bl_label = "M4A1: Toggle Camera Perspective/Ortho"
     bl_description = "Toggle Active Scene Camera Perspective/Ortho"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -232,8 +232,8 @@ class ToggleCamPerspOrtho(bpy.types.Operator):
 toggledprefs = False
 
 class ToggleViewPerspOrtho(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_view_persportho"
-    bl_label = "M4N1: Toggle View Perspective/Ortho"
+    bl_idname = "m4a1.toggle_view_persportho"
+    bl_label = "M4A1: Toggle View Perspective/Ortho"
     bl_description = "Toggle Viewport Perspective/Ortho"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -256,8 +256,8 @@ class ToggleViewPerspOrtho(bpy.types.Operator):
         return {'FINISHED'}
 
 class ToggleOrbitMethod(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_orbit_method"
-    bl_label = "M4N1: Toggle Orbit Method"
+    bl_idname = "m4a1.toggle_orbit_method"
+    bl_label = "M4A1: Toggle Orbit Method"
     bl_options = {'REGISTER', 'UNDO'}
 
     @classmethod
@@ -275,8 +275,8 @@ class ToggleOrbitMethod(bpy.types.Operator):
         return {'FINISHED'}
 
 class ToggleOrbitSelection(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_orbit_selection"
-    bl_label = "M4N1: Toggle Orbit Selection"
+    bl_idname = "m4a1.toggle_orbit_selection"
+    bl_label = "M4A1: Toggle Orbit Selection"
     bl_options = {'REGISTER', 'UNDO'}
 
     @classmethod
@@ -290,8 +290,8 @@ class ToggleOrbitSelection(bpy.types.Operator):
         return {'FINISHED'}
 
 class ResetViewport(bpy.types.Operator):
-    bl_idname = "m4n1.reset_viewport"
-    bl_label = "M4N1: Reset Viewport"
+    bl_idname = "m4a1.reset_viewport"
+    bl_label = "M4A1: Reset Viewport"
     bl_description = "Perfectly align the viewport with the Y axis, looking into Y+"
     bl_options = {'REGISTER', 'UNDO'}
 

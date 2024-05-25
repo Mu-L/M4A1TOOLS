@@ -7,8 +7,8 @@ from .. utils.view import reset_viewport
 from .. utils.ui import kmi_to_string, get_keymap_item
 
 class Customize(bpy.types.Operator):
-    bl_idname = "m4n1.customize"
-    bl_label = "M4N1: Customize"
+    bl_idname = "m4a1.customize"
+    bl_label = "M4A1: Customize"
     bl_description = "Customize various Blender preferences, settings and keymaps."
     bl_options = {'INTERNAL'}
 
@@ -673,8 +673,8 @@ class Customize(bpy.types.Operator):
         modify_keymaps(kc)
         add_keymaps(kc)
 
-        if getattr(bpy.types, "M4N1_MT_save_pie", False):
-            kmi = get_keymap_item('Window', 'm4n1.save_versioned_startup_file')
+        if getattr(bpy.types, "M4A1_MT_save_pie", False):
+            kmi = get_keymap_item('Window', 'm4a1.save_versioned_startup_file')
 
             if kmi:
                 kmi.active = True
@@ -1089,7 +1089,7 @@ class Customize(bpy.types.Operator):
 
             if piedir == 'left':
                 setattr(p, f'pie_workspace_{piedir}_name', 'General')
-                setattr(p, f'pie_workspace_{piedir}_text', 'M4N1')
+                setattr(p, f'pie_workspace_{piedir}_text', 'M4A1')
                 setattr(p, f'pie_workspace_{piedir}_icon', 'VIEW3D')
 
             elif piedir == 'right':
@@ -1184,8 +1184,8 @@ class Customize(bpy.types.Operator):
                 ws.name = name
 
 class RestoreKeymaps(bpy.types.Operator):
-    bl_idname = "m4n1.restore_keymaps"
-    bl_label = "M4N1: Restore Keymaps"
+    bl_idname = "m4a1.restore_keymaps"
+    bl_label = "M4A1: Restore Keymaps"
     bl_options = {'INTERNAL'}
 
     def execute(self, context):

@@ -5,8 +5,8 @@ from .. utils.view import update_local_view
 from .. utils.registration import get_prefs
 from bpy.app.translations import pgettext as _
 class SmartFace(bpy.types.Operator):
-    bl_idname = "m4n1.smart_face"
-    bl_label = "M4N1: Smart Face"
+    bl_idname = "m4a1.smart_face"
+    bl_label = "M4A1: Smart Face"
     bl_options = {'REGISTER', 'UNDO'}
 
     automerge: BoolProperty(name=_("Merge to closeby Vert"), default=True)

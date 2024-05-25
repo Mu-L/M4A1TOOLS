@@ -184,7 +184,7 @@
 #
 #
 # class Convex_Meshdeform(bpy.types.Operator):
-#     bl_idname = "m4n1.convex_meshdeform"
+#     bl_idname = "m4a1.convex_meshdeform"
 #     bl_label = "Grid overlay"
 #     bl_description = "Automatically add grid overlay to selected objects"
 #     bl_options = {"REGISTER", "UNDO"}
@@ -292,7 +292,7 @@
 #
 #
 # class Bind_Meshdeform(bpy.types.Operator):
-#     bl_idname = "m4n1.bind_meshdeform"
+#     bl_idname = "m4a1.bind_meshdeform"
 #     bl_label = "Grid binding"
 #     bl_description = "Add grid modifier to a subset of this grid"
 #     bl_options = {"REGISTER", "UNDO"}
@@ -313,7 +313,7 @@
 #
 #
 # class Apply_Meshdeform(bpy.types.Operator):
-#     bl_idname = "m4n1.apply_meshdeform"
+#     bl_idname = "m4a1.apply_meshdeform"
 #     bl_label = "Apply deformation modifier"
 #     bl_description = "Automatically apply deformation modifier"
 #     bl_options = {"REGISTER", "UNDO"}

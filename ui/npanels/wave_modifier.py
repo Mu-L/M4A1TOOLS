@@ -44,7 +44,7 @@ class WavePanel:
 
 
 class WaveSet(WavePanel, Panel):
-    bl_idname = 'M4N1_PT_wave_set_modifier'
+    bl_idname = 'M4A1_PT_wave_set_modifier'
     bl_label = """WaveHelper"""
 
     def draw(self, context):
@@ -92,7 +92,7 @@ class WaveSet(WavePanel, Panel):
 
 
 class WaveAnimation(WavePanel, Panel):
-    bl_idname = 'M4N1_PT_wave_animation'
+    bl_idname = 'M4A1_PT_wave_animation'
     bl_label = 'Animation'
     bl_parent_id = WaveSet.bl_idname
 

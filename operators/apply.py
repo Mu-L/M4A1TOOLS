@@ -5,8 +5,8 @@ from .. utils.registration import get_addon
 from .. utils.math import flatten_matrix, get_loc_matrix, get_rot_matrix, get_sca_matrix
 
 class Apply(bpy.types.Operator):
-    bl_idname = "m4n1.apply_transformations"
-    bl_label = "M4N1: Apply Transformations"
+    bl_idname = "m4a1.apply_transformations"
+    bl_label = "M4A1: Apply Transformations"
     bl_description = "Apply Transformations while keeping the bevel width as well as the child transformations unchanged."
     bl_options = {'REGISTER', 'UNDO'}
 

@@ -5,7 +5,7 @@ axis_y = True
 axis_z = False
 
 class ToggleGrid(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_grid"
+    bl_idname = "m4a1.toggle_grid"
     bl_label = "Toggle Grid"
     bl_description = "Toggle Grid, distinguish between the grid in regular views and orthographic side views"
     bl_options = {'REGISTER'}
@@ -44,7 +44,7 @@ class ToggleGrid(bpy.types.Operator):
         return {'FINISHED'}
 
 class ToggleWireframe(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_wireframe"
+    bl_idname = "m4a1.toggle_wireframe"
     bl_label = "Toggle Wireframe"
     bl_options = {'REGISTER'}
 

@@ -12,8 +12,8 @@ render_visibility = []
 matcap1_color_type = None
 
 class SwitchShading(bpy.types.Operator):
-    bl_idname = "m4n1.switch_shading"
-    bl_label = "M4N1: Switch Shading"
+    bl_idname = "m4a1.switch_shading"
+    bl_label = "M4A1: Switch Shading"
     bl_options = {'REGISTER', 'UNDO'}
 
     shading_type: StringProperty(name=_("Shading Type"), default='SOLID')
@@ -121,7 +121,7 @@ class SwitchShading(bpy.types.Operator):
             render_visibility = []
 
 class ToggleOutline(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_outline"
+    bl_idname = "m4a1.toggle_outline"
     bl_label = "Toggle Outline"
     bl_description = "Toggle Object Outlines"
     bl_options = {'REGISTER'}
@@ -134,7 +134,7 @@ class ToggleOutline(bpy.types.Operator):
         return {'FINISHED'}
 
 class ToggleCavity(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_cavity"
+    bl_idname = "m4a1.toggle_cavity"
     bl_label = "Toggle Cavity"
     bl_description = "Toggle Cavity (Screen Space Ambient Occlusion)"
     bl_options = {'REGISTER'}
@@ -147,7 +147,7 @@ class ToggleCavity(bpy.types.Operator):
         return {'FINISHED'}
 
 class ToggleCurvature(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_curvature"
+    bl_idname = "m4a1.toggle_curvature"
     bl_label = "Toggle Curvature"
     bl_description = "Toggle Curvature (Edge Highlighting)"
     bl_options = {'REGISTER'}
@@ -160,7 +160,7 @@ class ToggleCurvature(bpy.types.Operator):
         return {'FINISHED'}
 
 class MatcapSwitch(bpy.types.Operator):
-    bl_idname = "m4n1.matcap_switch"
+    bl_idname = "m4a1.matcap_switch"
     bl_label = "Matcap Switch"
     bl_description = "Quickly Switch between two Matcaps"
     bl_options = {'REGISTER'}
@@ -224,8 +224,8 @@ class MatcapSwitch(bpy.types.Operator):
         return {'FINISHED'}
 
 class RotateStudioLight(bpy.types.Operator):
-    bl_idname = "m4n1.rotate_studiolight"
-    bl_label = "M4N1: Rotate Studiolight"
+    bl_idname = "m4a1.rotate_studiolight"
+    bl_label = "M4A1: Rotate Studiolight"
     bl_options = {'REGISTER', 'UNDO'}
 
     angle: IntProperty(name="Angle")
@@ -256,9 +256,9 @@ class RotateStudioLight(bpy.types.Operator):
         return {'FINISHED'}
 
 class AddWorld(bpy.types.Operator):
-    bl_idname = "m4n1.add_world"
-    bl_label = "M4N1: Add World"
-    bl_description = "M4N1: Add World"
+    bl_idname = "m4a1.add_world"
+    bl_label = "M4A1: Add World"
+    bl_description = "M4A1: Add World"
     bl_options = {'REGISTER', 'UNDO'}
 
     @classmethod
@@ -279,8 +279,8 @@ class AddWorld(bpy.types.Operator):
         return {'FINISHED'}
 
 class AdjustBevelShaderRadius(bpy.types.Operator):
-    bl_idname = "m4n1.adjust_bevel_shader_radius"
-    bl_label = "M4N1: Adjust Bevel Radius"
+    bl_idname = "m4a1.adjust_bevel_shader_radius"
+    bl_label = "M4A1: Adjust Bevel Radius"
     bl_options = {'REGISTER', 'UNDO'}
 
     global_radius: BoolProperty(name=_("Adjust Global Bevel Radius"), default=True)

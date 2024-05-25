@@ -17,8 +17,8 @@ decalmachine = None
 meshmachine = None
 
 class CreateAssemblyAsset(bpy.types.Operator):
-    bl_idname = "m4n1.create_assembly_asset"
-    bl_label = "M4N1: Create Assembly Asset"
+    bl_idname = "m4a1.create_assembly_asset"
+    bl_label = "M4A1: Create Assembly Asset"
     bl_description = "Create Assembly Asset from the selected Objects"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -297,7 +297,7 @@ class CreateAssemblyAsset(bpy.types.Operator):
 
             if ws and ws != context.workspace:
                 print("INFO: Switching to preffered Asset Browser Workspace")
-                bpy.ops.m4n1.switch_workspace('INVOKE_DEFAULT', name=asset_browser_workspace)
+                bpy.ops.m4a1.switch_workspace('INVOKE_DEFAULT', name=asset_browser_workspace)
 
                 self.switch_asset_browser_to_LOCAL(ws)
                 return
@@ -349,8 +349,8 @@ class CreateAssemblyAsset(bpy.types.Operator):
             context.space_data.overlay.show_overlays = True
 
 class AssembleInstanceCollection(bpy.types.Operator):
-    bl_idname = "m4n1.assemble_instance_collection"
-    bl_label = "M4N1: Assemle Instance Collection"
+    bl_idname = "m4a1.assemble_instance_collection"
+    bl_label = "M4A1: Assemle Instance Collection"
     bl_description = "Make Instance Collection objects accessible\nALT: Keep Empty as Root"
     bl_options = {'REGISTER'}
 
@@ -408,13 +408,13 @@ class AssembleInstanceCollection(bpy.types.Operator):
                     sort_into_collections(context, obj, purge=False)
 
             if backups:
-                bpy.ops.m4n1.sweep_decal_backups()
+                bpy.ops.m4a1.sweep_decal_backups()
 
         if meshmachine:
             stashobjs = [obj for obj in context.scene.objects if obj.MM.isstashobj]
 
             if stashobjs:
-                bpy.ops.m4n1.sweep_stashes()
+                bpy.ops.m4a1.sweep_stashes()
 
         bpy.ops.outliner.orphans_purge(do_local_ids=True, do_linked_ids=True, do_recursive=True)
 
@@ -470,8 +470,8 @@ class AssembleInstanceCollection(bpy.types.Operator):
         return root_children
 
 class AssetBrowserBookmark(bpy.types.Operator):
-    bl_idname = "m4n1.assetbrowser_bookmark"
-    bl_label = "M4N1: Assetbrowser Bookmark"
+    bl_idname = "m4a1.assetbrowser_bookmark"
+    bl_label = "M4A1: Assetbrowser Bookmark"
     bl_description = "description"
     bl_options = {'REGISTER', 'UNDO'}
 

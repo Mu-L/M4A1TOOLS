@@ -49,8 +49,8 @@ def draw_slide_status(op):
     return draw
 
 class SmartVert(bpy.types.Operator):
-    bl_idname = "m4n1.smart_vert"
-    bl_label = "M4N1: Smart Vert"
+    bl_idname = "m4a1.smart_vert"
+    bl_label = "M4A1: Smart Vert"
     bl_options = {'REGISTER', 'UNDO'}
 
     mode: EnumProperty(name="Mode", items=smartvert_mode_items, default="MERGE")

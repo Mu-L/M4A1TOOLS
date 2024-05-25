@@ -1,9 +1,9 @@
 import bpy
 from bpy.props import StringProperty
 
-class CallM4N1toolsPie(bpy.types.Operator):
-    bl_idname = "m4n1.call_m4n1tools_pie"
-    bl_label = "M4N1: Call M4N1tools Pie"
+class CallM4A1toolsPie(bpy.types.Operator):
+    bl_idname = "m4a1.call_m4a1tools_pie"
+    bl_label = "M4A1: Call M4A1tools Pie"
     bl_options = {'REGISTER', 'UNDO'}
 
     idname: StringProperty()
@@ -43,11 +43,11 @@ class CallM4N1toolsPie(bpy.types.Operator):
                 if active and not active.display_type:
                     active.display_type = 'WIRE' if active.hide_render or not active.visible_camera else 'TEXTURED'
 
-                bpy.ops.wm.call_menu_pie(name='M4N1_MT_%s' % (self.idname))
+                bpy.ops.wm.call_menu_pie(name='M4A1_MT_%s' % (self.idname))
 
             elif self.idname == 'tools_pie':
                 if context.mode in ['OBJECT', 'EDIT_MESH']:
-                    bpy.ops.wm.call_menu_pie(name='M4N1_MT_%s' % (self.idname))
+                    bpy.ops.wm.call_menu_pie(name='M4A1_MT_%s' % (self.idname))
 
                 else:
                     return {'PASS_THROUGH'}

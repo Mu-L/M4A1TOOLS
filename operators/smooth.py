@@ -4,8 +4,8 @@ import bmesh
 from math import degrees, radians
 
 class ToggleSmooth(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_smooth"
-    bl_label = "M4N1: Toggle Smooth"
+    bl_idname = "m4a1.toggle_smooth"
+    bl_label = "M4A1: Toggle Smooth"
     bl_description = "Toggle Smothing for Korean Bevel and SubD Objects"
     bl_options = {'REGISTER', 'UNDO'}
 

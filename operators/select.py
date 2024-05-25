@@ -13,8 +13,8 @@ axis_items = [("0", "X", ""),
               ("2", "Z", "")]
 
 class SelectCenterObjects(bpy.types.Operator):
-    bl_idname = "m4n1.select_center_objects"
-    bl_label = "M4N1: Select Center Objects"
+    bl_idname = "m4a1.select_center_objects"
+    bl_label = "M4A1: Select Center Objects"
     bl_description = "Selects Objects in the Center, objects, that have verts on both sides of the X, Y or Z axis."
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -49,8 +49,8 @@ class SelectCenterObjects(bpy.types.Operator):
         return {'FINISHED'}
 
 class SelectWireObjects(bpy.types.Operator):
-    bl_idname = "m4n1.select_wire_objects"
-    bl_label = "M4N1: Select Wire Objects"
+    bl_idname = "m4a1.select_wire_objects"
+    bl_label = "M4A1: Select Wire Objects"
     bl_description = "Select Objects set to WIRE display type\nALT: Hide Objects\nCLTR: Include Empties"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -82,8 +82,8 @@ class SelectWireObjects(bpy.types.Operator):
 last_ret = ''
 
 class SelectHierarchy(bpy.types.Operator):
-    bl_idname = "m4n1.select_hierarchy"
-    bl_label = "M4N1: Select Hierarchy"
+    bl_idname = "m4a1.select_hierarchy"
+    bl_label = "M4A1: Select Hierarchy"
     bl_description = "Select Hierarchy Down"
     bl_options = {'REGISTER', 'UNDO'}
 

@@ -3,7 +3,7 @@ from bpy.props import StringProperty
 from ... utils.registration import get_addon
 
 class SwitchWorkspace(bpy.types.Operator):
-    bl_idname = "m4n1.switch_workspace"
+    bl_idname = "m4a1.switch_workspace"
     bl_label = "Switch Workspace"
     bl_options = {'REGISTER'}
 
@@ -218,8 +218,8 @@ class SwitchWorkspace(bpy.types.Operator):
             return space_data
 
 class GetIconNameHelp(bpy.types.Operator):
-    bl_idname = "m4n1.get_icon_name_help"
-    bl_label = "M4N1: Get Icon Name Help"
+    bl_idname = "m4a1.get_icon_name_help"
+    bl_label = "M4A1: Get Icon Name Help"
     bl_description = ""
     bl_options = {'INTERNAL'}
 

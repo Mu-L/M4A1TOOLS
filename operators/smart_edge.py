@@ -7,8 +7,8 @@ from .. utils.ui import popup_message
 from .. utils.bmesh import ensure_custom_data_layers
 
 class SmartEdge(bpy.types.Operator):
-    bl_idname = "m4n1.smart_edge"
-    bl_label = "M4N1: Smart Edge"
+    bl_idname = "m4a1.smart_edge"
+    bl_label = "M4A1: Smart Edge"
     bl_options = {'REGISTER', 'UNDO'}
 
     sharp: BoolProperty(name="Toggle Sharp", default=False)

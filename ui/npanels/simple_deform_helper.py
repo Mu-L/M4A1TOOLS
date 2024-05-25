@@ -11,7 +11,7 @@ class SimpleDeformHelperToolPanel(Panel, GizmoUtils):
     bl_category = 'Tool'
     bl_context = '.objectmode'
     bl_label = 'Simple Deform Helper'
-    bl_idname = 'M4N1_PT_simple_deform_helper'
+    bl_idname = 'M4A1_PT_simple_deform_helper'
     bl_parent_id = 'VIEW3D_PT_tools_object_options'
 
     @classmethod

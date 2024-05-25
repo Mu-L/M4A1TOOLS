@@ -42,7 +42,7 @@ def sna_add_to_data_pt_vertex_groups(self, context):
     button = row.row(align=True)
 
     button.prop(obj_prop, 'is_center', text='', toggle=True, icon_value=446)
-    button.operator('m4n1.vg_mirror_weight', text='Mirror weights', icon_value=0)
+    button.operator('m4a1.vg_mirror_weight', text='Mirror weights', icon_value=0)
 
     button.prop(obj_prop, 'is_multiple', text='', icon_value=multiple_icon())
     select = row.row(align=True)
@@ -51,8 +51,8 @@ def sna_add_to_data_pt_vertex_groups(self, context):
     row.row(align=True).prop(obj_prop, 'mirror_method', text='', icon_value=30)
 
     split = column.split(align=True)
-    split.operator('m4n1.vg_clear_unused', text='Clear unused')
-    split.operator('m4n1.vg_remove_zero', text='Clear zero')
+    split.operator('m4a1.vg_clear_unused', text='Clear unused')
+    split.operator('m4a1.vg_remove_zero', text='Clear zero')
 # 脚本目录
 import os
 script_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))

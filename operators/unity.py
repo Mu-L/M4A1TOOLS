@@ -6,8 +6,8 @@ from .. utils.math import flatten_matrix
 from .. utils.modifier import add_triangulate, remove_triangulate
 
 class PrepareExport(bpy.types.Operator):
-    bl_idname = "m4n1.prepare_unity_export"
-    bl_label = "M4N1: Prepare Unity Export"
+    bl_idname = "m4a1.prepare_unity_export"
+    bl_label = "M4A1: Prepare Unity Export"
     bl_options = {'REGISTER', 'UNDO'}
 
     prepare_only: BoolProperty(name="Only Prepare, don't export", description="Used by DECALmachine to skip Export even if the scene prop is set\nDECALmachine uses its own Export Operator Instead", default=False)
@@ -130,8 +130,8 @@ class PrepareExport(bpy.types.Operator):
             prepare_children(obj, bone_children, depth)
 
 class RestoreExport(bpy.types.Operator):
-    bl_idname = "m4n1.restore_unity_export"
-    bl_label = "M4N1: Restore Unity Export"
+    bl_idname = "m4a1.restore_unity_export"
+    bl_label = "M4A1: Restore Unity Export"
     bl_description = "Restore Pre-Export Object Transformations, Meshes and Modifiers"
     bl_options = {'REGISTER', 'UNDO'}
 

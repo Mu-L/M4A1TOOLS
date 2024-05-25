@@ -10,8 +10,8 @@ from .. utils.registration import get_prefs
 from .. colors import red
 
 class Open(bpy.types.Operator):
-    bl_idname = "m4n1.filebrowser_open"
-    bl_label = "M4N1: Open in System's filebrowser"
+    bl_idname = "m4a1.filebrowser_open"
+    bl_label = "M4A1: Open in System's filebrowser"
     bl_description = "Open the current location in the System's own filebrowser\nALT: Open .blend file"
 
     path: StringProperty(name="Path")
@@ -51,7 +51,7 @@ class Open(bpy.types.Operator):
 
                 else:
                     path = os.path.join(directory, active_file.relative_path)
-                    bpy.ops.m4n1.open_library_blend(blendpath=path)
+                    bpy.ops.m4a1.open_library_blend(blendpath=path)
 
             else:
 
@@ -68,8 +68,8 @@ class Open(bpy.types.Operator):
         return {'CANCELLED'}
 
 class Toggle(bpy.types.Operator):
-    bl_idname = "m4n1.filebrowser_toggle"
-    bl_label = "M4N1: Toggle Filebrowser"
+    bl_idname = "m4a1.filebrowser_toggle"
+    bl_label = "M4A1: Toggle Filebrowser"
     bl_description = ""
 
     type: StringProperty()
@@ -129,8 +129,8 @@ class Toggle(bpy.types.Operator):
         return {'FINISHED'}
 
 class CycleThumbs(bpy.types.Operator):
-    bl_idname = "m4n1.filebrowser_cycle_thumbnail_size"
-    bl_label = "M4N1: Cycle Thumbnail Size"
+    bl_idname = "m4a1.filebrowser_cycle_thumbnail_size"
+    bl_label = "M4A1: Cycle Thumbnail Size"
     bl_description = ""
     bl_options = {'REGISTER', 'UNDO'}
 

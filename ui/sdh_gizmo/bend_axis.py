@@ -76,7 +76,7 @@ class BendAxiSwitchGizmoGroup(GizmoGroup, GizmoGroupUtils):
             gizmo.scale_basis = 0.2
             gizmo.use_draw_value = True
             ops = gizmo.target_set_operator(
-                'm4n1.simple_deform_gizmo_axis')
+                'm4a1.simple_deform_gizmo_axis')
             ops.Deform_Axis = axis
             ops.X_Value = rot[0]
             ops.Y_Value = rot[1]

@@ -568,7 +568,7 @@ def load_post(none):
 
     if global_debug:
         print()
-        print("M4N1tools load post handler:")
+        print("M4A1tools load post handler:")
         print(" reloading msgbus")
 
     reload_msgbus()
@@ -596,7 +596,7 @@ def undo_pre(scene):
 
     if global_debug:
         print()
-        print("M4N1tools undo pre handler:")
+        print("M4A1tools undo pre handler:")
 
     p = get_prefs()
 
@@ -612,7 +612,7 @@ def render_start(scene):
 
     if global_debug:
         print()
-        print("M4N1tools render start handler:")
+        print("M4A1tools render start handler:")
 
     p = get_prefs()
 
@@ -628,7 +628,7 @@ def render_end(scene):
 
     if global_debug:
         print()
-        print("M4N1tools render cancel or complete handler:")
+        print("M4A1tools render cancel or complete handler:")
 
     p = get_prefs()
 
@@ -644,7 +644,7 @@ def depsgraph_update_post(scene):
 
     if global_debug:
         print()
-        print("M4N1tools depsgraph update post handler:")
+        print("M4A1tools depsgraph update post handler:")
 
     p = get_prefs()
 

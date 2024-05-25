@@ -7,8 +7,8 @@ from .. utils.object import flatten
 from .. utils.ui import popup_message
 from bpy.app.translations import pgettext as _
 class MeshCut(bpy.types.Operator):
-    bl_idname = "m4n1.mesh_cut"
-    bl_label = "M4N1: Mesh Cut"
+    bl_idname = "m4a1.mesh_cut"
+    bl_label = "M4A1: Mesh Cut"
     bl_description = "Cut a Mesh Object, using another Object.\nALT: Flatten Target Object's Modifier Stack\nSHIFT: Mark Seams"
     bl_options = {'REGISTER', 'UNDO'}
 

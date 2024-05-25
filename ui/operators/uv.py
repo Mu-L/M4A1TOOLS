@@ -4,8 +4,8 @@ import bmesh
 from ... items import uv_axis_items, uv_align_axis_mapping_dict, align_type_items
 
 class AlignUV(bpy.types.Operator):
-    bl_idname = "m4n1.align_uv"
-    bl_label = "M4N1: Align (UV)"
+    bl_idname = "m4a1.align_uv"
+    bl_label = "M4A1: Align (UV)"
     bl_options = {'REGISTER', 'UNDO'}
     bl_description = "Align verts based on min/max UV values"
 

@@ -14,7 +14,7 @@ from bpy.app.translations import pgettext as _
 hypercursor = None
 
 class Shade(bpy.types.Operator):
-    bl_idname = "m4n1.shade"
+    bl_idname = "m4a1.shade"
     bl_label = "Shade"
     bl_description = "Set smooth shading in object and edit mode\nALT: Mark edges sharp if face angle > auto smooth angle"
     bl_options = {'REGISTER', 'UNDO'}
@@ -480,7 +480,7 @@ class Shade(bpy.types.Operator):
             draw_fading_label(context, text, color=color, alpha=alpha, move_y=40, time=3)
 
 class ToggleAutoSmooth(bpy.types.Operator):
-    bl_idname = "m4n1.toggle_auto_smooth"
+    bl_idname = "m4a1.toggle_auto_smooth"
     bl_label = "Toggle Auto Smooth"
     bl_options = {'REGISTER', 'UNDO'}
 

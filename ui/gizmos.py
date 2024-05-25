@@ -4,7 +4,7 @@ from math import radians
 from .. utils.registration import get_prefs
 
 class GizmoGroupGroupTransform(bpy.types.GizmoGroup):
-    bl_idname = "M4N1_GGT_group_transform"
+    bl_idname = "M4A1_GGT_group_transform"
     bl_label = "Group Transform Gizmo"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'WINDOW'
@@ -81,7 +81,7 @@ class GizmoGroupGroupTransform(bpy.types.GizmoGroup):
     def create_rotation_gizmo(self, context, empty, axis='Z', scale=5, line_width=2, alpha=0.5, alpha_highlight=1, hover=False):
         gzm = self.gizmos.new("GIZMO_GT_dial_3d")
 
-        op = gzm.target_set_operator("m4n1.transform_group")
+        op = gzm.target_set_operator("m4a1.transform_group")
         op.name = empty.name
         op.axis = axis
 

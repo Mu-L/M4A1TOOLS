@@ -12,8 +12,8 @@ from .. items import obj_align_mode_items
 from .. colors import green, blue
 
 class Align(bpy.types.Operator):
-    bl_idname = 'm4n1.align'
-    bl_label = 'M4N1: Align'
+    bl_idname = 'm4a1.align'
+    bl_label = 'M4A1: Align'
     bl_options = {'REGISTER', 'UNDO'}
 
     inbetween: BoolProperty(name="Align in between", default=False)
@@ -341,8 +341,8 @@ def draw_align_relative_status(op):
     return draw
 
 class AlignRelative(bpy.types.Operator):
-    bl_idname = "m4n1.align_relative"
-    bl_label = "M4N1: Align Relative"
+    bl_idname = "m4a1.align_relative"
+    bl_label = "M4A1: Align Relative"
     bl_description = ""
     bl_options = {'REGISTER', 'UNDO'}
 

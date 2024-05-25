@@ -97,7 +97,7 @@ class AddonPreference(bpy.types.AddonPreferences):
 #   编辑模式里面分块物体绑晶格
 #   其它是晶格为父级
 class Lattice_Operator(bpy.types.Operator):
-    bl_idname = "m4n1.lattice_operator"
+    bl_idname = "m4a1.lattice_operator"
     bl_label = "Lattice overlay"
     bl_description = "Automatically add a lattice to selected objects"
     bl_options = {"REGISTER", "UNDO"}
@@ -598,7 +598,7 @@ class Lattice_Operator(bpy.types.Operator):
 
 
 class Apply_Lattice_Operator(bpy.types.Operator):
-    bl_idname = "m4n1.apply_lattice_operator"
+    bl_idname = "m4a1.apply_lattice_operator"
     bl_label = "Apply lattice"
     bl_description = "Automatically apply the lattice modifier"
     bl_options = {"REGISTER", "UNDO"}  #

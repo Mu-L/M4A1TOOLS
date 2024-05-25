@@ -9,8 +9,8 @@ from .. utils.system import makedir
 from .. utils.math import dynamic_format
 
 class Render(bpy.types.Operator):
-    bl_idname = "m4n1.render"
-    bl_label = "M4N1: Render"
+    bl_idname = "m4a1.render"
+    bl_label = "M4A1: Render"
     bl_options = {'REGISTER', 'UNDO'}
 
     quarter_qual: BoolProperty(name="Quarter Quality", default=False)
@@ -551,8 +551,8 @@ class Render(bpy.types.Operator):
         tree.links.new(imgnode.outputs[0], viewernode.inputs[0])
 
 class DuplicateNodes(bpy.types.Operator):
-    bl_idname = "m4n1.duplicate_nodes"
-    bl_label = "M4N1: Duplicate Nodes"
+    bl_idname = "m4a1.duplicate_nodes"
+    bl_label = "M4A1: Duplicate Nodes"
     bl_description = "Duplicate Nodes normaly, except for Cryptomatte V2 nodes, in that case keep the inputs and clear out the matte ids"
     bl_options = {'REGISTER', 'UNDO'}
 

@@ -2,8 +2,8 @@ import bpy
 from ... utils.raycast import get_closest
 
 class ShrinkwrapGreasePencil(bpy.types.Operator):
-    bl_idname = "m4n1.shrinkwrap_grease_pencil"
-    bl_label = "M4N1: ShrinkWrap Grease Pencil"
+    bl_idname = "m4a1.shrinkwrap_grease_pencil"
+    bl_label = "M4A1: ShrinkWrap Grease Pencil"
     bl_description = "Shrinkwrap current Grease Pencil Layer to closest mesh surface based on Surface Offset value"
     bl_options = {'REGISTER', 'UNDO'}
 

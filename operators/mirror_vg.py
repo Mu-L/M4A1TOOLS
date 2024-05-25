@@ -4,7 +4,7 @@ from bpy.app.translations import pgettext as _
 class Vg_clear_unused(bpy.types.Operator):
     """Delete unused vertex groups (deformation bones, modifiers), excluding those used by other objects."""
 
-    bl_idname = "m4n1.vg_clear_unused"
+    bl_idname = "m4a1.vg_clear_unused"
     bl_label = "Delete unused vertex groups."
     bl_options = {'UNDO'}
 
@@ -40,7 +40,7 @@ class Vg_clear_unused(bpy.types.Operator):
 class Vg_remove_zero(bpy.types.Operator):
     """Delete vertex groups with a total weight of 0"""
 
-    bl_idname = "m4n1.vg_remove_zero"
+    bl_idname = "m4a1.vg_remove_zero"
     bl_label = "Delete vertex groups with a total weight of 0 within the vertex group."
     bl_options = {'UNDO'}
 
@@ -174,7 +174,7 @@ def check_for_matching_pairs(string_list, sides):
 class Vg_mirror_weight(bpy.types.Operator):
     """Mirror vertex groups weights"""
 
-    bl_idname = "m4n1.vg_mirror_weight"
+    bl_idname = "m4a1.vg_mirror_weight"
     bl_label = "Mirror weights"
     bl_options = {'UNDO'}
     # 这里可以定义一些属性，如文字信息等

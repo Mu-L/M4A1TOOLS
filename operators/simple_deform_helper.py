@@ -8,7 +8,7 @@ from ..utils.simple_deform_helper import GizmoUtils
 
 
 class DeformAxisOperator(Operator, GizmoUtils):
-    bl_idname = 'm4n1.simple_deform_gizmo_axis'
+    bl_idname = 'm4a1.simple_deform_gizmo_axis'
     bl_label = 'deform_axis'
     bl_description = 'deform_axis operator'
     bl_options = {'REGISTER'}

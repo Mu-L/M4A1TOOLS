@@ -6,8 +6,8 @@ from ... utils.material import get_last_node, lighten_color
 from ... colors import group_colors
 from bpy.app.translations import pgettext as _
 class ColorizeMaterials(bpy.types.Operator):
-    bl_idname = "m4n1.colorize_materials"
-    bl_label = "M4N1: Colorize Materials"
+    bl_idname = "m4a1.colorize_materials"
+    bl_label = "M4A1: Colorize Materials"
     bl_description = "Set Material Viewport Colors from last Node in Material"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -31,8 +31,8 @@ class ColorizeMaterials(bpy.types.Operator):
         return {'FINISHED'}
 
 class ColorizeObjectsFromMaterials(bpy.types.Operator):
-    bl_idname = "m4n1.colorize_objects_from_materials"
-    bl_label = "M4N1: Colorize Objects from Materials"
+    bl_idname = "m4a1.colorize_objects_from_materials"
+    bl_label = "M4A1: Colorize Objects from Materials"
     bl_description = "Set Object Viewport Colors of selected Objects from their active Materials"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -61,8 +61,8 @@ class ColorizeObjectsFromMaterials(bpy.types.Operator):
         return {'FINISHED'}
 
 class ColorizeObjectsFromActive(bpy.types.Operator):
-    bl_idname = "m4n1.colorize_objects_from_active"
-    bl_label = "M4N1: Colorize Objects from Active"
+    bl_idname = "m4a1.colorize_objects_from_active"
+    bl_label = "M4A1: Colorize Objects from Active"
     bl_description = "Set Object Viewport Colors from Active Object"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -86,8 +86,8 @@ decal_collection_items = [("TYPE", "Type", ""),
                           ("IGNORE", "Ignore", "")]
 
 class ColorizeObjectsFromCollections(bpy.types.Operator):
-    bl_idname = "m4n1.colorize_objects_from_collections"
-    bl_label = "M4N1: Colorize Objects from Collections"
+    bl_idname = "m4a1.colorize_objects_from_collections"
+    bl_label = "M4A1: Colorize Objects from Collections"
     bl_description = "Set Object Viewport Colors of selected Objects based on Collections"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -160,8 +160,8 @@ class ColorizeObjectsFromCollections(bpy.types.Operator):
         return {'FINISHED'}
 
 class ColorizeObjectsFromGroups(bpy.types.Operator):
-    bl_idname = "m4n1.colorize_objects_from_groups"
-    bl_label = "M4N1: Colorize Objects from Groups"
+    bl_idname = "m4a1.colorize_objects_from_groups"
+    bl_label = "M4A1: Colorize Objects from Groups"
     bl_options = {'REGISTER', 'UNDO'}
 
     random_color: BoolProperty(name="Random Color", default=True)

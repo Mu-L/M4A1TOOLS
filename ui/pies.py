@@ -22,7 +22,7 @@ hypercursor_version = None
 hypercursorlast = None
 
 class PieModes(Menu):
-    bl_idname = "M4N1_MT_modes_pie"
+    bl_idname = "M4A1_MT_modes_pie"
     bl_label = "Modes"
 
     def draw(self, context):
@@ -47,22 +47,22 @@ class PieModes(Menu):
                             blendpath = abspath(active.library.filepath)
                             library = active.library.name
 
-                            op = pie.operator("m4n1.open_library_blend", text="Open %s" % (os.path.basename(blendpath)))
+                            op = pie.operator("m4a1.open_library_blend", text="Open %s" % (os.path.basename(blendpath)))
                             op.blendpath = blendpath
                             op.library = library
 
                         else:
                             depress = active.mode == 'EDIT' and context.scene.tool_settings.mesh_select_mode[0]
-                            pie.operator("m4n1.mesh_mode", text="Vertex", depress=depress, icon_value=get_icon('vertex')).mode = 'VERT'
+                            pie.operator("m4a1.mesh_mode", text="Vertex", depress=depress, icon_value=get_icon('vertex')).mode = 'VERT'
 
                             depress = active.mode == 'EDIT' and context.scene.tool_settings.mesh_select_mode[2]
-                            pie.operator("m4n1.mesh_mode", text="Face", depress=depress, icon_value=get_icon('face')).mode = 'FACE'
+                            pie.operator("m4a1.mesh_mode", text="Face", depress=depress, icon_value=get_icon('face')).mode = 'FACE'
 
                             depress = active.mode == 'EDIT' and context.scene.tool_settings.mesh_select_mode[1]
-                            pie.operator("m4n1.mesh_mode", text="Edge", depress=depress, icon_value=get_icon('edge')).mode = 'EDGE'
+                            pie.operator("m4a1.mesh_mode", text="Edge", depress=depress, icon_value=get_icon('edge')).mode = 'EDGE'
 
                             text, icon = (_p("Edit"), get_icon('edit_mesh')) if active.mode == "OBJECT" else ("Object", get_icon('object'))
-                            pie.operator("m4n1.edit_mode", text=text, icon_value=icon)
+                            pie.operator("m4a1.edit_mode", text=text, icon_value=icon)
 
                             self.draw_mesh_modes(context, pie)
 
@@ -76,10 +76,10 @@ class PieModes(Menu):
                                 row.label(text="Gizmos")
 
                                 depress = active.HC.show_geometry_gizmo_previews if hypercursor_version < (0, 9, 16) else active.HC.geometry_gizmos_show_previews
-                                row.operator("m4n1.toggle_gizmo_data_layer_preview", text="Preview", depress=depress)
+                                row.operator("m4a1.toggle_gizmo_data_layer_preview", text="Preview", depress=depress)
 
                                 if tuple(bpy.context.scene.tool_settings.mesh_select_mode) in [(False, True, False), (False, False, True)]:
-                                    row.operator("m4n1.toggle_gizmo", text="Toggle")
+                                    row.operator("m4a1.toggle_gizmo", text="Toggle")
 
                             else:
                                 pie.separator()
@@ -95,9 +95,9 @@ class PieModes(Menu):
                                     row.scale_y = 1.2
 
                                     if hassurfaceslide:
-                                        row.operator("m4n1.finish_surface_slide", text='Finish Surface Slide', icon='OUTLINER_DATA_SURFACE')
+                                        row.operator("m4a1.finish_surface_slide", text='Finish Surface Slide', icon='OUTLINER_DATA_SURFACE')
                                     else:
-                                        row.operator("m4n1.surface_slide", text='Surface Slide', icon='OUTLINER_DATA_SURFACE')
+                                        row.operator("m4a1.surface_slide", text='Surface Slide', icon='OUTLINER_DATA_SURFACE')
 
                                 elif hassurfaceslide:
                                     box = pie.split()
@@ -105,7 +105,7 @@ class PieModes(Menu):
 
                                     row = column.row(align=True)
                                     row.scale_y = 1.2
-                                    row.operator("m4n1.finish_surface_slide", text='Finish Surface Slide', icon='OUTLINER_DATA_SURFACE')
+                                    row.operator("m4a1.finish_surface_slide", text='Finish Surface Slide', icon='OUTLINER_DATA_SURFACE')
 
                                 else:
                                     pie.separator()
@@ -130,20 +130,20 @@ class PieModes(Menu):
                         toolsettings = context.scene.tool_settings
 
                         if context.mode == "OBJECT":
-                            pie.operator("m4n1.image_mode", text="UV Edit", icon="GROUP_UVS").mode = "UV"
+                            pie.operator("m4a1.image_mode", text="UV Edit", icon="GROUP_UVS").mode = "UV"
 
-                            pie.operator("m4n1.image_mode", text="Paint", icon="TPAINT_HLT").mode = "PAINT"
+                            pie.operator("m4a1.image_mode", text="Paint", icon="TPAINT_HLT").mode = "PAINT"
 
-                            pie.operator("m4n1.image_mode", text="Mask", icon="MOD_MASK").mode = "MASK"
+                            pie.operator("m4a1.image_mode", text="Mask", icon="MOD_MASK").mode = "MASK"
 
-                            pie.operator("m4n1.image_mode", text="View", icon="FILE_IMAGE").mode = "VIEW"
+                            pie.operator("m4a1.image_mode", text="View", icon="FILE_IMAGE").mode = "VIEW"
 
                         elif context.mode == "EDIT_MESH":
-                            pie.operator("m4n1.uv_mode", text="Vertex", icon_value=get_icon('vertex')).mode = "VERTEX"
+                            pie.operator("m4a1.uv_mode", text="Vertex", icon_value=get_icon('vertex')).mode = "VERTEX"
 
-                            pie.operator("m4n1.uv_mode", text="Face", icon_value=get_icon('face')).mode = "FACE"
+                            pie.operator("m4a1.uv_mode", text="Face", icon_value=get_icon('face')).mode = "FACE"
 
-                            pie.operator("m4n1.uv_mode", text="Edge", icon_value=get_icon('edge')).mode = "EDGE"
+                            pie.operator("m4a1.uv_mode", text="Edge", icon_value=get_icon('edge')).mode = "EDGE"
 
                             pie.operator("object.mode_set", text="Object", icon_value=get_icon('object')).mode = "OBJECT"
 
@@ -152,7 +152,7 @@ class PieModes(Menu):
                             if toolsettings.use_uv_select_sync:
                                 pie.separator()
                             else:
-                                pie.operator("m4n1.uv_mode", text="Island", icon_value=get_icon('island')).mode = "ISLAND"
+                                pie.operator("m4a1.uv_mode", text="Island", icon_value=get_icon('island')).mode = "ISLAND"
 
                             pie.separator()
 
@@ -316,7 +316,7 @@ class PieModes(Menu):
                     if get_prefs().activate_assetbrowser_tools and get_prefs().show_instance_collection_assembly_in_modes_pie:
 
                         if active.instance_collection and active.instance_type == 'COLLECTION':
-                            pie.operator("m4n1.assemble_instance_collection", text="Assemble Instance Collection")
+                            pie.operator("m4a1.assemble_instance_collection", text="Assemble Instance Collection")
 
                         else:
                             pie.separator()
@@ -325,7 +325,7 @@ class PieModes(Menu):
                             blendpath = abspath(active.instance_collection.library.filepath)
                             library = active.instance_collection.library.name
 
-                            op = pie.operator("m4n1.open_library_blend", text=f"Open {os.path.basename(blendpath)} Library")
+                            op = pie.operator("m4a1.open_library_blend", text=f"Open {os.path.basename(blendpath)} Library")
                             op.blendpath = blendpath
                             op.library = library
 
@@ -338,7 +338,7 @@ class PieModes(Menu):
                             blendpath = abspath(active.instance_collection.library.filepath)
                             library = active.instance_collection.library.name
 
-                            op = pie.operator("m4n1.open_library_blend", text=f"Open {os.path.basename(blendpath)} Library")
+                            op = pie.operator("m4a1.open_library_blend", text=f"Open {os.path.basename(blendpath)} Library")
                             op.blendpath = blendpath
                             op.library = library
 
@@ -517,7 +517,7 @@ class PieModes(Menu):
         row = column.row(align=True)
         row.scale_y = 1.5
 
-        row.operator('m4n1.shrinkwrap_grease_pencil', text='Shrinkwrap')
+        row.operator('m4a1.shrinkwrap_grease_pencil', text='Shrinkwrap')
         row.prop(active.data, 'zdepth_offset', text='')
 
         opacity = [mod for mod in active.grease_pencil_modifiers if mod.type == 'GP_OPACITY']
@@ -541,7 +541,7 @@ class PieModes(Menu):
 
         r = row.row(align=True)
         r.active = False if context.mode == 'PAINT_GPENCIL' else True
-        r.operator("m4n1.surface_draw_mode", text="", icon="GREASEPENCIL")
+        r.operator("m4a1.surface_draw_mode", text="", icon="GREASEPENCIL")
 
         if context.active_object.particle_systems:
             r = row.row(align=True)
@@ -589,7 +589,7 @@ class PieModes(Menu):
         r.operator("object.mode_set", text="", icon="OBJECT_DATA").mode = 'OBJECT'
 
 class PieSave(Menu):
-    bl_idname = "M4N1_MT_save_pie"
+    bl_idname = "M4A1_MT_save_pie"
     bl_label = "Save, Open, Append"
 
     def draw(self, context):
@@ -603,9 +603,9 @@ class PieSave(Menu):
 
         pie.operator("wm.open_mainfile", text="Open...", icon_value=get_icon('open'))
 
-        pie.operator("m4n1.save", text="Save", icon_value=get_icon('save'))
+        pie.operator("m4a1.save", text="Save", icon_value=get_icon('save'))
 
-        pie.operator("m4n1.save_as", text="Save As..", icon_value=get_icon('save_as'))
+        pie.operator("m4a1.save_as", text="Save As..", icon_value=get_icon('save_as'))
 
         box = pie.split()
 
@@ -627,9 +627,9 @@ class PieSave(Menu):
 
         pie.separator()
 
-        pie.operator("m4n1.new", text="New", icon_value=get_icon('new'))
+        pie.operator("m4a1.new", text="New", icon_value=get_icon('new'))
 
-        pie.operator("m4n1.save_incremental", text="Incremental Save", icon_value=get_icon('save_incremental'))
+        pie.operator("m4a1.save_incremental", text="Incremental Save", icon_value=get_icon('save_incremental'))
 
     def draw_left_column(self, wm, scene, layout):
         column = layout.column(align=True)
@@ -637,7 +637,7 @@ class PieSave(Menu):
 
         row = column.row(align=True)
         row.scale_y = 1.2
-        row.operator("m4n1.load_most_recent", text="(R) Most Recent", icon_value=get_icon('open_recent'))
+        row.operator("m4a1.load_most_recent", text="(R) Most Recent", icon_value=get_icon('open_recent'))
         row.operator("wm.call_menu", text="All Recent", icon_value=get_icon('open_recent')).name = "TOPBAR_MT_file_open_recent"
 
         column.separator()
@@ -652,7 +652,7 @@ class PieSave(Menu):
 
         row = column.row(align=True)
         row.scale_y = 1.2
-        row.operator("m4n1.open_temp_dir", text="Open Temp Dir", icon_value=get_icon('recover_auto_save'))
+        row.operator("m4a1.open_temp_dir", text="Open Temp Dir", icon_value=get_icon('recover_auto_save'))
 
         column.operator("wm.revert_mainfile", text="Revert", icon_value=get_icon('revert'))
 
@@ -662,7 +662,7 @@ class PieSave(Menu):
         #     screencast = getattr(wm, 'M3_screen_cast', False)
         #     text, icon = ('Disable', 'PAUSE') if screencast else ('Enable', 'PLAY')
         #
-        #     column.operator('m4n1.screen_cast', text=f"{text} Screen Cast", depress=screencast, icon=icon)
+        #     column.operator('m4a1.screen_cast', text=f"{text} Screen Cast", depress=screencast, icon=icon)
 
     def draw_center_column_top(self, context, layout):
         global wavefront_addon
@@ -744,8 +744,8 @@ class PieSave(Menu):
 
         row = column.split(factor=0.5, align=True)
         row.scale_y = 1.2
-        row.operator("m4n1.load_previous", text="Previous", icon_value=get_icon('open_previous'))
-        row.operator("m4n1.load_next", text="Next", icon_value=get_icon('open_next'))
+        row.operator("m4a1.load_previous", text="Previous", icon_value=get_icon('open_previous'))
+        row.operator("m4a1.load_next", text="Next", icon_value=get_icon('open_next'))
 
         if is_in_temp_dir:
             column = layout.column(align=True)
@@ -764,19 +764,19 @@ class PieSave(Menu):
 
         r = row.row(align=True)
         r.operator("wm.call_menu", text='', icon_value=get_icon('external_data')).name = "TOPBAR_MT_file_external_data"
-        r.operator("m4n1.purge_orphans", text="Purge")
+        r.operator("m4a1.purge_orphans", text="Purge")
 
         if get_prefs().activate_assetbrowser_tools and get_prefs().show_assembly_asset_creation_in_save_pie:
             column.separator()
             row = column.row()
             row.scale_y = 1.2
-            row.operator("m4n1.create_assembly_asset", text="Create Assembly Asset", icon='ASSET_MANAGER')
+            row.operator("m4a1.create_assembly_asset", text="Create Assembly Asset", icon='ASSET_MANAGER')
 
         column.separator()
-        column.operator("m4n1.clean_out_blend_file", text="Clean out .blend", icon_value=get_icon('error'))
+        column.operator("m4a1.clean_out_blend_file", text="Clean out .blend", icon_value=get_icon('error'))
 
 class PieShading(Menu):
-    bl_idname = "M4N1_MT_shading_pie"
+    bl_idname = "M4A1_MT_shading_pie"
     bl_label = "Shading and Overlays"
 
     def draw(self, context):
@@ -798,10 +798,10 @@ class PieShading(Menu):
         m3 = context.scene.M4
 
         text, icon = self.get_text_icon(context, "SOLID")
-        pie.operator("m4n1.switch_shading", text=text, icon=icon, depress=shading.type == 'SOLID' and overlay.show_overlays).shading_type = 'SOLID'
+        pie.operator("m4a1.switch_shading", text=text, icon=icon, depress=shading.type == 'SOLID' and overlay.show_overlays).shading_type = 'SOLID'
 
         text, icon = self.get_text_icon(context, "MATERIAL")
-        pie.operator("m4n1.switch_shading", text=text, icon=icon, depress=shading.type == 'MATERIAL' and overlay.show_overlays).shading_type = 'MATERIAL'
+        pie.operator("m4a1.switch_shading", text=text, icon=icon, depress=shading.type == 'MATERIAL' and overlay.show_overlays).shading_type = 'MATERIAL'
 
         pie.separator()
 
@@ -847,10 +847,10 @@ class PieShading(Menu):
         pie.separator()
 
         text, icon = self.get_text_icon(context, "WIREFRAME")
-        pie.operator("m4n1.switch_shading", text=text, icon=icon, depress=shading.type == 'WIREFRAME' and overlay.show_overlays).shading_type = 'WIREFRAME'
+        pie.operator("m4a1.switch_shading", text=text, icon=icon, depress=shading.type == 'WIREFRAME' and overlay.show_overlays).shading_type = 'WIREFRAME'
 
         text, icon = self.get_text_icon(context, "RENDERED")
-        pie.operator("m4n1.switch_shading", text=text, icon=icon, depress=shading.type == 'RENDERED' and overlay.show_overlays).shading_type = 'RENDERED'
+        pie.operator("m4a1.switch_shading", text=text, icon=icon, depress=shading.type == 'RENDERED' and overlay.show_overlays).shading_type = 'RENDERED'
 
     def draw_overlay_box(self, context, active, view, layout):
         m3 = context.scene.M4
@@ -901,7 +901,7 @@ class PieShading(Menu):
         column.separator()
 
         row = column.split(factor=0.4, align=True)
-        row.operator("m4n1.toggle_grid", text="Grid", icon="GRID", depress=overlay.show_ortho_grid if perspective_type == 'ORTHO' and view.region_3d.is_orthographic_side_view else overlay.show_floor)
+        row.operator("m4a1.toggle_grid", text="Grid", icon="GRID", depress=overlay.show_ortho_grid if perspective_type == 'ORTHO' and view.region_3d.is_orthographic_side_view else overlay.show_floor)
         r = row.row(align=True)
         r.active = view.overlay.show_floor
         r.prop(view.overlay, "show_axis_x", text="X", toggle=True)
@@ -920,7 +920,7 @@ class PieShading(Menu):
                 depress = m3.show_edit_mesh_wire
                 text = 'Wireframe (xray)' if m3.show_edit_mesh_wire else 'Wireframe'
 
-            row.operator("m4n1.toggle_wireframe", text=text, icon_value=get_icon(icon), depress=depress)
+            row.operator("m4a1.toggle_wireframe", text=text, icon_value=get_icon(icon), depress=depress)
 
             r = row.row(align=True)
 
@@ -951,13 +951,13 @@ class PieShading(Menu):
         column = layout.column(align=True)
 
         row = column.split(factor=0.4, align=True)
-        row.operator("m4n1.toggle_outline", text=_p("(Q) Outline"), depress=shading.show_object_outline)
+        row.operator("m4a1.toggle_outline", text=_p("(Q) Outline"), depress=shading.show_object_outline)
         row.prop(view.shading, "object_outline_color", text="")
 
         hascavity = view.shading.show_cavity and view.shading.cavity_type in ['WORLD', 'BOTH']
 
         row = column.split(factor=0.4, align=True)
-        row.operator("m4n1.toggle_cavity", text=_p("Cavity"), depress=hascavity)
+        row.operator("m4a1.toggle_cavity", text=_p("Cavity"), depress=hascavity)
         r = row.row(align=True)
         r.active = hascavity
         r.prop(view.shading, "cavity_valley_factor", text="")
@@ -966,7 +966,7 @@ class PieShading(Menu):
         hascurvature = view.shading.show_cavity and view.shading.cavity_type in ['SCREEN', 'BOTH']
 
         row = column.split(factor=0.4, align=True)
-        row.operator("m4n1.toggle_curvature", text=_p("(V) Curvature"), depress=hascurvature)
+        row.operator("m4a1.toggle_curvature", text=_p("(V) Curvature"), depress=hascurvature)
         r = row.row(align=True)
         r.active = hascurvature
         r.prop(view.shading, "curvature_ridge_factor", text="")
@@ -1034,14 +1034,14 @@ class PieShading(Menu):
 
             row = column.split(factor=0.55, align=True)
             r = row.row(align=True)
-            r.operator("m4n1.shade", text="Smooth", icon_value=get_icon('smooth')).shade_type = 'SMOOTH'
-            r.operator("m4n1.shade", text="Flat", icon_value=get_icon('flat')).shade_type = 'FLAT'
+            r.operator("m4a1.shade", text="Smooth", icon_value=get_icon('smooth')).shade_type = 'SMOOTH'
+            r.operator("m4a1.shade", text="Flat", icon_value=get_icon('flat')).shade_type = 'FLAT'
 
             is_auto_smooth = bool(mod := get_auto_smooth(active)) if bpy.app.version >= (4, 1, 0) else mesh.use_auto_smooth
             icon = "CHECKBOX_HLT" if is_auto_smooth else "CHECKBOX_DEHLT"
 
             r = row.row(align=True)
-            r.operator("m4n1.toggle_auto_smooth", text="Auto Smooth", icon=icon).angle = 0
+            r.operator("m4a1.toggle_auto_smooth", text="Auto Smooth", icon=icon).angle = 0
 
             if bpy.app.version >= (4, 1, 0) and is_auto_smooth:
                 r.prop(mod, '["Socket_1"]', text="", icon='IPO_LINEAR', invert_checkbox=True)
@@ -1051,7 +1051,7 @@ class PieShading(Menu):
             r.active = not mesh.has_custom_normals
 
             for angle in angles:
-                r.operator("m4n1.toggle_auto_smooth", text=str(angle)).angle = angle
+                r.operator("m4a1.toggle_auto_smooth", text=str(angle)).angle = angle
 
             r = row.row(align=True)
             r.active = not mesh.has_custom_normals and is_auto_smooth
@@ -1135,13 +1135,13 @@ class PieShading(Menu):
             if bpy.app.version >= (4, 1, 0):
                 row = column.split(factor=0.55, align=True)
                 r = row.row(align=True)
-                r.operator("m4n1.shade", text="Smooth", icon_value=get_icon('smooth')).shade_type = 'SMOOTH'
-                r.operator("m4n1.shade", text="Flat", icon_value=get_icon('flat')).shade_type = 'FLAT'
+                r.operator("m4a1.shade", text="Smooth", icon_value=get_icon('smooth')).shade_type = 'SMOOTH'
+                r.operator("m4a1.shade", text="Flat", icon_value=get_icon('flat')).shade_type = 'FLAT'
 
             else:
                 row = column.split(factor=0.5, align=True)
-                row.operator("m4n1.shade", text="Smooth", icon_value=get_icon('smooth')).shade_type = 'SMOOTH'
-                row.operator("m4n1.shade", text="Flat", icon_value=get_icon('flat')).shade_type = 'FLAT'
+                row.operator("m4a1.shade", text="Smooth", icon_value=get_icon('smooth')).shade_type = 'SMOOTH'
+                row.operator("m4a1.shade", text="Flat", icon_value=get_icon('flat')).shade_type = 'FLAT'
 
             if bpy.app.version >= (4, 1, 0):
                 angles = [int(a) for a in get_prefs().auto_smooth_angle_presets.split(',')]
@@ -1149,13 +1149,13 @@ class PieShading(Menu):
                 is_auto_smooth = bool(mod := get_auto_smooth(active))
                 icon = "CHECKBOX_HLT" if is_auto_smooth else "CHECKBOX_DEHLT"
 
-                row.operator("m4n1.toggle_auto_smooth", text="Auto Smooth", icon=icon).angle = 0
+                row.operator("m4a1.toggle_auto_smooth", text="Auto Smooth", icon=icon).angle = 0
 
                 row = column.split(factor=0.55, align=True)
                 r = row.row(align=True)
 
                 for angle in angles:
-                    r.operator("m4n1.toggle_auto_smooth", text=str(angle)).angle = angle
+                    r.operator("m4a1.toggle_auto_smooth", text=str(angle)).angle = angle
 
                 r = row.row(align=True)
                 r.active = is_auto_smooth
@@ -1167,8 +1167,8 @@ class PieShading(Menu):
 
         elif active.type == "SURFACE" and context.mode == 'OBJECT':
             row = column.split(factor=0.5, align=True)
-            row.operator("m4n1.shade", text="Smooth", icon_value=get_icon('smooth')).shade_type = 'SMOOTH'
-            row.operator("m4n1.shade", text="Flat", icon_value=get_icon('flat')).shade_type = 'FLAT'
+            row.operator("m4a1.shade", text="Smooth", icon_value=get_icon('smooth')).shade_type = 'SMOOTH'
+            row.operator("m4a1.shade", text="Flat", icon_value=get_icon('flat')).shade_type = 'FLAT'
 
     def draw_shade_box(self, context, view, layout):
         scene = context.scene
@@ -1194,7 +1194,7 @@ class PieShading(Menu):
 
             elif view.shading.light == "MATCAP":
                 row = column.row(align=True)
-                row.operator("m4n1.matcap_switch", text="(X) Matcap Switch")
+                row.operator("m4a1.matcap_switch", text="(X) Matcap Switch")
                 row.operator('view3d.toggle_matcap_flip', text="Matcap Flip", icon='ARROW_LEFTRIGHT')
 
             elif view.shading.light == "FLAT":
@@ -1227,15 +1227,15 @@ class PieShading(Menu):
                 column.prop(view.shading, "single_color", text="")
 
             elif view.shading.color_type == 'MATERIAL':
-                column.operator("m4n1.colorize_materials", text=_p('Colorize Materials'), icon='MATERIAL')
+                column.operator("m4a1.colorize_materials", text=_p('Colorize Materials'), icon='MATERIAL')
 
             elif view.shading.color_type == 'OBJECT':
                 r = column.split(factor=0.12, align=True)
                 r.label(text="from")
-                r.operator("m4n1.colorize_objects_from_active", text='Active', icon='OBJECT_DATA')
-                r.operator("m4n1.colorize_objects_from_materials", text='Material', icon='MATERIAL')
-                r.operator("m4n1.colorize_objects_from_collections", text='Collection', icon='OUTLINER_OB_GROUP_INSTANCE')
-                r.operator("m4n1.colorize_objects_from_groups", text='Group', icon='GROUP_VERTEX')
+                r.operator("m4a1.colorize_objects_from_active", text='Active', icon='OBJECT_DATA')
+                r.operator("m4a1.colorize_objects_from_materials", text='Material', icon='MATERIAL')
+                r.operator("m4a1.colorize_objects_from_collections", text='Collection', icon='OUTLINER_OB_GROUP_INSTANCE')
+                r.operator("m4a1.colorize_objects_from_groups", text='Group', icon='GROUP_VERTEX')
 
         elif view.shading.type == "WIREFRAME":
             row = column.row()
@@ -1277,7 +1277,7 @@ class PieShading(Menu):
                         row.prop(scene, 'world', text='')
 
                     else:
-                        row.operator("m4n1.add_world", text=f"{'Set' if bpy.data.worlds else 'New'} World", icon='ADD')
+                        row.operator("m4a1.add_world", text=f"{'Set' if bpy.data.worlds else 'New'} World", icon='ADD')
 
                     if (view.shading.type == 'MATERIAL' and not view.shading.use_scene_world) or (view.shading.type == 'RENDERED' and not view.shading.use_scene_world_render):
                         row = column.row(align=True)
@@ -1286,12 +1286,12 @@ class PieShading(Menu):
                         if (view.shading.type == 'MATERIAL' or (view.shading.type == 'RENDERED' and scene.render.engine == 'BLENDER_EEVEE')) and view.shading.studiolight_background_alpha:
                             row = column.split(factor=0.55, align=True)
                             r = row.row(align=True)
-                            r.operator("m4n1.rotate_studiolight", text='+180').angle = 180
+                            r.operator("m4a1.rotate_studiolight", text='+180').angle = 180
                             r.prop(view.shading, "studiolight_rotate_z", text="Rotation")
                             row.prop(view.shading, "studiolight_background_blur")
                         else:
                             row = column.split(factor=0.15, align=True)
-                            row.operator("m4n1.rotate_studiolight", text='+180').angle = 180
+                            row.operator("m4a1.rotate_studiolight", text='+180').angle = 180
                             row.prop(view.shading, "studiolight_rotate_z", text="Rotation")
 
                         row = column.split(factor=0.5, align=True)
@@ -1468,10 +1468,10 @@ class PieShading(Menu):
             row.prop(m3, 'bevel_shader_use_dimensions', text="", icon='FULLSCREEN_ENTER')
             row.prop(m3, 'bevel_shader_samples')
             row.prop(m3, 'bevel_shader_radius', text='Width')
-            op = row.operator('m4n1.adjust_bevel_shader_radius', text='', icon='TRIA_DOWN')
+            op = row.operator('m4a1.adjust_bevel_shader_radius', text='', icon='TRIA_DOWN')
             op.global_radius = True
             op.decrease = True
-            op = row.operator('m4n1.adjust_bevel_shader_radius', text='', icon='TRIA_UP')
+            op = row.operator('m4a1.adjust_bevel_shader_radius', text='', icon='TRIA_UP')
             op.global_radius = True
             op.decrease = False
 
@@ -1487,7 +1487,7 @@ class PieShading(Menu):
 
                             row = column.row(align=True)
                             row.label(text='', icon='BLANK1')
-                            row.label(text="Do you really need this? Email me, if so: decal@m4n1.io")
+                            row.label(text="Do you really need this? Email me, if so: decal@m4a1.io")
 
                     else:
                         row.label(text="Bevel Shader on decals without parent objects is not supported.", icon='INFO')
@@ -1501,10 +1501,10 @@ class PieShading(Menu):
                     r = row.row(align=True)
                     r.active = m3.use_bevel_shader and active.M4.bevel_shader_toggle
                     r.prop(active.M4, 'bevel_shader_radius_mod', text="Active Object Factor")
-                    op = r.operator('m4n1.adjust_bevel_shader_radius', text='', icon='TRIA_DOWN')
+                    op = r.operator('m4a1.adjust_bevel_shader_radius', text='', icon='TRIA_DOWN')
                     op.global_radius = False
                     op.decrease = True
-                    op = r.operator('m4n1.adjust_bevel_shader_radius', text='', icon='TRIA_UP')
+                    op = r.operator('m4a1.adjust_bevel_shader_radius', text='', icon='TRIA_UP')
                     op.global_radius = False
                     op.decrease = False
 
@@ -1538,7 +1538,7 @@ class PieShading(Menu):
         return text, icon
 
 class PieViewport(Menu):
-    bl_idname = "M4N1_MT_viewport_pie"
+    bl_idname = "M4A1_MT_viewport_pie"
     bl_label = "Viewport and Cameras"
 
     def draw(self, context):
@@ -1549,13 +1549,13 @@ class PieViewport(Menu):
         view = context.space_data
         r3d = view.region_3d
 
-        op = pie.operator("m4n1.view_axis", text="Front")
+        op = pie.operator("m4a1.view_axis", text="Front")
         op.axis='FRONT'
 
-        op = pie.operator("m4n1.view_axis", text="Right")
+        op = pie.operator("m4a1.view_axis", text="Right")
         op.axis='RIGHT'
 
-        op = pie.operator("m4n1.view_axis", text="Top")
+        op = pie.operator("m4a1.view_axis", text="Top")
         op.axis='TOP'
 
         box = pie.split()
@@ -1580,14 +1580,14 @@ class PieViewport(Menu):
         if get_prefs().show_orbit_selection:
             box = pie.split()
             box.scale_y = 1.2
-            box.operator("m4n1.toggle_orbit_selection", text=_p("Orbit Selection"), depress=context.preferences.inputs.use_rotate_around_active)
+            box.operator("m4a1.toggle_orbit_selection", text=_p("Orbit Selection"), depress=context.preferences.inputs.use_rotate_around_active)
         else:
             pie.separator()
 
         if get_prefs().show_orbit_method:
             box = pie.split()
             box.scale_y = 1.2
-            box.operator("m4n1.toggle_orbit_method", text=context.preferences.inputs.view_rotate_method.title())
+            box.operator("m4a1.toggle_orbit_method", text=context.preferences.inputs.view_rotate_method.title())
         else:
             pie.separator()
 
@@ -1598,18 +1598,18 @@ class PieViewport(Menu):
 
         row = column.row()
         row.scale_y = 1.5
-        row.operator("m4n1.smart_view_cam", text="Smart View Cam", icon='HIDE_OFF')
+        row.operator("m4a1.smart_view_cam", text="Smart View Cam", icon='HIDE_OFF')
 
         if view.region_3d.view_perspective == 'CAMERA':
             cams = [obj for obj in scene.objects if obj.type == "CAMERA"]
 
             if len(cams) > 1:
                 row = column.row(align=True)
-                row.operator("m4n1.next_cam", text="(Q) Previous Cam").previous = True
-                row.operator("m4n1.next_cam", text="(W) Next Cam").previous = False
+                row.operator("m4a1.next_cam", text="(Q) Previous Cam").previous = True
+                row.operator("m4a1.next_cam", text="(W) Next Cam").previous = False
 
         row = column.split(align=True)
-        row.operator("m4n1.make_cam_active")
+        row.operator("m4a1.make_cam_active")
         row.prop(scene, "camera", text="")
 
         row = column.split(align=True)
@@ -1622,14 +1622,14 @@ class PieViewport(Menu):
         column = layout.column(align=True)
 
         column.scale_y = 1.2
-        op = column.operator("m4n1.view_axis", text="Bottom")
+        op = column.operator("m4a1.view_axis", text="Bottom")
         op.axis='BOTTOM'
 
         row = column.row(align=True)
-        op = row.operator("m4n1.view_axis", text="Left")
+        op = row.operator("m4a1.view_axis", text="Left")
         op.axis='LEFT'
 
-        op = row.operator("m4n1.view_axis", text="Back")
+        op = row.operator("m4a1.view_axis", text="Back")
         op.axis='BACK'
 
     def draw_custom_views_box(self, scene, layout):
@@ -1651,7 +1651,7 @@ class PieViewport(Menu):
             cam = context.scene.camera
 
             text, icon = (_p("Orthographic"), "VIEW_ORTHO") if cam.data.type == "PERSP" else (_p("Perspective"), "VIEW_PERSPECTIVE")
-            row.operator("m4n1.toggle_cam_persportho", text=text, icon=icon)
+            row.operator("m4a1.toggle_cam_persportho", text=text, icon=icon)
 
             if cam.data.type == "PERSP":
                 column.prop(cam.data, "lens")
@@ -1661,14 +1661,14 @@ class PieViewport(Menu):
 
         else:
             text, icon = (_p("Orthographic"), "VIEW_ORTHO") if r3d.is_perspective else (_p("Perspective"), "VIEW_PERSPECTIVE")
-            row.operator("m4n1.toggle_view_persportho", text=text, icon=icon)
+            row.operator("m4a1.toggle_view_persportho", text=text, icon=icon)
 
             column.prop(view, "lens")
 
-        column.operator("m4n1.reset_viewport", text=_p('Reset Viewport'))
+        column.operator("m4a1.reset_viewport", text=_p('Reset Viewport'))
 
 class PieAlign(Menu):
-    bl_idname = "M4N1_MT_align_pie"
+    bl_idname = "M4A1_MT_align_pie"
     bl_label = "Align"
 
     def draw(self, context):
@@ -1685,12 +1685,12 @@ class PieAlign(Menu):
             self.draw_align_with_view(pie, m3, sel)
 
     def draw_align_with_axes(self, pie, m3, sel):
-        op = pie.operator("m4n1.align_editmesh", text="Y min")
+        op = pie.operator("m4a1.align_editmesh", text="Y min")
         op.mode = "AXES"
         op.axis = "Y"
         op.type = "MIN"
 
-        op = pie.operator("m4n1.align_editmesh", text="Y max")
+        op = pie.operator("m4a1.align_editmesh", text="Y max")
         op.mode = "AXES"
         op.axis = "Y"
         op.type = "MAX"
@@ -1706,24 +1706,24 @@ class PieAlign(Menu):
 
         row = column.row(align=True)
         row.scale_y = 1.2
-        row.operator("m4n1.center_editmesh", text="X").axis = "X"
-        row.operator("m4n1.center_editmesh", text="Y").axis = "Y"
-        row.operator("m4n1.center_editmesh", text="Z").axis = "Z"
+        row.operator("m4a1.center_editmesh", text="X").axis = "X"
+        row.operator("m4a1.center_editmesh", text="Y").axis = "Y"
+        row.operator("m4a1.center_editmesh", text="Z").axis = "Z"
 
         column.separator()
 
         row = column.row(align=True)
         row.scale_y = 1.2
-        row.operator("m4n1.straighten", text="Straighten")
+        row.operator("m4a1.straighten", text="Straighten")
 
         if sel:
             row = column.row(align=True)
             row.scale_y = 1.2
-            row.operator("m4n1.align_object_to_vert", text="Align Object to Vert")
+            row.operator("m4a1.align_object_to_vert", text="Align Object to Vert")
 
             row = column.row(align=True)
             row.scale_y = 1.2
-            row.operator("m4n1.align_object_to_edge", text="Align Object to Edge")
+            row.operator("m4a1.align_object_to_edge", text="Align Object to Edge")
 
         box = pie.split()
         column = box.column()
@@ -1732,15 +1732,15 @@ class PieAlign(Menu):
         row.label(icon="ARROW_LEFTRIGHT")
         r = row.row(align=True)
         r.scale_y = 1.2
-        op = r.operator("m4n1.align_editmesh", text="X")
+        op = r.operator("m4a1.align_editmesh", text="X")
         op.mode = "AXES"
         op.axis = "X"
         op.type = "AVERAGE"
-        op = r.operator("m4n1.align_editmesh", text="Y")
+        op = r.operator("m4a1.align_editmesh", text="Y")
         op.mode = "AXES"
         op.axis = "Y"
         op.type = "AVERAGE"
-        op = r.operator("m4n1.align_editmesh", text="Z")
+        op = r.operator("m4a1.align_editmesh", text="Z")
         op.mode = "AXES"
         op.axis = "Z"
         op.type = "AVERAGE"
@@ -1749,15 +1749,15 @@ class PieAlign(Menu):
         row.label(icon="FREEZE")
         r = row.row(align=True)
         r.scale_y = 1.2
-        op = r.operator("m4n1.align_editmesh", text="X")
+        op = r.operator("m4a1.align_editmesh", text="X")
         op.mode = "AXES"
         op.axis = "X"
         op.type = "ZERO"
-        op = r.operator("m4n1.align_editmesh", text="Y")
+        op = r.operator("m4a1.align_editmesh", text="Y")
         op.mode = "AXES"
         op.axis = "Y"
         op.type = "ZERO"
-        op = r.operator("m4n1.align_editmesh", text="Z")
+        op = r.operator("m4a1.align_editmesh", text="Z")
         op.mode = "AXES"
         op.axis = "Z"
         op.type = "ZERO"
@@ -1766,15 +1766,15 @@ class PieAlign(Menu):
         row.label(icon="PIVOT_CURSOR")
         r = row.row(align=True)
         r.scale_y = 1.2
-        op = r.operator("m4n1.align_editmesh", text="X")
+        op = r.operator("m4a1.align_editmesh", text="X")
         op.mode = "AXES"
         op.axis = "X"
         op.type = "CURSOR"
-        op = r.operator("m4n1.align_editmesh", text="Y")
+        op = r.operator("m4a1.align_editmesh", text="Y")
         op.mode = "AXES"
         op.axis = "Y"
         op.type = "CURSOR"
-        op = r.operator("m4n1.align_editmesh", text="Z")
+        op = r.operator("m4a1.align_editmesh", text="Z")
         op.mode = "AXES"
         op.axis = "Z"
         op.type = "CURSOR"
@@ -1789,40 +1789,40 @@ class PieAlign(Menu):
 
         column.separator()
 
-        op = pie.operator("m4n1.align_editmesh", text="X min")
+        op = pie.operator("m4a1.align_editmesh", text="X min")
         op.mode = "AXES"
         op.axis = "X"
         op.type = "MIN"
 
-        op = pie.operator("m4n1.align_editmesh", text="X max")
+        op = pie.operator("m4a1.align_editmesh", text="X max")
         op.mode = "AXES"
         op.axis = "X"
         op.type = "MAX"
 
-        op = pie.operator("m4n1.align_editmesh", text="Z min")
+        op = pie.operator("m4a1.align_editmesh", text="Z min")
         op.mode = "AXES"
         op.axis = "Z"
         op.type = "MIN"
 
-        op = pie.operator("m4n1.align_editmesh", text="Z max")
+        op = pie.operator("m4a1.align_editmesh", text="Z max")
         op.mode = "AXES"
         op.axis = "Z"
         op.type = "MAX"
 
     def draw_align_with_view(self, pie, m3, sel):
-        op = pie.operator("m4n1.align_editmesh", text="Left")
+        op = pie.operator("m4a1.align_editmesh", text="Left")
         op.mode = "VIEW"
         op.direction = "LEFT"
 
-        op = pie.operator("m4n1.align_editmesh", text="Right")
+        op = pie.operator("m4a1.align_editmesh", text="Right")
         op.mode = "VIEW"
         op.direction = "RIGHT"
 
-        op = pie.operator("m4n1.align_editmesh", text=_p("Bottom."))
+        op = pie.operator("m4a1.align_editmesh", text=_p("Bottom."))
         op.mode = "VIEW"
         op.direction = "BOTTOM"
 
-        op = pie.operator("m4n1.align_editmesh", text=_p("Top."))
+        op = pie.operator("m4a1.align_editmesh", text=_p("Top."))
         op.mode = "VIEW"
         op.direction = "TOP"
 
@@ -1844,27 +1844,27 @@ class PieAlign(Menu):
 
         r = row.row(align=True)
         r.scale_y = 1.2
-        op = r.operator("m4n1.center_editmesh", text="Horizontal")
+        op = r.operator("m4a1.center_editmesh", text="Horizontal")
         op.direction = "HORIZONTAL"
-        op = r.operator("m4n1.center_editmesh", text="Vertical")
+        op = r.operator("m4a1.center_editmesh", text="Vertical")
         op.direction = "VERTICAL"
 
         column.separator()
         row = column.split(factor=0.25, align=True)
         row.scale_y = 1.2
         row.separator()
-        row.operator("m4n1.straighten", text="Straighten")
+        row.operator("m4a1.straighten", text="Straighten")
 
         if sel:
             row = column.split(factor=0.25, align=True)
             row.scale_y = 1.2
             row.separator()
-            row.operator("m4n1.align_object_to_vert", text="Align Object to Vert")
+            row.operator("m4a1.align_object_to_vert", text="Align Object to Vert")
 
             row = column.split(factor=0.25, align=True)
             row.scale_y = 1.2
             row.separator()
-            row.operator("m4n1.align_object_to_edge", text="Align Object to Edge")
+            row.operator("m4a1.align_object_to_edge", text="Align Object to Edge")
 
         box = pie.split()
         column = box.column(align=True)
@@ -1874,11 +1874,11 @@ class PieAlign(Menu):
 
         r = row.row(align=True)
         row.scale_y = 1.2
-        op = r.operator("m4n1.align_editmesh", text="Horizontal")
+        op = r.operator("m4a1.align_editmesh", text="Horizontal")
         op.mode = "VIEW"
         op.type = "AVERAGE"
         op.direction = "HORIZONTAL"
-        op = r.operator("m4n1.align_editmesh", text="Vertical")
+        op = r.operator("m4a1.align_editmesh", text="Vertical")
         op.mode = "VIEW"
         op.type = "AVERAGE"
         op.direction = "VERTICAL"
@@ -1888,11 +1888,11 @@ class PieAlign(Menu):
 
         r = row.row(align=True)
         r.scale_y = 1.2
-        op = r.operator("m4n1.align_editmesh", text="Horizontal")
+        op = r.operator("m4a1.align_editmesh", text="Horizontal")
         op.mode = "VIEW"
         op.type = "ZERO"
         op.direction = "HORIZONTAL"
-        op = r.operator("m4n1.align_editmesh", text="Vertical")
+        op = r.operator("m4a1.align_editmesh", text="Vertical")
         op.mode = "VIEW"
         op.type = "ZERO"
         op.direction = "VERTICAL"
@@ -1902,17 +1902,17 @@ class PieAlign(Menu):
 
         r = row.row(align=True)
         row.scale_y = 1.2
-        op = r.operator("m4n1.align_editmesh", text="Horizontal")
+        op = r.operator("m4a1.align_editmesh", text="Horizontal")
         op.mode = "VIEW"
         op.type = "CURSOR"
         op.direction = "HORIZONTAL"
-        op = r.operator("m4n1.align_editmesh", text="Vertical")
+        op = r.operator("m4a1.align_editmesh", text="Vertical")
         op.mode = "VIEW"
         op.type = "CURSOR"
         op.direction = "VERTICAL"
 
 class PieUVAlign(Menu):
-    bl_idname = "M4N1_MT_uv_align_pie"
+    bl_idname = "M4A1_MT_uv_align_pie"
     bl_label = "UV Align"
 
     def draw(self, context):
@@ -1927,11 +1927,11 @@ class PieUVAlign(Menu):
             self.draw_align_with_view(pie, m3)
 
     def draw_align_with_axes(self, pie, m3):
-        op = pie.operator("m4n1.align_uv", text="V min")
+        op = pie.operator("m4a1.align_uv", text="V min")
         op.axis = "V"
         op.type = "MIN"
 
-        op = pie.operator("m4n1.align_uv", text="V max")
+        op = pie.operator("m4a1.align_uv", text="V max")
         op.axis = "V"
         op.type = "MAX"
 
@@ -1946,36 +1946,36 @@ class PieUVAlign(Menu):
         column.separator()
         column.separator()
 
-        op = pie.operator("m4n1.align_uv", text="U min")
+        op = pie.operator("m4a1.align_uv", text="U min")
         op.axis = "U"
         op.type = "MIN"
 
-        op = pie.operator("m4n1.align_uv", text="U max")
+        op = pie.operator("m4a1.align_uv", text="U max")
         op.axis = "U"
         op.type = "MAX"
 
-        op = pie.operator("m4n1.align_uv", text="U Cursor")
+        op = pie.operator("m4a1.align_uv", text="U Cursor")
         op.axis = "U"
         op.type = "CURSOR"
 
-        op = pie.operator("m4n1.align_uv", text="V Cursor")
+        op = pie.operator("m4a1.align_uv", text="V Cursor")
         op.axis = "V"
         op.type = "CURSOR"
 
     def draw_align_with_view(self, pie, m3):
-        op = pie.operator("m4n1.align_uv", text="Left")
+        op = pie.operator("m4a1.align_uv", text="Left")
         op.axis = "U"
         op.type = "MIN"
 
-        op = pie.operator("m4n1.align_uv", text="Right")
+        op = pie.operator("m4a1.align_uv", text="Right")
         op.axis = "U"
         op.type = "MAX"
 
-        op = pie.operator("m4n1.align_uv", text=_p("Bottom."))
+        op = pie.operator("m4a1.align_uv", text=_p("Bottom."))
         op.axis = "V"
         op.type = "MIN"
 
-        op = pie.operator("m4n1.align_uv", text=_p("Top."))
+        op = pie.operator("m4a1.align_uv", text=_p("Top."))
         op.axis = "V"
         op.type = "MAX"
 
@@ -1998,15 +1998,15 @@ class PieUVAlign(Menu):
 
         r = row.row(align=True)
         row.scale_y = 1.2
-        op = r.operator("m4n1.align_uv", text="Horizontal")
+        op = r.operator("m4a1.align_uv", text="Horizontal")
         op.type = "CURSOR"
         op.axis = "U"
-        op = r.operator("m4n1.align_uv", text="Vertical")
+        op = r.operator("m4a1.align_uv", text="Vertical")
         op.type = "CURSOR"
         op.axis = "V"
 
 class PieCursor(Menu):
-    bl_idname = "M4N1_MT_cursor_pie"
+    bl_idname = "M4A1_MT_cursor_pie"
     bl_label = "Cursor and Origin"
 
     def draw(self, context):
@@ -2020,12 +2020,12 @@ class PieCursor(Menu):
 
         if context.mode == 'EDIT_MESH':
             sel, icon = ('Vert', 'VERTEXSEL') if tuple(context.scene.tool_settings.mesh_select_mode) == (True, False, False) else ('Edge', 'EDGESEL') if tuple(context.scene.tool_settings.mesh_select_mode) == (False, True, False) else ('Face', 'FACESEL') if tuple(bpy.context.scene.tool_settings.mesh_select_mode) == (False, False, True) else (None, None)
-            pie.operator("m4n1.cursor_to_selected", text=_p("to %s") % (_p(sel)), icon="PIVOT_CURSOR")
+            pie.operator("m4a1.cursor_to_selected", text=_p("to %s") % (_p(sel)), icon="PIVOT_CURSOR")
         else:
-            pie.operator("m4n1.cursor_to_selected", text="to Selected", icon="PIVOT_CURSOR")
+            pie.operator("m4a1.cursor_to_selected", text="to Selected", icon="PIVOT_CURSOR")
 
         if context.mode == 'OBJECT':
-            pie.operator("m4n1.selected_to_cursor", text="to Cursor", icon="RESTRICT_SELECT_OFF")
+            pie.operator("m4a1.selected_to_cursor", text="to Cursor", icon="RESTRICT_SELECT_OFF")
 
         else:
             pie.operator("view3d.snap_selected_to_cursor", text="to Cursor", icon="RESTRICT_SELECT_OFF").use_offset = False
@@ -2048,12 +2048,12 @@ class PieCursor(Menu):
                 row = column.split(factor=0.5, align=True)
                 row.scale_y = 1.5
                 row.operator("object.origin_set", text="to Geometry", icon="MESH_DATA").type = "ORIGIN_GEOMETRY"
-                row.operator("m4n1.origin_to_cursor", text="to Cursor", icon="LAYER_ACTIVE")
+                row.operator("m4a1.origin_to_cursor", text="to Cursor", icon="LAYER_ACTIVE")
 
                 row = column.split(factor=0.5, align=True)
                 row.scale_y = 1.5
-                row.operator("m4n1.origin_to_active", text="to Active", icon="TRANSFORM_ORIGINS")
-                row.operator("m4n1.origin_to_bottom_bounds", text="to Bottom", icon="AXIS_TOP")
+                row.operator("m4a1.origin_to_active", text="to Active", icon="TRANSFORM_ORIGINS")
+                row.operator("m4a1.origin_to_bottom_bounds", text="to Bottom", icon="AXIS_TOP")
 
             elif context.mode == 'EDIT_MESH':
                 row = column.split(factor=0.25)
@@ -2068,26 +2068,26 @@ class PieCursor(Menu):
 
                     row = column.row(align=True)
                     row.scale_y = 1.5
-                    row.operator("m4n1.origin_to_active", text=_p("to %s") % (_p(sel)), icon=icon)
-                    row.operator("m4n1.origin_to_cursor", text="to Cursor", icon='LAYER_ACTIVE')
+                    row.operator("m4a1.origin_to_active", text=_p("to %s") % (_p(sel)), icon=icon)
+                    row.operator("m4a1.origin_to_cursor", text="to Cursor", icon='LAYER_ACTIVE')
 
                 else:
 
                     row = column.split(factor=0.25, align=True)
                     row.scale_y = 1.5
                     row.separator()
-                    row.operator("m4n1.origin_to_cursor", text="to Cursor", icon='LAYER_ACTIVE')
+                    row.operator("m4a1.origin_to_cursor", text="to Cursor", icon='LAYER_ACTIVE')
 
         else:
             pie.separator()
 
         if hypercursor and context.mode in ['OBJECT', 'EDIT_MESH']:
             tools = get_tools_from_context(context)
-            pie.operator("m4n1.transform_cursor", text="   Drag Hyper Cursor", icon_value=tools['m4n1.tool_hyper_cursor']['icon_value']).mode = 'DRAG'
+            pie.operator("m4a1.transform_cursor", text="   Drag Hyper Cursor", icon_value=tools['m4a1.tool_hyper_cursor']['icon_value']).mode = 'DRAG'
         else:
             pie.separator()
 
-        pie.operator("m4n1.cursor_to_origin", text="to Origin", icon="PIVOT_CURSOR")
+        pie.operator("m4a1.cursor_to_origin", text="to Origin", icon="PIVOT_CURSOR")
 
         pie.operator("view3d.snap_selected_to_cursor", text="to Cursor, Offset", icon="RESTRICT_SELECT_OFF").use_offset = True
 
@@ -2102,7 +2102,7 @@ class PieCursor(Menu):
             pie.separator()
 
 class PieTransform(Menu):
-    bl_idname = "M4N1_MT_transform_pie"
+    bl_idname = "M4A1_MT_transform_pie"
     bl_label = "Transform"
 
     def draw(self, context):
@@ -2113,16 +2113,16 @@ class PieTransform(Menu):
         m3 = context.scene.M4
         active = context.active_object
 
-        op = pie.operator('m4n1.set_transform_preset', text='Local')
+        op = pie.operator('m4a1.set_transform_preset', text='Local')
         op.pivot = 'MEDIAN_POINT'
         op.orientation = 'LOCAL'
 
         orientation = 'VIEW' if m3.custom_views_local or m3.custom_views_cursor else 'GLOBAL'
-        op = pie.operator('m4n1.set_transform_preset', text=orientation.capitalize())
+        op = pie.operator('m4a1.set_transform_preset', text=orientation.capitalize())
         op.pivot = 'MEDIAN_POINT'
         op.orientation = orientation
 
-        op = pie.operator('m4n1.set_transform_preset', text='Active')
+        op = pie.operator('m4a1.set_transform_preset', text='Active')
         op.pivot = 'ACTIVE_ELEMENT'
         op.orientation = 'NORMAL' if context.mode in ['EDIT_MESH', 'EDIT_ARMATURE'] else 'LOCAL'
 
@@ -2144,11 +2144,11 @@ class PieTransform(Menu):
 
         pie.separator()
 
-        op = pie.operator('m4n1.set_transform_preset', text='Individual')
+        op = pie.operator('m4a1.set_transform_preset', text='Individual')
         op.pivot = 'INDIVIDUAL_ORIGINS'
         op.orientation = 'NORMAL' if context.mode in ['EDIT_MESH', 'EDIT_ARMATURE'] else 'LOCAL'
 
-        op = pie.operator('m4n1.set_transform_preset', text='Cursor')
+        op = pie.operator('m4a1.set_transform_preset', text='Cursor')
         op.pivot = 'CURSOR'
         op.orientation = 'CURSOR'
 
@@ -2215,7 +2215,7 @@ class PieTransform(Menu):
             row.prop(active.data, "use_mirror_topology", toggle=True)
 
 class PieSnapping(Menu):
-    bl_idname = "M4N1_MT_snapping_pie"
+    bl_idname = "M4A1_MT_snapping_pie"
     bl_label = "Snapping"
 
     def draw(self, context):
@@ -2228,33 +2228,33 @@ class PieSnapping(Menu):
         absolute_grid = get_prefs().snap_show_absolute_grid
         volume = get_prefs().snap_show_volume
 
-        op = pie.operator('m4n1.set_snapping_preset', text='Vertex', depress=ts.snap_elements == {'VERTEX'} and ts.snap_target == 'CLOSEST' and not ts.use_snap_align_rotation, icon='SNAP_VERTEX')
+        op = pie.operator('m4a1.set_snapping_preset', text='Vertex', depress=ts.snap_elements == {'VERTEX'} and ts.snap_target == 'CLOSEST' and not ts.use_snap_align_rotation, icon='SNAP_VERTEX')
         op.element = 'VERTEX'
         op.target = 'CLOSEST'
         op.align_rotation = False
 
         if absolute_grid or (absolute_grid and volume):
-            op = pie.operator('m4n1.set_snapping_preset', text='Absolute Grid', depress=ts.snap_elements == {'INCREMENT'} and ts.use_snap_grid_absolute, icon='SNAP_GRID')
+            op = pie.operator('m4a1.set_snapping_preset', text='Absolute Grid', depress=ts.snap_elements == {'INCREMENT'} and ts.use_snap_grid_absolute, icon='SNAP_GRID')
             op.element = 'INCREMENT'
 
         elif volume:
-            op = pie.operator('m4n1.set_snapping_preset', text='Volume', depress=ts.snap_elements == {'VOLUME'}, icon='SNAP_VOLUME')
+            op = pie.operator('m4a1.set_snapping_preset', text='Volume', depress=ts.snap_elements == {'VOLUME'}, icon='SNAP_VOLUME')
             op.element = 'VOLUME'
 
         else:
-            op = pie.operator('m4n1.set_snapping_preset', text='Surface', depress=ts.snap_elements == {'FACE'} and ts.snap_target == 'MEDIAN' and ts.use_snap_align_rotation, icon='SNAP_FACE')
+            op = pie.operator('m4a1.set_snapping_preset', text='Surface', depress=ts.snap_elements == {'FACE'} and ts.snap_target == 'MEDIAN' and ts.use_snap_align_rotation, icon='SNAP_FACE')
             op.element = 'FACE'
             op.target = 'MEDIAN'
             op.align_rotation = True
 
         if absolute_grid or volume:
-            op = pie.operator('m4n1.set_snapping_preset', text='Surface', depress=ts.snap_elements == {'FACE'} and ts.snap_target == 'MEDIAN' and ts.use_snap_align_rotation, icon='SNAP_FACE')
+            op = pie.operator('m4a1.set_snapping_preset', text='Surface', depress=ts.snap_elements == {'FACE'} and ts.snap_target == 'MEDIAN' and ts.use_snap_align_rotation, icon='SNAP_FACE')
             op.element = 'FACE'
             op.target = 'MEDIAN'
             op.align_rotation = True
 
         else:
-            op = pie.operator('m4n1.set_snapping_preset', text='Edge', depress=ts.snap_elements == {'EDGE'} and ts.snap_target == 'CLOSEST' and not ts.use_snap_align_rotation, icon='SNAP_EDGE')
+            op = pie.operator('m4a1.set_snapping_preset', text='Edge', depress=ts.snap_elements == {'EDGE'} and ts.snap_target == 'CLOSEST' and not ts.use_snap_align_rotation, icon='SNAP_EDGE')
             op.element = 'EDGE'
             op.target = 'CLOSEST'
             op.align_rotation = False
@@ -2270,7 +2270,7 @@ class PieSnapping(Menu):
         pie.separator()
 
         if absolute_grid or volume:
-            op = pie.operator('m4n1.set_snapping_preset', text='Edge', depress=ts.snap_elements == {'EDGE'} and ts.snap_target == 'CLOSEST' and not ts.use_snap_align_rotation, icon='SNAP_EDGE')
+            op = pie.operator('m4a1.set_snapping_preset', text='Edge', depress=ts.snap_elements == {'EDGE'} and ts.snap_target == 'CLOSEST' and not ts.use_snap_align_rotation, icon='SNAP_EDGE')
             op.element = 'EDGE'
             op.target = 'CLOSEST'
             op.align_rotation = False
@@ -2279,7 +2279,7 @@ class PieSnapping(Menu):
             pie.separator()
 
         if absolute_grid and volume:
-            op = pie.operator('m4n1.set_snapping_preset', text='Volume', depress=ts.snap_elements == {'VOLUME'}, icon='SNAP_VOLUME')
+            op = pie.operator('m4a1.set_snapping_preset', text='Volume', depress=ts.snap_elements == {'VOLUME'}, icon='SNAP_VOLUME')
             op.element = 'VOLUME'
 
         else:
@@ -2313,7 +2313,7 @@ class PieSnapping(Menu):
             row.prop(tool_settings, 'use_snap_align_rotation')
 
 class PieCollections(Menu):
-    bl_idname = "M4N1_MT_collections_pie"
+    bl_idname = "M4A1_MT_collections_pie"
     bl_label = "Collections"
 
     def draw(self, context):
@@ -2353,7 +2353,7 @@ class PieCollections(Menu):
         pie = layout.menu_pie()
 
         if sel:
-            pie.operator("m4n1.remove_from_collection", text="Remove from", icon="REMOVE")
+            pie.operator("m4a1.remove_from_collection", text="Remove from", icon="REMOVE")
 
         else:
             pie.separator()
@@ -2368,7 +2368,7 @@ class PieCollections(Menu):
             pie.operator("object.move_to_collection", text="Move to", icon="ADD")
 
         else:
-            pie.operator("m4n1.create_collection", text="Create", icon="GROUP")
+            pie.operator("m4a1.create_collection", text="Create", icon="GROUP")
 
         if decalmachine and (decalparentcollections or dcol):
 
@@ -2446,7 +2446,7 @@ class PieCollections(Menu):
 
         row = column.row()
         row.scale_y = 1.5
-        row.operator("m4n1.purge_collections", text="Purge", icon='MONKEY')
+        row.operator("m4a1.purge_collections", text="Purge", icon='MONKEY')
 
     def draw_center_column(self, context, batchops, sel, collections, layout):
         if sel:
@@ -2463,7 +2463,7 @@ class PieCollections(Menu):
 
                 if col.children or col.objects:
                     icon = "RESTRICT_SELECT_ON" if col.objects and col.objects[0].hide_select else "RESTRICT_SELECT_OFF"
-                    row.operator("m4n1.select_collection", text=col.name, icon=icon).name = col.name
+                    row.operator("m4a1.select_collection", text=col.name, icon=icon).name = col.name
                     row.prop(col, "hide_viewport", text="", icon="HIDE_OFF")
 
                 else:
@@ -2485,7 +2485,7 @@ class PieCollections(Menu):
                 row = column.row(align=True)
                 if col.children or col.objects:
                     icon = "RESTRICT_SELECT_ON" if col.objects and col.objects[0].hide_select else "RESTRICT_SELECT_OFF"
-                    row.operator("m4n1.select_collection", text=col.name, icon=icon).name = col.name
+                    row.operator("m4a1.select_collection", text=col.name, icon=icon).name = col.name
                     row.prop(col, "hide_viewport", text="", icon="HIDE_OFF")
 
                 else:
@@ -2500,7 +2500,7 @@ class PieCollections(Menu):
                 row = column.row(align=True)
                 if col.children or col.objects:
                     icon = "RESTRICT_SELECT_ON" if col.objects and col.objects[0].hide_select else "RESTRICT_SELECT_OFF"
-                    row.operator("m4n1.select_collection", text=col.name, icon=icon).name = col.name
+                    row.operator("m4a1.select_collection", text=col.name, icon=icon).name = col.name
                     row.prop(col, "hide_viewport", text="", icon="HIDE_OFF")
                 else:
                     row.label(text=col.name)
@@ -2523,7 +2523,7 @@ class PieCollections(Menu):
 
                 if col.children or col.objects:
                     icon = "RESTRICT_SELECT_ON" if col.objects and col.objects[0].hide_select else "RESTRICT_SELECT_OFF"
-                    row.operator("m4n1.select_collection", text=col.name, icon=icon).name = col.name
+                    row.operator("m4a1.select_collection", text=col.name, icon=icon).name = col.name
                     row.prop(col, "hide_viewport", text="", icon="HIDE_OFF")
 
                 else:
@@ -2545,7 +2545,7 @@ class PieCollections(Menu):
                 row = column.row(align=True)
                 if col.children or col.objects:
                     icon = "RESTRICT_SELECT_ON" if col.objects and col.objects[0].hide_select else "RESTRICT_SELECT_OFF"
-                    row.operator("m4n1.select_collection", text=col.name, icon=icon).name = col.name
+                    row.operator("m4a1.select_collection", text=col.name, icon=icon).name = col.name
                     row.prop(col, "hide_viewport", text="", icon="HIDE_OFF")
 
                 else:
@@ -2560,7 +2560,7 @@ class PieCollections(Menu):
                 row = column.row(align=True)
                 if col.children or col.objects:
                     icon = "RESTRICT_SELECT_ON" if col.objects and col.objects[0].hide_select else "RESTRICT_SELECT_OFF"
-                    row.operator("m4n1.select_collection", text=col.name, icon=icon).name = col.name
+                    row.operator("m4a1.select_collection", text=col.name, icon=icon).name = col.name
                     row.prop(col, "hide_viewport", text="", icon="HIDE_OFF")
                 else:
                     row.label(text=col.name)
@@ -2579,7 +2579,7 @@ class PieCollections(Menu):
         infoname = ".Info" if context.scene.DM.hide_decaltype_collections else "Info"
         panelname = ".Panel" if context.scene.DM.hide_decaltype_collections else "Panel"
 
-        op = row.operator("m4n1.select_collection", text="Decals")
+        op = row.operator("m4a1.select_collection", text="Decals")
         op.name = decalsname
         op.force_all = True
 
@@ -2592,31 +2592,31 @@ class PieCollections(Menu):
         row.prop(decals, "hide_viewport", text="", icon="HIDE_OFF")
 
         if simple and simple.DM.isdecaltypecol and simple.objects:
-            row.operator("m4n1.select_collection", text="Simple").name = simplename
+            row.operator("m4a1.select_collection", text="Simple").name = simplename
             row.prop(simple, "hide_viewport", text="", icon="HIDE_OFF")
         else:
             row.label(text="Simple")
 
         if subset and subset.DM.isdecaltypecol and subset.objects:
-            row.operator("m4n1.select_collection", text="Subset").name = subsetname
+            row.operator("m4a1.select_collection", text="Subset").name = subsetname
             row.prop(subset, "hide_viewport", text="", icon="HIDE_OFF")
         else:
             row.label(text="Subset")
 
         if panel and panel.DM.isdecaltypecol and panel.objects:
-            row.operator("m4n1.select_collection", text="Panel").name = panelname
+            row.operator("m4a1.select_collection", text="Panel").name = panelname
             row.prop(panel, "hide_viewport", text="", icon="HIDE_OFF")
         else:
             row.label(text="Panel")
 
         if info and info.DM.isdecaltypecol and info.objects:
-            row.operator("m4n1.select_collection", text="Info").name = infoname
+            row.operator("m4a1.select_collection", text="Info").name = infoname
             row.prop(info, "hide_viewport", text="", icon="HIDE_OFF")
         else:
             row.label(text="Info")
 
 class PieWorkspace(Menu):
-    bl_idname = "M4N1_MT_workspace_pie"
+    bl_idname = "M4A1_MT_workspace_pie"
     bl_label = "Workspaces"
 
     def draw(self, context):
@@ -2631,13 +2631,13 @@ class PieWorkspace(Menu):
             icon = getattr(p, f'pie_workspace_{piedir}_icon')
 
             if name:
-                pie.operator("m4n1.switch_workspace", text=text if text else name, icon=icon if icon else 'BLENDER').name=name
+                pie.operator("m4a1.switch_workspace", text=text if text else name, icon=icon if icon else 'BLENDER').name=name
 
             else:
                 pie.separator()
 
 class PieTools(Menu):
-    bl_idname = "M4N1_MT_tools_pie"
+    bl_idname = "M4A1_MT_tools_pie"
     bl_label = "Tools"
 
     def draw(self, context):
@@ -2663,13 +2663,13 @@ class PieTools(Menu):
 
             if boxcutter in tools:
                 tool = tools[boxcutter]
-                pie.operator("m4n1.set_tool_by_name", text="   " + _p(tool['label']), depress=tool['active'], icon_value=tool['icon_value']).name = boxcutter
+                pie.operator("m4a1.set_tool_by_name", text="   " + _p(tool['label']), depress=tool['active'], icon_value=tool['icon_value']).name = boxcutter
             else:
                 pie.separator()
 
             if 'Hops' in tools:
                 tool = tools['Hops']
-                pie.operator("m4n1.set_tool_by_name", text="   " + _p(tool['label']), depress=tool['active'], icon_value=tool['icon_value']).name = 'Hops'
+                pie.operator("m4a1.set_tool_by_name", text="   " + _p(tool['label']), depress=tool['active'], icon_value=tool['icon_value']).name = 'Hops'
             else:
                 pie.separator()
 
@@ -2687,18 +2687,18 @@ class PieTools(Menu):
                 if hypercursor:
                     active_tool = get_active_tool(context).idname
 
-                    if 'm4n1.tool_hyper_cursor' in active_tool:
+                    if 'm4a1.tool_hyper_cursor' in active_tool:
                         hypercursorlast = active_tool
 
-                    hc = hypercursorlast if hypercursorlast else 'm4n1.tool_hyper_cursor'
+                    hc = hypercursorlast if hypercursorlast else 'm4a1.tool_hyper_cursor'
 
                     name = hc if active_tool == 'builtin.select_box' else 'builtin.select_box'
                     tool = tools[name]
-                    pie.operator("m4n1.set_tool_by_name", text="   " + _p(tool['label']), depress=tool['active'], icon_value=tool['icon_value']).name=name
+                    pie.operator("m4a1.set_tool_by_name", text="   " + _p(tool['label']), depress=tool['active'], icon_value=tool['icon_value']).name=name
 
                 else:
                     tool = tools['builtin.select_box']
-                    pie.operator("m4n1.set_tool_by_name", text="   " + _p(tool['label']), depress=tool['active'], icon_value=tool['icon_value']).name='builtin.select_box'
+                    pie.operator("m4a1.set_tool_by_name", text="   " + _p(tool['label']), depress=tool['active'], icon_value=tool['icon_value']).name='builtin.select_box'
 
             else:
                 pie.separator()
@@ -2728,33 +2728,33 @@ class PieTools(Menu):
                 row = column.split(factor=0.25, align=True)
                 row.scale_y = 1.25
                 row.label(text='Box')
-                op = row.operator('m4n1.set_boxcutter_preset', text='Add')
+                op = row.operator('m4a1.set_boxcutter_preset', text='Add')
                 op.shape_type = 'BOX'
                 op.mode = 'MAKE'
                 op.set_origin = 'BBOX'
-                op = row.operator('m4n1.set_boxcutter_preset', text='Cut')
+                op = row.operator('m4a1.set_boxcutter_preset', text='Cut')
                 op.shape_type = 'BOX'
                 op.mode = 'CUT'
 
                 row = column.split(factor=0.25, align=True)
                 row.scale_y = 1.25
                 row.label(text='Circle')
-                op = row.operator('m4n1.set_boxcutter_preset', text='Add')
+                op = row.operator('m4a1.set_boxcutter_preset', text='Add')
                 op.shape_type = 'CIRCLE'
                 op.mode = 'MAKE'
                 op.set_origin = 'BBOX'
-                op = row.operator('m4n1.set_boxcutter_preset', text='Cut')
+                op = row.operator('m4a1.set_boxcutter_preset', text='Cut')
                 op.shape_type = 'CIRCLE'
                 op.mode = 'CUT'
 
                 row = column.split(factor=0.25, align=True)
                 row.scale_y = 1.25
                 row.label(text='NGon')
-                op = row.operator('m4n1.set_boxcutter_preset', text='Add')
+                op = row.operator('m4a1.set_boxcutter_preset', text='Add')
                 op.shape_type = 'NGON'
                 op.mode = 'MAKE'
                 op.set_origin = 'BBOX'
-                op = row.operator('m4n1.set_boxcutter_preset', text='Cut')
+                op = row.operator('m4a1.set_boxcutter_preset', text='Cut')
                 op.shape_type = 'NGON'
                 op.mode = 'CUT'
 
@@ -2788,7 +2788,7 @@ from ..utils.align_helper import screen_relevant_direction_3d_axis
 
 class AlignHelperPieMenu(Menu):
     bl_label = 'POPOTI Align Helper'
-    bl_idname = 'M4N1_MT_pie_popoti_align_helper'
+    bl_idname = 'M4A1_MT_pie_popoti_align_helper'
 
     def draw(self, context):
         layout = self.layout

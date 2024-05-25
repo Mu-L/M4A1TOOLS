@@ -11,8 +11,8 @@ from .. utils.selection import get_boundary_edges, get_edges_vert_sequences
 from .. colors import green, red
 
 class Thread(bpy.types.Operator):
-    bl_idname = "m4n1.add_thread"
-    bl_label = "M4N1: Add Thread"
+    bl_idname = "m4a1.add_thread"
+    bl_label = "M4A1: Add Thread"
     bl_description = ""
     bl_options = {'REGISTER', 'UNDO', 'PRESET'}
 

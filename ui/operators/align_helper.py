@@ -584,7 +584,7 @@ class AlignObject(SetLocation):
     可组合按
     """
 
-    bl_idname = 'm4n1.tool_kits_fast_align'
+    bl_idname = 'm4a1.tool_kits_fast_align'
     bl_label = 'POPOTI Align Helper'
     bl_options = {'REGISTER', 'UNDO'}
 

@@ -167,8 +167,8 @@ bc_orientation_items = [('LOCAL', 'Local', ''),
 tool_name_mapping_dict = {'BC': 'BoxCutter',
                           'Hops': 'HardOps',
                           'builtin.select_box': _('Select Box'),
-                          'm4n1.tool_hyper_cursor': _('Hyper Cursor'),
-                          'm4n1.tool_hyper_cursor_simple': _('Simple Hyper Cursor')}
+                          'm4a1.tool_hyper_cursor': _('Hyper Cursor'),
+                          'm4a1.tool_hyper_cursor_simple': _('Simple Hyper Cursor')}
 
 mirror_props = ['type',
                 'merge_threshold',
