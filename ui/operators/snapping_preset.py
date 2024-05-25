@@ -1,15 +1,15 @@
 import bpy
 from bpy.props import StringProperty, BoolProperty
-
+from bpy.app.translations import pgettext as _
 class SetSnappingPreset(bpy.types.Operator):
     bl_idname = "m4n1.set_snapping_preset"
     bl_label = "M4N1: Set Snapping Preset"
     bl_description = "Set Snapping Preset"
     bl_options = {'REGISTER', 'UNDO'}
 
-    element: StringProperty(name="Snap Element")
-    target: StringProperty(name="Snap Target")
-    align_rotation: BoolProperty(name="Align Rotation")
+    element: StringProperty(name=_("Snap Element"))
+    target: StringProperty(name=_("Snap Target"))
+    align_rotation: BoolProperty(name=_("Align Rotation"))
 
     def draw(self, context):
         layout = self.layout

@@ -275,8 +275,8 @@ def extrude_menu(self, context):
 def material_pick_button(self, context):
     p = get_prefs()
 
-    workspaces = [ws.strip() for ws in p.matpick_workspace_names.split(',')]
-    shading = context.space_data.shading
+    # workspaces = [ws.strip() for ws in p.matpick_workspace_names.split(',')]
+    # shading = context.space_data.shading
 
     view_shading_types = []
     if p.matpick_shading_type_material:
@@ -285,7 +285,8 @@ def material_pick_button(self, context):
     if p.matpick_shading_type_render:
         view_shading_types.append('RENDER')
 
-    if any([s in context.workspace.name for s in workspaces]) or shading.type in view_shading_types:
+    # if any([s in context.workspace.name for s in workspaces]) or shading.type in view_shading_types:
+    if p.matpick_button_show:
         if getattr(bpy.types, 'M4N1_OT_material_picker', False):
             row = self.layout.row()
             row.scale_x = 1.25
@@ -350,63 +351,65 @@ def group_origin_adjustment_toggle(self, context):
             column.prop(m3, "affect_only_group_origin", text="Group Origin")
 
 def render_menu(self, context):
-    if getattr(bpy.types, 'M4N1_OT_render', False):
-        layout = self.layout
-
-        layout.separator()
-
-        op = layout.operator("m4n1.render", text=f"Quick Render")
-        op.seed = False
-        op.final = False
-
-        op = layout.operator("m4n1.render", text=f"Final Render")
-        op.seed = False
-        op.final = True
-
-        row = layout.row()
-        row.scale_y = 0.3
-        row.label(text='')
-
-        row = layout.row()
-        row.active = True if context.scene.camera else False
-        row.prop(get_prefs(), 'render_seed_count', text="Seed Count")
-
-        op = layout.operator("m4n1.render", text=f"Seed Render")
-        op.seed = True
-        op.final = False
-
-        op = layout.operator("m4n1.render", text=f"Final Seed Render")
-        op.seed = True
-        op.final = True
+    pass
+    # if getattr(bpy.types, 'M4N1_OT_render', False):
+    #     layout = self.layout
+    #
+    #     layout.separator()
+    #
+    #     op = layout.operator("m4n1.render", text=f"Quick Render")
+    #     op.seed = False
+    #     op.final = False
+    #
+    #     op = layout.operator("m4n1.render", text=f"Final Render")
+    #     op.seed = False
+    #     op.final = True
+    #
+    #     row = layout.row()
+    #     row.scale_y = 0.3
+    #     row.label(text='')
+    #
+    #     row = layout.row()
+    #     row.active = True if context.scene.camera else False
+    #     row.prop(get_prefs(), 'render_seed_count', text="Seed Count")
+    #
+    #     op = layout.operator("m4n1.render", text=f"Seed Render")
+    #     op.seed = True
+    #     op.final = False
+    #
+    #     op = layout.operator("m4n1.render", text=f"Final Seed Render")
+    #     op.seed = True
+    #     op.final = True
 
 def render_buttons(self, context):
-    if getattr(bpy.types, 'M4N1_OT_render', False) and get_prefs().render_show_buttons_in_light_properties and context.scene.camera:
-        layout = self.layout
-
-        column = layout.column(align=True)
-
-        row = column.row(align=True)
-        row.scale_y = 1.2
-        op = row.operator("m4n1.render", text=f"Quick Render")
-        op.seed = False
-        op.final = False
-
-        op = row.operator("m4n1.render", text=f"Final Render")
-        op.seed = False
-        op.final = True
-
-        column.separator()
-
-        row = column.row(align=True)
-        row.active = True if context.scene.camera else False
-        row.prop(get_prefs(), 'render_seed_count', text="Seed Render Count")
-
-        row = column.row(align=True)
-        row.scale_y = 1.2
-        op = row.operator("m4n1.render", text=f"Seed Render")
-        op.seed = True
-        op.final = False
-
-        op = row.operator("m4n1.render", text=f"Final Seed Render")
-        op.seed = True
-        op.final = True
+    pass
+    # if getattr(bpy.types, 'M4N1_OT_render', False) and get_prefs().render_show_buttons_in_light_properties and context.scene.camera:
+    #     layout = self.layout
+    #
+    #     column = layout.column(align=True)
+    #
+    #     row = column.row(align=True)
+    #     row.scale_y = 1.2
+    #     op = row.operator("m4n1.render", text=f"Quick Render")
+    #     op.seed = False
+    #     op.final = False
+    #
+    #     op = row.operator("m4n1.render", text=f"Final Render")
+    #     op.seed = False
+    #     op.final = True
+    #
+    #     column.separator()
+    #
+    #     row = column.row(align=True)
+    #     row.active = True if context.scene.camera else False
+    #     row.prop(get_prefs(), 'render_seed_count', text="Seed Render Count")
+    #
+    #     row = column.row(align=True)
+    #     row.scale_y = 1.2
+    #     op = row.operator("m4n1.render", text=f"Seed Render")
+    #     op.seed = True
+    #     op.final = False
+    #
+    #     op = row.operator("m4n1.render", text=f"Final Seed Render")
+    #     op.seed = True
+    #     op.final = True

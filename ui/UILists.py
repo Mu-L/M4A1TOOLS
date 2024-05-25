@@ -1,7 +1,7 @@
 import bpy
 from .. utils.math import dynamic_format
 from .. utils.ui import get_icon
-
+from bpy.app.translations import pgettext as _
 class AppendMatsUIList(bpy.types.UIList):
     bl_idname = "M4N1_UL_append_mats"
 
@@ -29,7 +29,7 @@ class GroupPosesUIList(bpy.types.UIList):
 
         row = layout.row()
 
-        row.alert = item.name == 'Inception'
+        row.alert = item.name == _('Inception')
         row.operator('m4n1.retrieve_group_pose', text='', icon='ARMATURE_DATA', emboss=False).index = index
         row.alert = False
 

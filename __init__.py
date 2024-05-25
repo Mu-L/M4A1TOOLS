@@ -1,13 +1,11 @@
 
-
 bl_info = {
     "name": "M4N1TOOLS",
-    "author": "AIGODLIKE Community,MACHIN3, TitusLVR",
-    "version": (1, 8, 0),
-    "blender": (3, 6, 0),
+    "author": "MACHIN3, TitusLVR, AIGODLIKE Community",
+    "version": (2, 0, 0),
+    "blender": (4, 0, 0),
     "location": "Everywhere",
-    "revision": "7a0b2e8e217b024ec95a622840f7e3cfb8a2ee8f",
-    "description": "Streamlining Blender 3.6+.",
+    "description": "Based on the M3 tool, add more features to make Blender more user-friendly",
     "warning": "",
     "category": "3D View"}
 
@@ -283,7 +281,7 @@ def register():
 
     bpy.types.VIEW3D_MT_edit_mesh_extrude.append(extrude_menu)
     bpy.types.VIEW3D_MT_mesh_add.prepend(add_object_buttons)
-    # bpy.types.VIEW3D_MT_editor_menus.append(material_pick_button)
+    bpy.types.VIEW3D_MT_editor_menus.append(material_pick_button)
     bpy.types.ASSETBROWSER_MT_editor_menus.append(asset_browser_bookmark_buttons)
     bpy.types.OUTLINER_HT_header.prepend(outliner_group_toggles)
 
@@ -361,7 +359,7 @@ def unregister():
 
     bpy.types.VIEW3D_MT_edit_mesh_extrude.remove(extrude_menu)
     bpy.types.VIEW3D_MT_mesh_add.remove(add_object_buttons)
-    # bpy.types.VIEW3D_MT_editor_menus.remove(material_pick_button)
+    bpy.types.VIEW3D_MT_editor_menus.remove(material_pick_button)
     bpy.types.ASSETBROWSER_MT_editor_menus.remove(asset_browser_bookmark_buttons)
     bpy.types.OUTLINER_HT_header.remove(outliner_group_toggles)
 

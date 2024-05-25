@@ -63,8 +63,8 @@ class SaveAs(bpy.types.Operator):
     bl_description = "Save the current file in the desired location\nALT: Save as Copy\nCTRL: Save as Asset"
     bl_options = {'REGISTER', 'UNDO'}
 
-    copy: BoolProperty(name="Save as Copy", default=False)
-    asset: BoolProperty(name="Save as Asset", default=False)
+    copy: BoolProperty(name=_("Save as Copy"), default=False)
+    asset: BoolProperty(name=_("Save as Asset"), default=False)
     def draw(self, context):
         layout = self.layout
         column = layout.column()
@@ -350,7 +350,7 @@ class Purge(bpy.types.Operator):
     recursive: BoolProperty(name="Recursive Purge", default=False)
     @classmethod
     def description(cls, context, properties):
-        return "Purge Orphans\nALT: Purge Orphans Recursively"
+        return _("Purge Orphans\nALT: Purge Orphans Recursively")
 
     def invoke(self, context, event):
         global decalmachine

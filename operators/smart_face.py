@@ -3,14 +3,14 @@ from bpy.props import BoolProperty
 import bmesh
 from .. utils.view import update_local_view
 from .. utils.registration import get_prefs
-
+from bpy.app.translations import pgettext as _
 class SmartFace(bpy.types.Operator):
     bl_idname = "m4n1.smart_face"
     bl_label = "M4N1: Smart Face"
     bl_options = {'REGISTER', 'UNDO'}
 
-    automerge: BoolProperty(name="Merge to closeby Vert", default=True)
-    use_focus: BoolProperty(name="Focus on new Object", default=False)
+    automerge: BoolProperty(name=_("Merge to closeby Vert"), default=True)
+    use_focus: BoolProperty(name=_("Focus on new Object"), default=False)
     def draw(self, context):
         layout = self.layout
 

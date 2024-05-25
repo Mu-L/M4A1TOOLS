@@ -10,7 +10,7 @@ from . registration import get_prefs, get_addon
 from . ui import get_zoom_factor
 from . tools import get_active_tool
 from .. colors import red, green, blue, black, white, orange, normal, yellow
-
+from bpy.app.translations import pgettext as _
 def get_builtin_shader_name(name, prefix='3D'):
     if bpy.app.version >= (4, 0, 0):
         return name
@@ -434,12 +434,12 @@ def draw_fading_label(context, text='', x=None, y=100, gap=18, center=True, size
             line_move = int(move_y + (idx * gap)) if move_y > 0 else 0
             line_time = time + idx * delay
             
-            bpy.ops.m4n1.draw_label(text=t, coords=line_coords, center=center, size=size, color=line_color, alpha=line_alpha, move_y=line_move, time=line_time, cancel=cancel)
+            bpy.ops.m4n1.draw_label(text=_(t), coords=line_coords, center=center, size=size, color=line_color, alpha=line_alpha, move_y=line_move, time=line_time, cancel=cancel)
 
     else:
         coords = (x, y)
 
-        bpy.ops.m4n1.draw_label(text=text, coords=coords, center=center, size=size, color=color, alpha=alpha, move_y=move_y, time=time, cancel=cancel)
+        bpy.ops.m4n1.draw_label(text=_(text), coords=coords, center=center, size=size, color=color, alpha=alpha, move_y=move_y, time=time, cancel=cancel)
 
 def draw_split_row(self, layout, prop='prop', text='', label='Label', factor=0.2, align=True, toggle=True, expand=True, info=None, warning=None):
     row = layout.row(align=align)

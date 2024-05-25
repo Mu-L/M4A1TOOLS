@@ -388,12 +388,13 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
     # render_enforce_hide_render: BoolProperty(name="Enforce hide_render setting when Viewport Rendering", description="Hide Objects based on their hide_render props, when Viewport Rendering with Cyclces", default=True)
     # render_use_bevel_shader: BoolProperty(name="Automatically set up Bevel Shader when Cycles Rendering", description="Set up Bevel Shader on all visible Materials when Cycles Renderings", default=True)
 
-    # matpick_show: BoolProperty(name="Show Material Picker Preferences", default=False)
+    matpick_show: BoolProperty(name="Show Material Picker Preferences", default=False)
+    matpick_button_show: BoolProperty(name="Show Material Picker Button", default=True)
     # matpick_workspace_names: StringProperty(name="Workspaces the Material Picker should appear on", default="Shading, Material")
-    # matpick_shading_type_material: BoolProperty(name="Show Material Picker in all Material Shading Viewports", default=True)
-    # matpick_shading_type_render: BoolProperty(name="Show Material Picker in all Render Shading Viewports", default=False)
-    # matpick_spacing_obj: FloatProperty(name="Object Mode Spacing", min=0, default=20)
-    # matpick_spacing_edit: FloatProperty(name="Edit Mode Spacing", min=0, default=5)
+    matpick_shading_type_material: BoolProperty(name="Show Material Picker in all Material Shading Viewports", default=True)
+    matpick_shading_type_render: BoolProperty(name="Show Material Picker in all Render Shading Viewports", default=False)
+    matpick_spacing_obj: FloatProperty(name="Object Mode Spacing", min=0, default=20)
+    matpick_spacing_edit: FloatProperty(name="Edit Mode Spacing", min=0, default=5)
 
     customize_show: BoolProperty(name="Show Customize Preferences", default=False)
     custom_startup: BoolProperty(name="Startup Scene", default=False)
@@ -447,6 +448,8 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
     matcap2_switch_background_type: EnumProperty(name="Matcap 2 Background Type", items=matcap_background_type_items, default="THEME")
     matcap2_switch_background_viewport_color: FloatVectorProperty(name="Matcap 2 Background Color", subtype='COLOR', default=[0.05, 0.05, 0.05], size=3, min=0, max=1)
     auto_smooth_angle_presets: StringProperty(name="Autosmooth Angle Preset", default="10, 15, 20, 30, 60, 180", update=update_auto_smooth_angle_presets)
+    auto_smooth_show_expanded: BoolProperty(name="Show Autosmooth Mod Expanded", default=False)
+
 
     views_pie_show: BoolProperty(name="Show Views Pie Preferences", default=False)
     obj_mode_rotate_around_active: BoolProperty(name="Rotate Around Selection, but only in Object Mode", default=False)
@@ -509,7 +512,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
     activate_extrude: BoolProperty(name="Extrude", default=True, update=update_activate_extrude)
     activate_focus: BoolProperty(name="Focus", default=True, update=update_activate_focus)
     activate_mirror: BoolProperty(name="Mirror", default=True, update=update_activate_mirror)
-    activate_align: BoolProperty(name="Align", default=True, update=update_activate_align)
+    activate_align: BoolProperty(name="Align", default=False, update=update_activate_align)
     activate_group: BoolProperty(name="Group", default=True, update=update_activate_group)
     activate_smart_drive: BoolProperty(name="Smart Drive", default=True, update=update_activate_smart_drive)
     activate_filebrowser_tools: BoolProperty(name="File Browser Tools", default=True, update=update_activate_filebrowser_tools)
@@ -720,7 +723,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
         # draw_split_row(self, column, prop='activate_smooth', text='Smooth', label='Toggle Smoothing in Korean Bevel and SubD workflows', factor=0.25)
         draw_split_row(self, column, prop='activate_clipping_toggle', text='Clipping Toggle', label='Viewport Clipping Plane Toggle', factor=0.25)
         # draw_split_row(self, column, prop='activate_surface_slide', text='Surface Slide', label='Easily modify Mesh Topology, while maintaining Form', factor=0.25)
-        # draw_split_row(self, column, prop='activate_material_picker', text='Material Picker', label="Pick Materials from the Material Workspace's 3D View", factor=0.25)
+        draw_split_row(self, column, prop='activate_material_picker', text='Material Picker', label="Pick Materials from the Material Workspace's 3D View", factor=0.25)
         # draw_split_row(self, column, prop='activate_apply', text='Apply', label='Apply Transformations while keeping the Bevel Width as well as the Child Transformations unchanged', factor=0.25)
         draw_split_row(self, column, prop='activate_select', text='Select', label='Select Center Objects, Select/Hide Wire Objects, Select Hierarchy', factor=0.25)
         draw_split_row(self, column, prop='activate_mesh_cut', text='Mesh Cut', label='Knife Intersect a Mesh-Object, using another one', factor=0.25)
@@ -951,18 +954,18 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
         #         else:
         #             column.label(text="Enable the Shading Pie for additional options", icon='INFO')
 
-        # if getattr(bpy.types, "M4N1_OT_material_picker", False):
-        #     bb = b.box()
-        #     bb.prop(self, 'matpick_show', text="Material Picker", icon='TRIA_DOWN' if self.matpick_show else 'TRIA_RIGHT', emboss=False)
-        #
-        #     if self.matpick_show:
-        #         column = bb.column(align=True)
-        #
-        #         draw_split_row(self, column, prop='matpick_workspace_names', label='Show Material Picker in these Workspaces')
-        #         draw_split_row(self, column, prop='matpick_shading_type_material', label='Show Material Picker in Views set to Material Shading')
-        #         draw_split_row(self, column, prop='matpick_shading_type_render', label='Show Material Picker in Views set to Rendered Shading')
-        #         draw_split_row(self, column, prop='matpick_spacing_obj', label='Object Mode Header Spacing')
-        #         draw_split_row(self, column, prop='matpick_spacing_edit', label='Edit Mode Header Spacing')
+        if getattr(bpy.types, "M4N1_OT_material_picker", False):
+            bb = b.box()
+            bb.prop(self, 'matpick_show', text="Material Picker", icon='TRIA_DOWN' if self.matpick_show else 'TRIA_RIGHT', emboss=False)
+
+            if self.matpick_show:
+                column = bb.column(align=True)
+
+                draw_split_row(self, column, prop='matpick_button_show', label='Show Material Picker')
+                # draw_split_row(self, column, prop='matpick_shading_type_material', label='Show Material Picker in Views set to Material Shading')
+                # draw_split_row(self, column, prop='matpick_shading_type_render', label='Show Material Picker in Views set to Rendered Shading')
+                draw_split_row(self, column, prop='matpick_spacing_obj', label='Object Mode Header Spacing')
+                draw_split_row(self, column, prop='matpick_spacing_edit', label='Edit Mode Header Spacing')
 
         if getattr(bpy.types, "M4N1_OT_customize", False):
             bb = b.box()
@@ -1164,6 +1167,9 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                 column = bb.column(align=True)
 
                 draw_split_row(self, column, prop='auto_smooth_angle_presets', label='Auto Smooth Angle Presets shown in the Shading Pie as buttons', factor=0.25)
+                if bpy.app.version >= (4, 1, 0):
+                    draw_split_row(self, column, prop='auto_smooth_show_expanded',
+                                   label="Leave Auto Smooth Modifier open, and don't collapse it", factor=0.25)
 
                 bb.separator()
                 bb.label(text='Matcap Switch')

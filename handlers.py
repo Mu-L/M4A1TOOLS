@@ -265,12 +265,12 @@ def manage_legacy_group_poses():
             pose.mx = legacy_mx
 
             pose.avoid_update = True
-            pose.name = "Inception"
+            pose.name = _("Inception")
 
             set_pose_uuid(pose)
 
             if not compare_quat(legacy_mx.to_quaternion(), empty.matrix_local.to_quaternion(), precision=5):
-                set_group_pose(empty, name='LegacyPose')
+                set_group_pose(empty, name=_('LegacyPose'))
 
     for empty in legacy_group_empties:
         if not empty.parent:
@@ -616,11 +616,11 @@ def render_start(scene):
 
     p = get_prefs()
 
-    if p.activate_render and (p.render_adjust_lights_on_render or p.render_enforce_hide_render):
-        if global_debug:
-            print(" managing light decrease and light visibility sync")
-
-        delay_execution(manage_lights_decrease_and_visibility_sync)
+    # if p.activate_render and (p.render_adjust_lights_on_render or p.render_enforce_hide_render):
+    #     if global_debug:
+    #         print(" managing light decrease and light visibility sync")
+    #
+    #     delay_execution(manage_lights_decrease_and_visibility_sync)
 
 @persistent
 def render_end(scene):
@@ -632,11 +632,11 @@ def render_end(scene):
 
     p = get_prefs()
 
-    if p.activate_render and p.render_adjust_lights_on_render:
-        if global_debug:
-            print(" managing light increase")
-
-        delay_execution(manage_lights_increase)
+    # if p.activate_render and p.render_adjust_lights_on_render:
+    #     if global_debug:
+    #         print(" managing light increase")
+    #
+    #     delay_execution(manage_lights_increase)
 
 @persistent
 def depsgraph_update_post(scene):

@@ -214,7 +214,7 @@ class OriginToBottomBounds(bpy.types.Operator):
     bl_label = "M4N1: Origin to Bottom Bounds"
     bl_options = {'REGISTER', 'UNDO'}
 
-    evaluated: BoolProperty(name="Evaluated Object Bounds", default=False)
+    evaluated: BoolProperty(name=_("Evaluated Object Bounds"), default=False)
     @classmethod
     def description(cls, context, properties):
         desc = "Set Object Origin to Bounding Box Bottom Center"

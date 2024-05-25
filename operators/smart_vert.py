@@ -14,7 +14,7 @@ from .. utils.registration import get_addon
 from .. utils.property import step_enum
 from .. items import smartvert_mode_items, smartvert_merge_type_items, smartvert_path_type_items, ctrl, alt
 from .. colors import white
-
+from bpy.app.translations import pgettext as _p
 hypercursor = None
 
 def draw_slide_status(op):
@@ -284,11 +284,11 @@ class SmartVert(bpy.types.Operator):
                     history = list(self.bm.select_history)
 
                     if len(selected) == 1:
-                        popup_message("Select more than 1 vertex.")
+                        popup_message(_p("Select more than 1 vertex."))
                         return {'CANCELLED'}
 
                     elif not history:
-                        popup_message("Select the last vertex without Box or Circle Select.")
+                        popup_message(_p("Select the last vertex without Box or Circle Select."))
                         return {'CANCELLED'}
 
                     else:
@@ -383,7 +383,7 @@ class SmartVert(bpy.types.Operator):
                 if context.mode == 'OBJECT':
                     context.active_object.HC.geometry_gizmos_show = True
 
-                popup_message("Try to position the view and mouse in a way, that clearly indicates the direction you want to slide towards", title='Ambigious Direction')
+                popup_message(_p("Try to position the view and mouse in a way, that clearly indicates the direction you want to slide towards"), title='Ambigious Direction')
                 return {'CANCELLED'}
 
             self.init_loc = self.get_slide_vector_intersection(context)

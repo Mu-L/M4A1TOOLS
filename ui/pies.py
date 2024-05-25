@@ -159,7 +159,7 @@ class PieModes(Menu):
                             pie.separator()
 
                 elif active.type == 'ARMATURE':
-                    pie.operator("object.mode_set", text="Edit Mode", icon='EDITMODE_HLT').mode = "EDIT"
+                    pie.operator("object.mode_set", text=_p("Edit Mode"), icon='EDITMODE_HLT').mode = "EDIT"
 
                     pie.operator("object.mode_set", text="Pose", icon='POSE_HLT').mode = "POSE"
 
@@ -656,13 +656,13 @@ class PieSave(Menu):
 
         column.operator("wm.revert_mainfile", text="Revert", icon_value=get_icon('revert'))
 
-        if get_prefs().show_screencast:
-            column.separator()
-
-            screencast = getattr(wm, 'M3_screen_cast', False)
-            text, icon = ('Disable', 'PAUSE') if screencast else ('Enable', 'PLAY')
-
-            column.operator('m4n1.screen_cast', text=f"{text} Screen Cast", depress=screencast, icon=icon)
+        # if get_prefs().show_screencast:
+        #     column.separator()
+        #
+        #     screencast = getattr(wm, 'M3_screen_cast', False)
+        #     text, icon = ('Disable', 'PAUSE') if screencast else ('Enable', 'PLAY')
+        #
+        #     column.operator('m4n1.screen_cast', text=f"{text} Screen Cast", depress=screencast, icon=icon)
 
     def draw_center_column_top(self, context, layout):
         global wavefront_addon
@@ -1818,11 +1818,11 @@ class PieAlign(Menu):
         op.mode = "VIEW"
         op.direction = "RIGHT"
 
-        op = pie.operator("m4n1.align_editmesh", text="Bottom")
+        op = pie.operator("m4n1.align_editmesh", text=_p("Bottom."))
         op.mode = "VIEW"
         op.direction = "BOTTOM"
 
-        op = pie.operator("m4n1.align_editmesh", text="Top")
+        op = pie.operator("m4n1.align_editmesh", text=_p("Top."))
         op.mode = "VIEW"
         op.direction = "TOP"
 
@@ -1971,11 +1971,11 @@ class PieUVAlign(Menu):
         op.axis = "U"
         op.type = "MAX"
 
-        op = pie.operator("m4n1.align_uv", text="Bottom")
+        op = pie.operator("m4n1.align_uv", text=_p("Bottom."))
         op.axis = "V"
         op.type = "MIN"
 
-        op = pie.operator("m4n1.align_uv", text="Top")
+        op = pie.operator("m4n1.align_uv", text=_p("Top."))
         op.axis = "V"
         op.type = "MAX"
 
@@ -2663,21 +2663,21 @@ class PieTools(Menu):
 
             if boxcutter in tools:
                 tool = tools[boxcutter]
-                pie.operator("m4n1.set_tool_by_name", text="   " + tool['label'], depress=tool['active'], icon_value=tool['icon_value']).name = boxcutter
+                pie.operator("m4n1.set_tool_by_name", text="   " + _p(tool['label']), depress=tool['active'], icon_value=tool['icon_value']).name = boxcutter
             else:
                 pie.separator()
 
             if 'Hops' in tools:
                 tool = tools['Hops']
-                pie.operator("m4n1.set_tool_by_name", text="   " + tool['label'], depress=tool['active'], icon_value=tool['icon_value']).name = 'Hops'
+                pie.operator("m4n1.set_tool_by_name", text="   " + _p(tool['label']), depress=tool['active'], icon_value=tool['icon_value']).name = 'Hops'
             else:
                 pie.separator()
 
             if not (get_prefs().tools_show_quick_favorites and get_prefs().tools_show_tool_bar):
                 if get_prefs().tools_show_quick_favorites:
-                    pie.operator("wm.call_menu", text="Quick Favorites").name="SCREEN_MT_user_menu"
+                    pie.operator("wm.call_menu", text=_p("Quick Favorites")).name="SCREEN_MT_user_menu"
                 elif get_prefs().tools_show_tool_bar:
-                    pie.operator("wm.toolbar", text="Tool Bar")
+                    pie.operator("wm.toolbar", text=_p("Tool Bar"))
                 else:
                     pie.separator()
             else:
@@ -2694,22 +2694,22 @@ class PieTools(Menu):
 
                     name = hc if active_tool == 'builtin.select_box' else 'builtin.select_box'
                     tool = tools[name]
-                    pie.operator("m4n1.set_tool_by_name", text="   " + tool['label'], depress=tool['active'], icon_value=tool['icon_value']).name=name
+                    pie.operator("m4n1.set_tool_by_name", text="   " + _p(tool['label']), depress=tool['active'], icon_value=tool['icon_value']).name=name
 
                 else:
                     tool = tools['builtin.select_box']
-                    pie.operator("m4n1.set_tool_by_name", text="   " + tool['label'], depress=tool['active'], icon_value=tool['icon_value']).name='builtin.select_box'
+                    pie.operator("m4n1.set_tool_by_name", text="   " + _p(tool['label']), depress=tool['active'], icon_value=tool['icon_value']).name='builtin.select_box'
 
             else:
                 pie.separator()
 
             if get_prefs().tools_show_quick_favorites and get_prefs().tools_show_tool_bar:
-                pie.operator("wm.call_menu", text="Quick Favorites").name="SCREEN_MT_user_menu"
+                pie.operator("wm.call_menu", text=_p("Quick Favorites")).name="SCREEN_MT_user_menu"
             else:
                 pie.separator()
 
             if get_prefs().tools_show_tool_bar and get_prefs().tools_show_quick_favorites:
-                pie.operator("wm.toolbar", text="Tool Bar")
+                pie.operator("wm.toolbar", text=_p("Tool Bar"))
             else:
                 pie.separator()
 

@@ -16,7 +16,7 @@ class SwitchShading(bpy.types.Operator):
     bl_label = "M4N1: Switch Shading"
     bl_options = {'REGISTER', 'UNDO'}
 
-    shading_type: StringProperty(name="Shading Type", default='SOLID')
+    shading_type: StringProperty(name=_("Shading Type"), default='SOLID')
     toggled_overlays = False
 
     @classmethod
@@ -283,8 +283,8 @@ class AdjustBevelShaderRadius(bpy.types.Operator):
     bl_label = "M4N1: Adjust Bevel Radius"
     bl_options = {'REGISTER', 'UNDO'}
 
-    global_radius: BoolProperty(name="Adjust Global Bevel Radius", default=True)
-    decrease: BoolProperty(name="Decrease Radius", default=True)
+    global_radius: BoolProperty(name=_("Adjust Global Bevel Radius"), default=True)
+    decrease: BoolProperty(name=_("Decrease Radius"), default=True)
     factor: FloatProperty()
 
     @classmethod

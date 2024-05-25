@@ -6,7 +6,7 @@ from ... utils.draw import draw_circle
 from ... utils.ui import get_zoom_factor, init_timer_modal, set_countdown, get_timer_progress
 from ... utils.registration import get_prefs
 from ... colors import white, blue
-
+from bpy.app.translations import pgettext as _
 class DrawGroupRestPose(bpy.types.Operator):
     bl_idname = "m4n1.draw_group_rest_pose"
     bl_label = "M4N1: Draw Group Rest Pose"
@@ -14,9 +14,9 @@ class DrawGroupRestPose(bpy.types.Operator):
 
     location: FloatVectorProperty(name="Location", subtype='TRANSLATION', default=Vector((0, 0, 0)))
     size: FloatProperty(name="Size", default=1)
-    time: FloatProperty(name="Time (s)", default=1)
+    time: FloatProperty(name=_("Time (s)"), default=1)
     alpha: FloatProperty(name="Alpha", default=0.3, min=0.1, max=1)
-    reverse: BoolProperty(name="Reverse the Motion", default=False)
+    reverse: BoolProperty(name=_("Reverse the Motion"), default=False)
     def draw_HUD(self, context):
         alpha = get_timer_progress(self) * self.alpha * (5 if self.reverse else 1)
         scale = get_timer_progress(self) * 5

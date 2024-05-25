@@ -64,8 +64,8 @@ class Group(bpy.types.Operator):
 
             return {'FINISHED'}
 
-        text = ["ℹℹ Illegal Selection ℹℹ",
-                "You can't create a group from a selection of Objects that are all already parented to something (other other than group empties)"]
+        text = [_("ℹℹ Illegal Selection ℹℹ"),
+                _("You can't create a group from a selection of Objects that are all already parented to something (other other than group empties)")]
 
         draw_fading_label(context, text=text, x=self.coords.x, y=self.coords.y, color=[yellow, white], alpha=0.75, time=get_prefs().HUD_fade_group * 4, delay=1)
         return {'CANCELLED'}
@@ -142,7 +142,7 @@ class Group(bpy.types.Operator):
 
         process_group_poses(empty)
 
-        text = f"{'Sub' if new_parent else 'Root'} Goup: {empty.name}"
+        text = _("{} Goup: {}").format(_('Sub') if new_parent else _('Root'),empty.name)
         color = green if new_parent else yellow
         draw_fading_label(context, text=text, x=self.coords.x, y=self.coords.y, color=color, alpha=0.75, time=get_prefs().HUD_fade_group)
 
@@ -158,7 +158,7 @@ class UnGroup(bpy.types .Operator):
         if context.scene.M4.group_recursive_select and context.scene.M4.group_select:
             return _("Un-Group selected top-level Groups\nALT: Un-Group all selected Groups")
         else:
-            return "Un-Group selected top-level Groups\nALT: Un-Group all selected Groups\nCTRL: Un-Group entire Hierarchy down"
+            return _("Un-Group selected top-level Groups\nALT: Un-Group all selected Groups\nCTRL: Un-Group entire Hierarchy down")
 
     @classmethod
     def poll(cls, context):
@@ -266,7 +266,7 @@ class Groupify(bpy.types.Operator):
                 if not any([s in obj.name.lower() for s in ['grp', 'group']]):
                     obj.name = f"{obj.name}_GROUP"
 
-                set_group_pose(obj, name='Inception')
+                set_group_pose(obj, name=_('Inception'))
 
                 self.groupify(obj.children)
 
@@ -451,7 +451,7 @@ class Add(bpy.types.Operator):
             if get_prefs().group_fade_sizes:
                 fade_group_sizes(context, init=True)
 
-            text = f"Added {len(objects)} objects to group '{active_group.name}'"
+            text = _("Added {} objects to group '{}'").format(len(objects),active_group.name)
             draw_fading_label(context, text=text, x=self.coords.x, y=self.coords.y, color=green, time=get_prefs().HUD_fade_group)
 
             return {'FINISHED'}
@@ -562,7 +562,7 @@ class Remove(bpy.types.Operator):
             for empty in top_empties:
                 process_group_poses(empty)
 
-            text = f"Removed {len(group_objects)} objects from their group"
+            text = _("Removed {} objects from their group").format(len(group_objects))
             draw_fading_label(context, text=text, x=self.coords.x, y=self.coords.y, color=red, time=get_prefs().HUD_fade_group)
 
             return {'FINISHED'}
@@ -705,13 +705,13 @@ def draw_transform_group(op):
         if op.poseCOL:
             row.separator(factor=1)
             row.label(text="", icon='MOUSE_MMB')
-            row.label(text=f"Pose: {pose.name if pose else 'None'}{' (remove)' if pose and pose.remove else ''}")
+            row.label(text=_("Pose: {}{}").format(pose.name if pose else _('None'),_(' (remove)') if pose and pose.remove else ''))
 
             if op.pidx > 0:
                 row.separator(factor=1)
                 row.label(text="", icon='EVENT_ALT')
                 row.label(text="", icon='MOUSE_MMB')
-                row.label(text=f"Preview Alpha: {dynamic_format(op.empty.M4.group_pose_alpha, 0)}")
+                row.label(text=_("Preview Alpha: {}").format(dynamic_format(op.empty.M4.group_pose_alpha, 0)))
 
         row.separator(factor=2)
         row.label(text="", icon='EVENT_S')
@@ -739,7 +739,7 @@ class TransformGroup(bpy.types.Operator):
     axis: EnumProperty(name="Rotation Axis", items=axis_items, default='X')
     @classmethod
     def description(cls, context, properties):
-        return f"Rotate Group '{properties.name}' around its {properties.axis} Axis"
+        return _("Rotate Group '{}' around its {} Axis").format(properties.name,properties.axis)
 
     def draw_HUD(self, context):
         if self.area == context.area:
@@ -761,29 +761,29 @@ class TransformGroup(bpy.types.Operator):
                 draw_label(context, title=suffix, coords=Vector((self.HUD_x + dims[0] + dims2[0], self.HUD_y)), center=False, size=10, color=white, alpha=0.3)
 
             self.offset += 18
-            dims = draw_label(context, title="Rotate Group", coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=1)
-            dims2 = draw_label(context, title=" around ", coords=Vector((self.HUD_x + dims[0], self.HUD_y)), offset=self.offset, center=False, size=10, color=white, alpha=0.5)
+            dims = draw_label(context, title=_("Rotate Group"), coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=1)
+            dims2 = draw_label(context, title=_(" around "), coords=Vector((self.HUD_x + dims[0], self.HUD_y)), offset=self.offset, center=False, size=10, color=white, alpha=0.5)
             draw_label(context, title=self.axis, coords=Vector((self.HUD_x + dims[0] + dims2[0], self.HUD_y)), offset=self.offset, center=False, color=red if self.axis == 'X' else green if self.axis == 'Y' else blue, alpha=1)
 
             self.offset += 18
-            dims = draw_label(context, title="Angle: ", coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=0.5)
+            dims = draw_label(context, title=_("Angle: "), coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=0.5)
             alpha = 1 if self.pidx == 0 else 0.5
 
             angle = dynamic_format(self.HUD_angle, decimal_offset=0 if self.is_angle_snapping else 2)
             dims2 = draw_label(context, title=f"{angle}° ", coords=Vector((self.HUD_x + dims[0], self.HUD_y)), offset=self.offset, center=False, color=yellow if self.is_angle_snapping else white, alpha=alpha)
 
             if self.is_angle_snapping:
-                draw_label(context, title="Snapping", coords=Vector((self.HUD_x+ dims[0] + dims2[0], self.HUD_y)), offset=self.offset, center=False, color=yellow, alpha=alpha)
+                draw_label(context, title=_("Snapping"), coords=Vector((self.HUD_x+ dims[0] + dims2[0], self.HUD_y)), offset=self.offset, center=False, color=yellow, alpha=alpha)
 
             self.offset += 24
-            dims = draw_label(context, title="Pose: ", coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=0.5)
+            dims = draw_label(context, title=_("Pose: "), coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=0.5)
 
             max_dim = max([get_text_dimensions(context, f"{name}  ")[0] for name in self.poses])
 
             pose_axes_differ = len(set(pose.axis for pose in self.poseCOL if pose.axis)) > 1
 
             if self.pidx > 0:
-                alpha_dims = draw_label(context, title="Alpha: ", coords=Vector((self.HUD_x + dims[0] + max_dim, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=0.5)
+                alpha_dims = draw_label(context, title=_("Alpha: "), coords=Vector((self.HUD_x + dims[0] + max_dim, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=0.5)
                 draw_label(context, title=dynamic_format(self.empty.M4.group_pose_alpha, 0), coords=Vector((self.HUD_x + dims[0] + max_dim + alpha_dims[0], self.HUD_y)), offset=self.offset, center=False, color=white, alpha=1)
 
             for idx, name in enumerate(self.poses):
@@ -792,7 +792,7 @@ class TransformGroup(bpy.types.Operator):
                     self.offset += 18
 
                     pose = self.poseCOL[idx - 1]
-                    color = red if pose.remove else green if name == 'Inception' else yellow if name == 'LegacyPose' else blue
+                    color = red if pose.remove else green if name == _('Inception') else yellow if name == _('LegacyPose') else blue
 
                 else:
                     color = white
@@ -831,7 +831,7 @@ class TransformGroup(bpy.types.Operator):
                 for pose, batches in self.pose_batche_coords.items():
 
                     if batches:
-                        color = red if pose.remove else green if pose.name == 'Inception' else yellow if pose.name == 'LegacyPose' else blue
+                        color = red if pose.remove else green if pose.name == _('Inception') else yellow if pose.name == _('LegacyPose') else blue
 
                         if pose == selected_pose:
                             for batch in batches:
@@ -1293,10 +1293,10 @@ class SetupGroupGizmos(bpy.types.Operator):
 
             self.offset += 18
             alpha = 1 if self.empty.M4.show_group_gizmo else 0.25
-            dims = draw_label(context, title="Setup Group Gizmos ", coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=alpha)
+            dims = draw_label(context, title=_("Setup Group Gizmos "), coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=alpha)
 
             if not self.empty.M4.show_group_gizmo:
-                draw_label(context, title=" Disabled", coords=Vector((self.HUD_x + dims[0], self.HUD_y)), offset=self.offset, center=False, size=10, color=white, alpha=0.5)
+                draw_label(context, title=_(" Disabled"), coords=Vector((self.HUD_x + dims[0], self.HUD_y)), offset=self.offset, center=False, size=10, color=white, alpha=0.5)
 
             self.offset += 18
             axis_offset = 0
@@ -1307,10 +1307,10 @@ class SetupGroupGizmos(bpy.types.Operator):
                 axes.append(self.aligned_axis)
                 axes.sort()
 
-            dims = draw_label(context, title="Axes: ", coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=0.5)
+            dims = draw_label(context, title=_("Axes: "), coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=0.5)
 
             for axis in axes:
-                if axis == self.aligned_axis and not getattr(self.empty.M4, f"show_group_{axis.lower()}_rotation"):
+                if axis == self.aligned_axis and not getattr(self.empty.M4, _("show_group_{}_rotation").format(axis.lower())):
                     color, alpha = white, 0.3
                 else:
                     color = red if axis == 'X' else green if axis == 'Y' else blue
@@ -1321,7 +1321,7 @@ class SetupGroupGizmos(bpy.types.Operator):
 
             self.offset += 18
 
-            dims = draw_label(context, title="Size: ", coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=0.5)
+            dims = draw_label(context, title=_("Size: "), coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=0.5)
 
             decimal_offset = 1 if self.empty.M4.group_gizmo_size > 1 else 0
 
@@ -1340,13 +1340,13 @@ class SetupGroupGizmos(bpy.types.Operator):
             
             if context.scene.M4.group_gizmo_size != 1:
                 dims4 = draw_label(context, title=" ⚠", coords=Vector((self.HUD_x + dims[0] + dims2[0] + dims3[0], self.HUD_y)), offset=self.offset, center=False, size=20, color=yellow, alpha=1)
-                draw_label(context, title=f" Global: {dynamic_format(context.scene.M4.group_gizmo_size)}", coords=Vector((self.HUD_x + dims[0] + dims2[0] + dims3[0] + dims4[0], self.HUD_y)), offset=self.offset, center=False, color=white, alpha=0.25)
+                draw_label(context, title=_(" Global: {}").format(dynamic_format(context.scene.M4.group_gizmo_size)), coords=Vector((self.HUD_x + dims[0] + dims2[0] + dims3[0] + dims4[0], self.HUD_y)), offset=self.offset, center=False, color=white, alpha=0.25)
 
             if self.lock_axes:
                 self.offset += 18
 
-                dims = draw_label(context, title="Lock Rotational Axes ", coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=yellow, alpha=1)
-                draw_label(context, title="(those without Gizmos)", coords=Vector((self.HUD_x + dims[0], self.HUD_y)), offset=self.offset, center=False, size=10, color=white, alpha=0.5)
+                dims = draw_label(context, title=_("Lock Rotational Axes "), coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=yellow, alpha=1)
+                draw_label(context, title=_("(those without Gizmos)"), coords=Vector((self.HUD_x + dims[0], self.HUD_y)), offset=self.offset, center=False, size=10, color=white, alpha=0.5)
 
     def draw_VIEW3D(self, context):
         if context.area == self.area:
@@ -1640,9 +1640,9 @@ class UpdateGroupPose(bpy.types.Operator):
     bl_description = "Update active Pose from current Group Empty Rotation"
     bl_options = {'REGISTER', 'UNDO'}
 
-    is_batch = BoolProperty(name="Batch Retrieval", default=False)
-    update_up: BoolProperty(name="Update Up", description="Update Poses Up the Hierarchy too", default=False)
-    update_unlinked: BoolProperty(name="Update Unlinked", description="Update Poses, that have been unlinked too", default=False)
+    is_batch = BoolProperty(name=_("Batch Retrieval"), default=False)
+    update_up: BoolProperty(name=_("Update Up"), description=_("Update Poses Up the Hierarchy too"), default=False)
+    update_unlinked: BoolProperty(name=_("Update Unlinked"), description=_("Update Poses, that have been unlinked too"), default=False)
     @classmethod
     def poll(cls, context):
         if context.mode == 'OBJECT':
@@ -1724,9 +1724,9 @@ class RetrieveGroupPose(bpy.types.Operator):
 
     index: IntProperty()
 
-    is_batch = BoolProperty(name="Batch Retrieval", default=False)
-    retrieve_up: BoolProperty(name="Retrieve Up", description="Retrieve Poses Up the Hierarchy too", default=False)
-    retrieve_unlinked: BoolProperty(name="Retrieve Unlinked", description="Retrieve Poses, that have been unlinked too", default=False)
+    is_batch = BoolProperty(name=_("Batch Retrieval"), default=False)
+    retrieve_up: BoolProperty(name=_("Retrieve Up"), description=_("Retrieve Poses Up the Hierarchy too"), default=False)
+    retrieve_unlinked: BoolProperty(name=_("Retrieve Unlinked"), description=_("Retrieve Poses, that have been unlinked too"), default=False)
     @classmethod
     def poll(cls, context):
         if context.mode == 'OBJECT':
@@ -1843,10 +1843,10 @@ class RemoveGroupPose(bpy.types.Operator):
 
             get_remove_poses(self, active, uuid)
 
-    is_batch = BoolProperty(name="Batch Retrieval", default=False)
-    remove_batch: BoolProperty(name="Remove related Batch Poses", description="Remove all related Batch Poses in the Group Hierarchy", default=True, update=update_remove_poses)
-    remove_up: BoolProperty(name="Remove Up", description="Remove Batch Poses further Up the Hierarchy too", default=False, update=update_remove_poses)
-    remove_unlinked: BoolProperty(name="Remove Disconnected", description="Remove Batch Poses, that have been unlinked too", default=False, update=update_remove_poses)
+    is_batch = BoolProperty(name=_("Batch Retrieval"), default=False)
+    remove_batch: BoolProperty(name=_("Remove related Batch Poses"), description=_("Remove all related Batch Poses in the Group Hierarchy"), default=True, update=update_remove_poses)
+    remove_up: BoolProperty(name=_("Remove Up"), description=_("Remove Batch Poses further Up the Hierarchy too"), default=False, update=update_remove_poses)
+    remove_unlinked: BoolProperty(name=_("Remove Disconnected"), description=_("Remove Batch Poses, that have been unlinked too"), default=False, update=update_remove_poses)
     @classmethod
     def poll(cls, context):
         if context.mode == 'OBJECT':
@@ -1866,7 +1866,7 @@ class RemoveGroupPose(bpy.types.Operator):
             row.prop(self, 'remove_unlinked', toggle=True)
 
             column.separator()
-            column.label(text="Batch Poses to be Removed:")
+            column.label(text=_("Batch Poses to be Removed:"))
 
             for is_active_empty, objname, posename, linked in self.remove_poses:
                 row = column.row(align=False)

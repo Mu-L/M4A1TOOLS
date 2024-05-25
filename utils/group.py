@@ -7,7 +7,7 @@ from . object import parent, unparent
 from . math import average_locations, get_loc_matrix, get_rot_matrix
 from . mesh import get_coords
 from . import registration as r
-
+from bpy.app.translations import pgettext as _
 def group(context, sel, location='AVERAGE', rotation='WORLD'):
     col = get_group_collection(context, sel)
 
@@ -30,7 +30,7 @@ def group(context, sel, location='AVERAGE', rotation='WORLD'):
         parent(obj, empty)
         obj.M4.is_group_object = True
 
-    set_group_pose(empty, name='Inception')
+    set_group_pose(empty, name=_('Inception'))
 
     return empty
 

@@ -9,13 +9,13 @@ from .. utils.ui import init_cursor, init_status, finish_status
 from .. utils.asset import get_asset_details_from_space
 from .. items import alt, ctrl
 from .. colors import white, yellow, green, red
-
+from bpy.app.translations import pgettext as _
 def draw_material_pick_status(op):
     def draw(self, context):
         layout = self.layout
 
         row = layout.row(align=True)
-        row.label(text=f"Material Picker")
+        row.label(text=_("Material Picker"))
 
         if op.assign_from_assetbrowser:
             row.label(text="Assign Material from Asset Browsr to Object under Mouse")
@@ -41,11 +41,11 @@ def draw_material_pick_status(op):
         row.separator(factor=10)
 
         row.label(text="", icon='EVENT_ALT')
-        row.label(text=f"Assign Material: {op.assign}")
+        row.label(text=_("Assign Material: {}").format(op.assign))
 
         if op.asset_browser:
             row.label(text="", icon='EVENT_CTRL')
-            row.label(text=f"Assign Material from Asset Browser: {op.assign_from_assetbrowser}")
+            row.label(text=_("Assign Material from Asset Browser: {}").format(op.assign_from_assetbrowser))
 
     return draw
 
@@ -65,7 +65,7 @@ class MaterialPicker(bpy.types.Operator):
     def draw_HUD(self, context):
         draw_init(self, None)
 
-        title, color = ("Assign from Asset Browser ", green) if self.assign_from_assetbrowser else ("Assign", yellow) if self.assign else ("Pick", white)
+        title, color = (_("Assign from Asset Browser "), green) if self.assign_from_assetbrowser else (_("Assign"), yellow) if self.assign else (_("Pick"), white)
         dims = draw_label(context, title=title, coords=Vector((self.HUD_x, self.HUD_y)), color=color, center=False)
 
         if self.assign_from_assetbrowser:
@@ -90,7 +90,7 @@ class MaterialPicker(bpy.types.Operator):
 
             color = red if self.pick_material_name == 'None' else white
 
-            dims = draw_label(context, title='Material ', coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=0.5)
+            dims = draw_label(context, title=_('Material '), coords=Vector((self.HUD_x, self.HUD_y)), offset=self.offset, center=False, color=white, alpha=0.5)
             draw_label(context, title=self.pick_material_name, coords=Vector((self.HUD_x + dims[0], self.HUD_y)), offset=self.offset, center=False, color=color, alpha=1)
 
     def modal(self, context, event):
@@ -297,19 +297,19 @@ class MaterialPicker(bpy.types.Operator):
                                  'material_name': matname}
 
                     else:
-                        msg = f".blend file does not exist: {os.path.join(libpath, blendname)}"
+                        msg = _(".blend file does not exist: {}").format(os.path.join(libpath, blendname))
                         asset = {'error': msg}
 
                 else:
-                    msg = "No material selected in asset browser!"
+                    msg = _("No material selected in asset browser!")
                     asset = {'error': msg}
 
             else:
-                msg = "LOCAL or unsupported library chosen!"
+                msg = _("LOCAL or unsupported library chosen!")
                 asset = {'error': msg}
 
         else:
-            msg = "There is no asset browser in this workspace"
+            msg = _("There is no asset browser in this workspace")
             asset = {'error': msg}
 
         if debug:

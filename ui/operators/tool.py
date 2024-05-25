@@ -5,7 +5,7 @@ from ... utils.tools import get_tools_from_context, get_tool_options, get_active
 from ... utils.registration import get_addon_prefs, get_addon, get_prefs
 from ... utils.tools import prettify_tool_name
 from ... colors import white, green
-
+from bpy.app.translations import pgettext as _
 boxcutter = None
 
 class SetToolByName(bpy.types.Operator):
@@ -14,7 +14,7 @@ class SetToolByName(bpy.types.Operator):
     bl_description = "Set Tool by Name"
     bl_options = {'REGISTER', 'UNDO'}
 
-    name: StringProperty(name="Tool name/ID")
+    name: StringProperty(name=_("Tool name/ID"))
     alpha: FloatProperty(name="Alpha", default=0.5, min=0.1, max=1)
     def draw(self, context):
         layout = self.layout
@@ -36,7 +36,7 @@ class SetToolByName(bpy.types.Operator):
         else:
             size, color = 12, white
 
-        draw_fading_label(context, text=prettify_tool_name(self.name), time=get_prefs().HUD_fade_tools_pie, size=size, color=color, move_y=10)
+        draw_fading_label(context, text=_(prettify_tool_name(self.name)), time=get_prefs().HUD_fade_tools_pie, size=size, color=color, move_y=10)
 
         return {'FINISHED'}
 

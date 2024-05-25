@@ -1,7 +1,11 @@
 import bpy
 from math import radians
+import os
+from . registration import get_prefs
+from . append import append_nodetree
 from .. items import mirror_props
-
+from . nodes import get_nodegroup_input_identifier
+from bpy.app.translations import pgettext as _
 def add_triangulate(obj):
     mod = obj.modifiers.new(name="Triangulate", type="TRIANGULATE")
     mod.keep_custom_normals = True
@@ -19,7 +23,7 @@ def add_shrinkwrap(obj, target):
 
 def add_surface_slide(obj, target):
     mod = add_shrinkwrap(obj, target)
-    mod.name = 'Surface Slide'
+    mod.name = _('Surface Slide')
     return mod
 
 def add_mods_from_dict(obj, modsdict):
@@ -52,41 +56,27 @@ def add_boolean(obj, operator, method='DIFFERENCE', solver='FAST'):
     return boolean
 
 def add_auto_smooth(obj, angle=20):
-    with bpy.context.temp_override(object=obj):
-        bpy.ops.object.modifier_add_node_group(asset_library_type='ESSENTIALS', asset_library_identifier="", relative_asset_identifier="geometry_nodes/smooth_by_angle.blend/NodeTree/Smooth by Angle")
+    smooth_by_angles = [tree for tree in bpy.data.node_groups if tree.name.startswith('Smooth by Angle')]
 
-        mod = get_auto_smooth(obj)
+    if smooth_by_angles:
+        ng = smooth_by_angles[0]
 
-        if mod:
-            mod.show_expanded = False
-            mod.name = "Auto Smooth"
+    else:
+        path = os.path.join(bpy.utils.system_resource('DATAFILES'), 'assets', 'geometry_nodes', 'smooth_by_angle.blend')
+        ng = append_nodetree(path, 'Smooth by Angle')
 
-            mod['Input_1'] = radians(angle)
-            mod.node_group.interface_update(bpy.context)
-            return mod
+        if not ng:
+            print("WARNING: Could not import Smooth by Angle node group from ESSENTIALS! This should never happen")
+            return
 
-        elif (ng := bpy.data.node_groups.get('Smooth by Angle')) and (mods := [mod for mod in obj.modifiers if mod.type == 'NODES' and not mod.node_group]):
-            print("WARNING: Blender says: 'Warning: Asset loading is unfinished' (probably)")
-            print("         But empty geo node mod is present, and 'Smooth by Angle' node group is present in the file already too")
+    mod = obj.modifiers.new(name="Auto Smooth", type="NODES")
+    mod.node_group = ng
+    mod.show_expanded = get_prefs().auto_smooth_show_expanded
 
-            mod = mods[0]
-            mod.node_group = ng
+    set_mod_input(mod, 'Angle', radians(angle))
 
-            mod.show_expanded = False
-            mod.name = "Auto Smooth"
-
-            mod['Input_1'] = radians(angle)
-            mod.node_group.interface_update(bpy.context)
-            return mod
-
-        else:
-            print("WARNING: Blender says: 'Warning: Asset loading is unfinished' (probably)")
-            ng = bpy.data.node_groups.get('Smooth by Angle')
-            mods = [mod for mod in obj.modifiers if mod.type == 'NODES' and not mod.node_group]
-
-            print("         node group:", ng)
-            print("empty geo node mods:", mods)
-            print("                     TODO!")
+    mod.id_data.update_tag()
+    return mod
 
 def get_auto_smooth(obj):
     if (mod := obj.modifiers.get('Auto Smooth', None)) and mod.type == 'NODES':
@@ -214,3 +204,15 @@ def sort_mod(mod):
                 else:
                     move_mod(mod, index + 1)
                     break
+def get_mod_input(mod, name):
+    if ng := mod.node_group:
+        identifier, socket_type = get_nodegroup_input_identifier(ng, name)
+
+        if identifier:
+            return mod[identifier]
+
+def set_mod_input(mod, name, value):
+    if ng := mod.node_group:
+        identifier, socket_type = get_nodegroup_input_identifier(ng, name)
+
+        mod[identifier] = value

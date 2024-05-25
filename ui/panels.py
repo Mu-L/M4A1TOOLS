@@ -64,13 +64,13 @@ class PanelM4N1tools(bpy.types.Panel):
                 if m3.show_smart_drive:
                     self.draw_smart_drive(m3, box)
 
-            if p.activate_unity:
-                box = layout.box()
-
-                box.prop(m3, "show_unity", text="Unity", icon='TRIA_DOWN' if m3.show_unity else 'TRIA_RIGHT', emboss=False)
-
-                if m3.show_unity:
-                    self.draw_unity(context, m3, box)
+            # if p.activate_unity:
+            #     box = layout.box()
+            #
+            #     box.prop(m3, "show_unity", text="Unity", icon='TRIA_DOWN' if m3.show_unity else 'TRIA_RIGHT', emboss=False)
+            #
+            #     if m3.show_unity:
+            #         self.draw_unity(context, m3, box)
 
             if p.activate_group:
                 box = layout.box()
@@ -80,13 +80,13 @@ class PanelM4N1tools(bpy.types.Panel):
                 if m3.show_group:
                     self.draw_group(context, m3, box)
 
-            if p.activate_assetbrowser_tools:
-                box = layout.box()
-
-                box.prop(m3, "show_assetbrowser_tools", text="Assetbrowser Tools", icon='TRIA_DOWN' if m3.show_assetbrowser_tools else 'TRIA_RIGHT', emboss=False)
-
-                if m3.show_assetbrowser_tools:
-                    self.draw_assetbrowser_tools(context, box)
+            # if p.activate_assetbrowser_tools:
+            #     box = layout.box()
+            #
+            #     box.prop(m3, "show_assetbrowser_tools", text="Assetbrowser Tools", icon='TRIA_DOWN' if m3.show_assetbrowser_tools else 'TRIA_RIGHT', emboss=False)
+            #
+            #     if m3.show_assetbrowser_tools:
+            #         self.draw_assetbrowser_tools(context, box)
             # #网格形变助手
             # if p.activate_meshdeform_helper:
             #     box = layout.box()
@@ -120,96 +120,97 @@ class PanelM4N1tools(bpy.types.Panel):
                         draw_left(a, context)
                         draw_right(b, context)
             #波浪修改器
-            mod = bpy.context.object.modifiers.active
-            if p.activate_wave_modifier and mod and (mod.type == 'WAVE'):
-                box = layout.box()
-                box.prop(m3, "show_wave_modifier", text="Wave Modifier", icon='TRIA_DOWN' if m3.show_wave_modifier else 'TRIA_RIGHT', emboss=False)
-                if m3.show_wave_modifier :
-                    column = box.column(align=True)
-                    b = column.box()
-                    b.label(text="Wave Modifier")
-                    b.use_property_split = True
+            if bpy.context.object.type=='MESH':
+                mod = bpy.context.object.modifiers.active
+                if p.activate_wave_modifier and mod and (mod.type == 'WAVE'):
+                    box = layout.box()
+                    box.prop(m3, "show_wave_modifier", text="Wave Modifier", icon='TRIA_DOWN' if m3.show_wave_modifier else 'TRIA_RIGHT', emboss=False)
+                    if m3.show_wave_modifier :
+                        column = box.column(align=True)
+                        b = column.box()
+                        b.label(text="Wave Modifier")
+                        b.use_property_split = True
 
-                    prop = bpy.context.object.wave_modifiers_helper
+                        prop = bpy.context.object.wave_modifiers_helper
 
-                    col = b.column()
+                        col = b.column()
 
-                    row = col.row(align=True, heading='Motion')
-                    row.prop(mod, 'use_x', expand=True, toggle=1)
-                    row.prop(mod, 'use_y', expand=True, toggle=1)
+                        row = col.row(align=True, heading='Motion')
+                        row.prop(mod, 'use_x', expand=True, toggle=1)
+                        row.prop(mod, 'use_y', expand=True, toggle=1)
 
-                    col.prop(mod, 'use_cyclic')
+                        col.prop(mod, 'use_cyclic')
 
-                    row = col.row(align=False, heading='Along Normals')
-                    row.prop(mod, 'use_normal', text='')
+                        row = col.row(align=False, heading='Along Normals')
+                        row.prop(mod, 'use_normal', text='')
 
-                    row.prop(mod, 'use_normal_x', expand=True, toggle=1, text='X')
-                    row.prop(mod, 'use_normal_y', expand=True, toggle=1, text='Y')
-                    row.prop(mod, 'use_normal_z', expand=True, toggle=1, text='Z')
+                        row.prop(mod, 'use_normal_x', expand=True, toggle=1, text='X')
+                        row.prop(mod, 'use_normal_y', expand=True, toggle=1, text='Y')
+                        row.prop(mod, 'use_normal_z', expand=True, toggle=1, text='Z')
 
-                    col.prop(mod, 'falloff_radius', text='Falloff')
-                    col.prop(mod, 'height')
+                        col.prop(mod, 'falloff_radius', text='Falloff')
+                        col.prop(mod, 'height')
 
-                    row = col.row(align=True)
-                    row.prop(prop, 'width')
-                    row.prop(prop, 'width_use_high_precision',
-                             icon='PREFERENCES',
-                             icon_only=True)
+                        row = col.row(align=True)
+                        row.prop(prop, 'width')
+                        row.prop(prop, 'width_use_high_precision',
+                                 icon='PREFERENCES',
+                                 icon_only=True)
 
-                    col.prop(prop, 'space')
+                        col.prop(prop, 'space')
 
-                    row = col.row()
-                    row.prop(prop, 'direction', expand=True)
+                        row = col.row()
+                        row.prop(prop, 'direction', expand=True)
 
-                    col.separator()
-
-                    col.prop_search(mod,
-                                    "vertex_group",
-                                    context.object,
-                                    "vertex_groups",
-                                    text="Vertex Groups")
-                    b2 = column.box()
-                    b2.label(text="Animation")
-                    # def draw_wave_animation(context):
-                    # layout = bpy.context.area.regions.type('UI').layout
-                    b2.use_property_split = True
-
-                    obj = get_active_object()
-                    mod = get_active_wave_modifier(obj)
-                    prop = get_wave_properties(obj)
-
-                    # if mod and prop:
-                    is_out = is_wave_modifier_out(obj)
-                    sum_frame, stop_frame, frame_start, frame_end = calculate_frame_info(mod, prop, is_out)
-
-                    row = b2.row(align=True)
-                    row.prop(prop, 'frequency')
-                    row.prop(prop, 'cycle', icon='FILE_REFRESH', icon_only=True)
-
-                    if prop.cycle:
-                        b2.prop(prop, 'offset')
-                        b2.separator()
-                        col = b2
-                    else:
-                        b2.separator()
-                        col = b2.column(align=True)
-                        if is_out:
-                            col.prop(prop, 'frame_start')
-                            col.prop(prop, 'frame_end')
-                        else:
-                            col.prop(prop, 'frame_zero')
-                            col.prop(prop, 'frame_stop')
-                        col.prop(mod, 'damping_time', text='Damping')
                         col.separator()
 
-                    scene = bpy.context.scene
-                    if prop.cycle:
-                        col.label(text=f'Total frame count for looping: {scene.frame_end - scene.frame_start}')
-                    else:
-                        col.label(text=f'Total frame count for motion: {round(sum_frame, 2)}')
-                        col.label(text=f'{"Frame Start" if is_out else "Frame Zero"}: {frame_start}')
-                        col.label(text=f'{"Frame End" if is_out else "Frame Stop"}: {frame_end}')
-                        col.label(text=f'Full stop frame: {round(stop_frame, 2)}')
+                        col.prop_search(mod,
+                                        "vertex_group",
+                                        context.object,
+                                        "vertex_groups",
+                                        text="Vertex Groups")
+                        b2 = column.box()
+                        b2.label(text="Animation")
+                        # def draw_wave_animation(context):
+                        # layout = bpy.context.area.regions.type('UI').layout
+                        b2.use_property_split = True
+
+                        obj = get_active_object()
+                        mod = get_active_wave_modifier(obj)
+                        prop = get_wave_properties(obj)
+
+                        # if mod and prop:
+                        is_out = is_wave_modifier_out(obj)
+                        sum_frame, stop_frame, frame_start, frame_end = calculate_frame_info(mod, prop, is_out)
+
+                        row = b2.row(align=True)
+                        row.prop(prop, 'frequency')
+                        row.prop(prop, 'cycle', icon='FILE_REFRESH', icon_only=True)
+
+                        if prop.cycle:
+                            b2.prop(prop, 'offset')
+                            b2.separator()
+                            col = b2
+                        else:
+                            b2.separator()
+                            col = b2.column(align=True)
+                            if is_out:
+                                col.prop(prop, 'frame_start')
+                                col.prop(prop, 'frame_end')
+                            else:
+                                col.prop(prop, 'frame_zero')
+                                col.prop(prop, 'frame_stop')
+                            col.prop(mod, 'damping_time', text='Damping')
+                            col.separator()
+
+                        scene = bpy.context.scene
+                        if prop.cycle:
+                            col.label(text=f'Total frame count for looping: {scene.frame_end - scene.frame_start}')
+                        else:
+                            col.label(text=f'Total frame count for motion: {round(sum_frame, 2)}')
+                            col.label(text=f'{"Frame Start" if is_out else "Frame Zero"}: {frame_start}')
+                            col.label(text=f'{"Frame End" if is_out else "Frame Stop"}: {frame_end}')
+                            col.label(text=f'Full stop frame: {round(stop_frame, 2)}')
 
 
 

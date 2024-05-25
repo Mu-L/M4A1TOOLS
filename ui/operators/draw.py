@@ -3,20 +3,20 @@ from bpy.props import FloatProperty, StringProperty, FloatVectorProperty, BoolPr
 from mathutils import Vector
 from ... utils.draw import draw_label
 from ... utils.ui import get_scale, init_timer_modal, set_countdown, get_timer_progress
-
+from bpy.app.translations import pgettext as _
 class DrawLabel(bpy.types.Operator):
     bl_idname = "m4n1.draw_label"
     bl_label = "M4N1: Draw Label"
     bl_description = ""
     bl_options = {'INTERNAL'}
 
-    text: StringProperty(name="Text to draw the HUD", default='Text')
-    size: FloatProperty(name="Text Size", default=12)
-    coords: FloatVectorProperty(name='Screen Coordinates', size=2, default=(100, 100))
-    center: BoolProperty(name='Center', default=True)
-    color: FloatVectorProperty(name='Screen Coordinates', size=3, default=(1, 1, 1))
-    alpha: FloatProperty(name="Alpha", default=0.5, min=0.1, max=1)
-    move_y: IntProperty(name="Move Up or Down", default=0)
+    text: StringProperty(name=_("Text to draw the HUD"), default='Text')
+    size: FloatProperty(name=_("Text Size"), default=12)
+    coords: FloatVectorProperty(name=_('Screen Coordinates'), size=2, default=(100, 100))
+    center: BoolProperty(name=_('Center'), default=True)
+    color: FloatVectorProperty(name=_('Screen Coordinates'), size=3, default=(1, 1, 1))
+    alpha: FloatProperty(name=_("Alpha"), default=0.5, min=0.1, max=1)
+    move_y: IntProperty(name=_("Move Up or Down"), default=0)
     time: FloatProperty(name="", default=1, min=0.1)
     cancel: StringProperty()
 
