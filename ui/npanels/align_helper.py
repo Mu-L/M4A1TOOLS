@@ -1,7 +1,7 @@
 import bpy
 from bpy.types import Panel
 
-from ...icons.aliogn_helper.icon import get_icon
+from ...icons.align_helper.icon import get_icon
 from ...ui.operators.align_helper import AlignObject
 from ...utils.align_helper import screen_relevant_direction_3d_axis
 
