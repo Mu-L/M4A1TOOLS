@@ -115,7 +115,7 @@ REG_ALIGN_HELPER_TAG=False
 def reg_align_helper():
     global REG_ALIGN_HELPER_TAG
     if not REG_ALIGN_HELPER_TAG:
-        from .icons.aliogn_helper.icon import register as ah_icon_reg
+        from .icons.align_helper.icon import register as ah_icon_reg
         ah_icon_reg()
         # from .ui.npanels.align_helper import register as ah_np_reg
         # ah_np_reg()
@@ -123,7 +123,7 @@ def reg_align_helper():
 def unreg_align_helper():
     global REG_ALIGN_HELPER_TAG
     try:
-        from .icons.aliogn_helper.icon import unregister as ah_icon_unreg
+        from .icons.align_helper.icon import unregister as ah_icon_unreg
         ah_icon_unreg()
         # from .ui.npanels.align_helper import unregister as ah_np_unreg
         # ah_np_unreg()
