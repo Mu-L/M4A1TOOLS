@@ -107,6 +107,8 @@ class OperatorProperty(TempProp):
     z_align_func: EnumProperty(name='Z', items=Data.ENUM_ALIGN_FUNC,
                                default='CENTER', )
 
+    including_children: BoolProperty(name='Include Children', default=True)
+
     @property
     def is_fixed_mode(self):
         return self.distribution_mode == "FIXED"
@@ -156,7 +158,6 @@ class AlignUi(OperatorProperty):
         row = row.row()
         row.active = self.align_location
         row.row().prop(self, 'align_location_axis')
-        # row.row().prop(self, f'{self.align_mode.lower()}'+'_axis')
 
     def draw_default_ui(self, layout: bpy.types.UILayout):
         row = layout.row()
@@ -175,6 +176,7 @@ class AlignUi(OperatorProperty):
 
     def draw_original(self, layout: bpy.types.UILayout):
         self.draw_default_ui(layout)
+
     def draw_active(self, layout: bpy.types.UILayout):
         self.draw_default_ui(layout)
 
@@ -195,15 +197,13 @@ class AlignUi(OperatorProperty):
         col = layout.column()
 
         col.row().prop(self, 'ground_mode', expand=True)
-        # col.prop(self, 'align_to_ground_object') TODO ground object
-        # col.prop_search(self, 'ground_object_name', bpy.data, 'objects')
-        # col.separator(factor=2)
 
         row = col.row()
         row.prop(self, 'align_location')
         row = row.row()
         row.active = self.align_location
         row.prop(self, 'align_location_axis', expand=True)
+        layout.prop(self, "including_children")
 
     def draw_align(self, layout: bpy.types.UILayout):
         col = layout.column()
@@ -398,7 +398,13 @@ class SetLocation(GetLocation):
             '''
             run_func = getattr(self, f'align_to_{align_mode.lower()}', None)
             self.index = index  # 分布对齐用,查找当前物体需要对齐到的目标
-            if run_func:
+
+            if align_mode.lower() == "ground":
+                is_ground_child = self.including_children or (not self.including_children and obj.parent is None)
+            else:
+                is_ground_child = True
+                
+            if run_func and is_ground_child:
                 run_func(context, obj)
 
     def align_to_original(self, context, obj):
