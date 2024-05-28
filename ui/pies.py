@@ -2118,7 +2118,7 @@ class PieTransform(Menu):
         op.orientation = 'LOCAL'
 
         orientation = 'VIEW' if m3.custom_views_local or m3.custom_views_cursor else 'GLOBAL'
-        op = pie.operator('m4a1.set_transform_preset', text=orientation.capitalize())
+        op = pie.operator('m4a1.set_transform_preset', text=_p(orientation.capitalize()))
         op.pivot = 'MEDIAN_POINT'
         op.orientation = orientation
 

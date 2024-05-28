@@ -374,9 +374,9 @@ def get_pie_menus():
 
     classlists, keylists, count = get_cursor_pie(classlists, keylists, count)
 
-    # classlists, keylists, count = get_transform_pie(classlists, keylists, count)
+    classlists, keylists, count = get_transform_pie(classlists, keylists, count)
 
-    # classlists, keylists, count = get_snapping_pie(classlists, keylists, count)
+    classlists, keylists, count = get_snapping_pie(classlists, keylists, count)
 
     classlists, keylists, count = get_collections_pie(classlists, keylists, count)
 

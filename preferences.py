@@ -746,8 +746,8 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
         draw_split_row(self, column, prop='activate_align_pie', text='Alignments Pie', label='Edit mesh and UV alignments', factor=0.25)
         draw_split_row(self, column, prop='activate_align_helper_pie', text='Align Helper Pie', label='Object Alignment Assistant',factor=0.25)
         draw_split_row(self, column, prop='activate_cursor_pie', text='Cursor and Origin Pie', label='Cursor and Origin manipulation', factor=0.25)
-        # draw_split_row(self, column, prop='activate_transform_pie', text='Transform Pie', label='Transform Orientations and Pivots', factor=0.25)
-        # draw_split_row(self, column, prop='activate_snapping_pie', text='Snapping Pie', label='Snapping', factor=0.25)
+        draw_split_row(self, column, prop='activate_transform_pie', text='Transform Pie', label='Transform Orientations and Pivots', factor=0.25)
+        draw_split_row(self, column, prop='activate_snapping_pie', text='Snapping Pie', label='Snapping', factor=0.25)
         draw_split_row(self, column, prop='activate_collections_pie', text='Collections Pie', label='Collection management', factor=0.25)
         # draw_split_row(self, column, prop='activate_workspace_pie', text='Workspace Pie', label='Switch Workplaces. If enabled, customize it in ui/pies.py', factor=0.25)
 
@@ -1238,15 +1238,15 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
                         if self.activate_transform_pie:
                             draw_split_row(self, column, prop='cursor_set_transform_preset', label='Set Transform Preset when Setting Cursor')
 
-        # if getattr(bpy.types, "M4A1_MT_snapping_pie", False):
-        #     bb = b.box()
-        #     bb.prop(self, 'snapping_pie_show', text="Snapping Pie", icon='TRIA_DOWN' if self.snapping_pie_show else 'TRIA_RIGHT', emboss=False)
-        #
-        #     if self.snapping_pie_show:
-        #         column = bb.column(align=True)
-        #
-        #         draw_split_row(self, column, prop='snap_show_absolute_grid', label='Show Absolute Grid Snapping')
-        #         draw_split_row(self, column, prop='snap_show_volume', label='Show Volume Snapping')
+        if getattr(bpy.types, "M4A1_MT_snapping_pie", False):
+            bb = b.box()
+            bb.prop(self, 'snapping_pie_show', text="Snapping Pie", icon='TRIA_DOWN' if self.snapping_pie_show else 'TRIA_RIGHT', emboss=False)
+
+            if self.snapping_pie_show:
+                column = bb.column(align=True)
+
+                draw_split_row(self, column, prop='snap_show_absolute_grid', label='Show Absolute Grid Snapping')
+                draw_split_row(self, column, prop='snap_show_volume', label='Show Volume Snapping')
 
         # if getattr(bpy.types, "M4A1_MT_workspace_pie", False):
         #     bb = b.box()

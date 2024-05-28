@@ -18,19 +18,19 @@ class SetSnappingPreset(bpy.types.Operator):
     @classmethod
     def description(cls, context, properties):
         if properties.element == 'VERTEX':
-            return "Snap to Vertices"
+            return _("Snap to Vertices")
 
         elif properties.element == 'EDGE':
-            return "Snap to Edges"
+            return _("Snap to Edges")
 
         elif properties.element == 'FACE' and properties.align_rotation:
-            return "Snap to Faces and Align the Rotation"
+            return _("Snap to Faces and Align the Rotation")
 
         elif properties.element == 'INCREMENT':
-            return "Snap to Absolute Grid Points"
+            return _("Snap to Absolute Grid Points")
 
         elif properties.element == 'VOLUME':
-            return "Snap to Volumes"
+            return _("Snap to Volumes")
 
     @classmethod
     def poll(cls, context):
