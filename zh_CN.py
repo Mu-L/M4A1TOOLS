@@ -1183,5 +1183,9 @@ data = {
     'Snap to Volumes':'吸附到体积',
     'Show Absolute Grid Snapping':'显示绝对网格吸附',
     'Show Volume Snapping':'显示体积吸附',
+    'Transform Pie':'变换菜单',
+    'Snapping Pie':'吸附菜单',
+    'Selec':'aaa',
+    'Selec':'aaa',
     # 'Selec':'aaa',
 }
