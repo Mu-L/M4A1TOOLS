@@ -306,8 +306,10 @@ class GetLocation(AlignUi,
 
     def invoke_init_object_location(self, context):
         # 无法使用物体作为key 因为操作符有undo操作,只能将name作为key
+        deep = bpy.context.evaluated_depsgraph_get()
 
-        for obj in context.selected_objects.copy():
+        for a in context.selected_objects.copy():
+            obj = a.evaluated_get(deep)
             is_valid_obj_type = (obj.type in Data.VALID_OBJ_TYPE)
             obj_not_in_data = obj not in self.data
             is_mesh = (obj.type == 'MESH')
@@ -403,7 +405,7 @@ class SetLocation(GetLocation):
                 is_ground_child = self.including_children or (not self.including_children and obj.parent is None)
             else:
                 is_ground_child = True
-                
+
             if run_func and is_ground_child:
                 run_func(context, obj)
 
