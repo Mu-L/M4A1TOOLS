@@ -317,7 +317,7 @@ def get_tools():
 
     classlists, keylists, count = get_mirror(classlists, keylists, count)
 
-    classlists, keylists, count = get_align(classlists, keylists, count)
+    # classlists, keylists, count = get_align(classlists, keylists, count)
 
     classlists, keylists, count = get_apply(classlists, keylists, count)
 
