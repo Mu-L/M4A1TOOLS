@@ -129,29 +129,29 @@ def unreg_align_helper():
         # ah_np_unreg()
     except:pass
     REG_ALIGN_HELPER_TAG=False
-#移动控制
-def draw_control_move_offset(self, context):
+# #移动控制
+# def draw_control_move_offset(self, context):
     
-        layout = self.layout
-        layout.prop(context.scene.M4, "control_move_offset")
-REG_CONTROL_MOVE_TAG=False
-def reg_control_move():
-    global REG_CONTROL_MOVE_TAG
-    if not REG_CONTROL_MOVE_TAG:
-        bpy.types.VIEW3D_PT_tools_object_options_transform.append(draw_control_move_offset)
-        REG_CONTROL_MOVE_TAG=True
-def unreg_control_move():
-    global REG_CONTROL_MOVE_TAG
-    bpy.types.VIEW3D_PT_tools_object_options_transform.remove(draw_control_move_offset)
-    REG_CONTROL_MOVE_TAG=False
+#         layout = self.layout
+#         layout.prop(context.scene.M4, "control_move_offset")
+# REG_CONTROL_MOVE_TAG=False
+# def reg_control_move():
+#     global REG_CONTROL_MOVE_TAG
+#     if not REG_CONTROL_MOVE_TAG:
+#         bpy.types.VIEW3D_PT_tools_object_options_transform.append(draw_control_move_offset)
+#         REG_CONTROL_MOVE_TAG=True
+# def unreg_control_move():
+#     global REG_CONTROL_MOVE_TAG
+#     bpy.types.VIEW3D_PT_tools_object_options_transform.remove(draw_control_move_offset)
+#     REG_CONTROL_MOVE_TAG=False
 def reg_and_update():
     from .utils.registration import get_prefs
 
 
 
-    #移动控制
-    if get_prefs().activate_control_move:
-        reg_control_move()
+    # #移动控制
+    # if get_prefs().activate_control_move:
+    #     reg_control_move()
     
     # 老版修改器
     if get_prefs().activate_old_modifier:
@@ -183,9 +183,9 @@ def unreg_and_update(unreg_addon=False):
     from .utils.registration import get_prefs
 
 
-    # 移动控制
-    if not get_prefs().activate_control_move or unreg_addon:
-        unreg_control_move()
+    # # 移动控制
+    # if not get_prefs().activate_control_move or unreg_addon:
+    #     unreg_control_move()
 
     
     # 老版修改器

@@ -848,6 +848,7 @@ class M4SceneProperties(bpy.types.PropertyGroup):
     # show_meshdeform_helper: BoolProperty(name="Meshdeform Helper")
     show_align_helper: BoolProperty(name="Align Helper")
     show_wave_modifier: BoolProperty(name="Wave Modifier")
+    show_control_move: BoolProperty(name="Show Control Move Panel")
 
 class M4ObjectProperties(bpy.types.PropertyGroup):
     unity_exported: BoolProperty(name="Exported to Unity")

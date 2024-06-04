@@ -544,7 +544,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
     activate_collections_pie: BoolProperty(name="Collections Pie", default=True, update=update_activate_collections_pie)
     activate_workspace_pie: BoolProperty(name="Workspace Pie", default=True, update=update_activate_workspace_pie)
     activate_tools_pie: BoolProperty(name="Tools Pie", default=True, update=update_activate_tools_pie)
-
+    
     use_group_sub_menu: BoolProperty(name="Use Group Sub-Menu", default=False)
     use_group_outliner_toggles: BoolProperty(name="Show Group Outliner Toggles", default=True)
 

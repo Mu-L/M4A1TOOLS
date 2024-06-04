@@ -56,7 +56,12 @@ class PanelM4A1tools(bpy.types.Panel):
         p = get_prefs()
 
         if context.mode == 'OBJECT':
-
+            if p.activate_control_move:
+                box = layout.box()
+                box.prop(m3, "show_control_move", text="Control Move", icon='TRIA_DOWN' if m3.show_control_move else 'TRIA_RIGHT', emboss=False)
+                if m3.show_control_move:
+                    b = box.box()
+                    b.prop(context.scene.M4, "control_move_offset")
             if p.activate_smart_drive:
                 box = layout.box()
                 box.prop(m3, "show_smart_drive", text="Smart Drive", icon='TRIA_DOWN' if m3.show_smart_drive else 'TRIA_RIGHT', emboss=False)
