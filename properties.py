@@ -400,6 +400,7 @@ selected = []
 
 class M4SceneProperties(bpy.types.PropertyGroup):
 
+    control_move_offset : FloatProperty(name="Control Move Offset", default=0.1, max=1000, min=0.001)
     focus_history: CollectionProperty(type=HistoryEpochCollection)
 
     use_undo_save: BoolProperty(name="Use Undo Save", description="Save before Undoing\nBe warned, depending on your scene complexity, this can noticably affect your undo speed", default=False)

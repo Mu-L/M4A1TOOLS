@@ -315,6 +315,8 @@ def get_tools():
 
     classlists, keylists, count = get_focus(classlists, keylists, count)
 
+    classlists, keylists, count = get_control_move(classlists, keylists, count)
+
     classlists, keylists, count = get_mirror(classlists, keylists, count)
 
     # classlists, keylists, count = get_align(classlists, keylists, count)
@@ -483,6 +485,13 @@ def get_focus(classlists=[], keylists=[], count=0):
     if get_prefs().activate_focus:
         classlists.append(classesdict["FOCUS"])
         keylists.append(keysdict["FOCUS"])
+        count +=1
+
+    return classlists, keylists, count
+def get_control_move(classlists=[], keylists=[], count=0):
+    if get_prefs().activate_control_move:
+        classlists.append(classesdict["CONTROL_MOVE"])
+        keylists.append(keysdict["CONTROL_MOVE"])
         count +=1
 
     return classlists, keylists, count

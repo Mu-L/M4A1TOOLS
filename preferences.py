@@ -195,7 +195,8 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
 
     def update_activate_focus(self, context):
         activate(self, register=self.activate_focus, tool="focus")
-
+    def update_activate_control_move(self, context):
+        activate(self, register=self.activate_control_move, tool="control_move")
     def update_activate_mirror(self, context):
         activate(self, register=self.activate_mirror, tool="mirror")
 
@@ -511,6 +512,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
     activate_edge_constraint: BoolProperty(name="Edge Constraint", default=True, update=update_activate_edge_constraint)
     activate_extrude: BoolProperty(name="Extrude", default=True, update=update_activate_extrude)
     activate_focus: BoolProperty(name="Focus", default=True, update=update_activate_focus)
+    activate_control_move: BoolProperty(name="Control Move", default=True, update=update_activate_control_move)
     activate_mirror: BoolProperty(name="Mirror", default=True, update=update_activate_mirror)
     activate_align: BoolProperty(name="Align", default=False, update=update_activate_align)
     activate_group: BoolProperty(name="Group", default=True, update=update_activate_group)
@@ -704,6 +706,7 @@ class MACHIN4toolsPreferences(bpy.types.AddonPreferences, GizmoUtils):
         draw_split_row(self, column, prop='activate_old_modifier', text='Old Modifier', label='Enable Old Modifier', factor=0.25)
         draw_split_row(self, column, prop='activate_mirror_vg', text='Mirror Vg', label="Mirror Vertex Group", factor=0.25)
         draw_split_row(self, column, prop='activate_wave_modifier', text='Wave Modifier', label="Improve Parameter Display for Wave Modifier", factor=0.25)
+        draw_split_row(self, column, prop='activate_control_move', text='Control Move', label="Movement of an object up, down, left and right based on perspective control and selection", factor=0.25)
         # draw_split_row(self, column, prop='activate_meshdeform_helper', text='Meshdeform Helper', label="Quick Setup Mesh Deformation", factor=0.25)
         draw_split_row(self, column, prop='activate_simple_deform_helper', text='Simple Deform Helper', label="User-friendly Visual 3D Components", factor=0.25)
         draw_split_row(self, column, prop='activate_lattice_helper', text='Lattice Helper', label="Convenient and Quick Grid Creation", factor=0.25)

@@ -63,7 +63,7 @@ classes = {'CORE': [('ui.UILists', [('GroupPosesUIList', '')]),
                                             ('Unmirror', 'unmirror')])],
            'ALIGN': [('operators.align', [('Align', 'align'),
                                           ('AlignRelative', 'align_relative')])],
-
+           'CONTROL_MOVE': [('operators.control', [('MoveOperator', 'control_move')])],            
 
 
            'APPLY': [('operators.apply', [('Apply', 'apply_transformations')])],
@@ -216,7 +216,16 @@ classes = {'CORE': [('ui.UILists', [('GroupPosesUIList', '')]),
                                                 ('SetBCPreset', 'set_boxcutter_preset')])],
            }
 
-keys = {'SMART_VERT': [
+keys = {
+    'CONTROL_MOVE': [
+    {'label': 'Upward movement', 'keymap': 'Object Mode', 'idname': 'm4a1.control_move', 'type': 'UP_ARROW', 'value': 'PRESS', 'ctrl': True, 'alt': True,},
+    {'label': 'Downward movement', 'keymap': 'Object Mode', 'idname': 'm4a1.control_move', 'type': 'DOWN_ARROW', 'value': 'PRESS', 'ctrl': True, 'alt': True, },
+    {'label': 'Left movement', 'keymap': 'Object Mode', 'idname': 'm4a1.control_move', 'type': 'LEFT_ARROW', 'value': 'PRESS', 'ctrl': True, 'alt': True, },
+    {'label': 'Right movement', 'keymap': 'Object Mode', 'idname': 'm4a1.control_move', 'type': 'RIGHT_ARROW', 'value': 'PRESS', 'ctrl': True, 'alt': True, },
+    {'label': 'Move towards the view', 'keymap': 'Object Mode', 'idname': 'm4a1.control_move', 'type': 'NUMPAD_PLUS', 'value': 'PRESS', 'ctrl': True, 'alt': True, },
+    {'label': 'Move away from the view', 'keymap': 'Object Mode', 'idname': 'm4a1.control_move', 'type': 'NUMPAD_MINUS', 'value': 'PRESS', 'ctrl': True, 'alt': True, }
+    ],
+    'SMART_VERT': [
     {'label': 'Merge Last', 'keymap': 'Mesh', 'idname': 'm4a1.smart_vert', 'type': 'ONE', 'value': 'PRESS',
      'ctrl': True,'properties': [('mode', 'MERGE'), ('mergetype', 'LAST'), ('slideoverride', False)]},
     {'label': 'Merge Center', 'keymap': 'Mesh', 'idname': 'm4a1.smart_vert', 'type': 'ONE', 'value': 'PRESS',

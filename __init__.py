@@ -2,7 +2,7 @@
 bl_info = {
     "name": "M4A1TOOLS",
     "author": "MACHIN3, TitusLVR, AIGODLIKE Community",
-    "version": (2, 0, 4),
+    "version": (2, 0, 5),
     "blender": (4, 0, 0),
     "location": "Everywhere",
     "description": "Based on the M3 tool, add more features to make Blender more user-friendly",
